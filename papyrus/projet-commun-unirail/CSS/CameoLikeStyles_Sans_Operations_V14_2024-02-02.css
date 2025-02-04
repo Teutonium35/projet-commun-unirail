@@ -1,0 +1,641 @@
+
+/* refs : 
+ * https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS#Introduction
+ * https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS/StereotypeDisplay
+ */
+
+/* Couleur de remplissage par défaut des éléments */
+
+* {
+fillColor: lightblue;
+}
+
+Comment {
+	fillColor: #B3CCFF;
+	lineColor: black;
+	fontColor: black;
+	shadow: false;
+}
+
+StereotypeComment  {
+	fillColor: #CCFFD4;
+	shadow: false;
+	visible:false;
+	lineColor: grey;
+	}
+	
+CommentLink, StereotypeCommentLink {
+	lineColor: #0066CC;
+	lineStyle: dashed; 
+	roundedBendpointsRadius: 3;
+	routing: Rectilinear ;
+	jumpLinkStatus: Above;
+}	
+StereotypeCommentLink {	
+	lineColor: #00CC00;
+}
+
+/* ***********************************************************************  */
+Package {
+	fillColor: #D4DDFF;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	
+}
+
+/* ***********************************************************************  */
+PrimitiveType {
+	fillColor: #99CCFF;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	
+}
+
+/* ***********************************************************************  */
+Stereotype {
+	fillColor: #CCFFCC;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	
+}
+
+Class,  Interface, AssociationClass{
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	
+}
+
+Class {
+	fillColor: #FFCC99;
+	}
+
+
+Class[isAbstract=true] {
+	fillColor: #CCFFFF;
+	
+}
+
+AssociationClass{
+	fillColor: #E5FFCC;
+	}
+	
+Interface {
+	fillColor: #BDD2C1;		
+	}
+	
+Actor {
+	fillColor: darkblue;	
+	lineColor: darkblue;
+	bold : true;	
+	
+}
+Class > Compartment,  
+Stereotype > Compartment,
+Interface > Compartment, 
+AssociationClass > Compartment {
+	showTitle: true;
+}
+
+/* Masquage du compartiment "nestedclassifiers" */
+Class > Compartment[kind="nestedclassifiers"], 
+Stereotype  > Compartment[kind="nestedclassifiers"], 
+Interface > Compartment[kind="nestedclassifiers"], 
+AssociationClass > Compartment[kind="nestedclassifiers"]{
+	visible: false;
+}
+
+/* Masquage du compartiment "operations" */
+Class > Compartment[kind="operations"],  
+Stereotype  > Compartment[kind="operations"],
+Interface > Compartment[kind="operations"], 
+AssociationClass > Compartment[kind="operations"],
+PrimitiveType > Compartment[kind="operations"]{
+	visible: false;
+}
+
+/* Masquage du compartiment "attributes" */
+
+PrimitiveType > Compartment[kind="attributes"]{
+	visible: false;
+}
+
+
+
+Class > Property, 
+Class > Operation,  
+Interface> Property ,  
+Interface > Operation, 
+AssociationClass > Property, 
+AssociationClass > Operation{
+	bold : false;
+
+}
+
+Class  Property, 
+AssociationClass Property,
+DataType Property {/*name and type are not masked but displayed !! */
+	/*
+	  maskLabel: name type defaultValue visibility;
+	 */
+	/* Uncomment the previous line and comment the following line to display visibility */
+	maskLabel: name type defaultValue ;  
+}
+
+/* ref : https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS#Supported_properties
+ * Association have six different labels: 
+ *    one label for the Association itself, 
+ *    two labels for each association end (Source and target), 
+ *    and one label for the Association's stereotypes.
+ */
+Association > Label:sourceMultiplicity {
+	visible:true;
+}
+ 
+Association > Label:targetMultiplicity {
+	visible:true;
+}
+ 
+Association > Label:sourceRole {
+	maskLabel: name ;
+}
+ 
+Association > Label:targetRole {
+	maskLabel: name ;
+}
+ 
+Association > Label:name {
+	visible:true;
+}
+/* 
+Class {
+	fillColor: #FFCC99;	
+	
+	}*/
+
+/* masquage des icones pour les propri�t�s */
+Property ,
+Association  {
+	elementIcon: false;
+}
+
+/* masquage des icones pour les operations */
+Operation  {
+	elementIcon: false;
+}
+
+Operation  {
+	maskLabel: name type;
+}
+
+
+
+
+/* ***********************************************************************  */
+Enumeration {
+	fillColor: #FFCCCC;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	}
+
+EnumerationLiteral{
+	bold : false;
+	elementIcon: false;
+}
+
+/* ***********************************************************************  */
+DataType {
+	fillColor: #80AAFF;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2;
+	}
+
+DataType > Compartment {
+	visible: false;
+}	
+
+
+/* ***********************************************************************  */
+InstanceSpecification {
+	fillColor: #FFF0B4;
+	bold: true;
+	underline: true;
+	shadow: true;
+	shadowWidth: 2;
+}
+
+
+/* ***********************************************************************  */
+
+Association, 
+AssociationClass, 
+Dependency,
+/* Generalization,
+InterfaceRealization, */
+Extend,
+Include,
+InstanceSpecification,
+Transition {
+	roundedBendpointsRadius: 6;
+	routing: Rectilinear ;
+	bold : true;
+	jumpLinkStatus: Above;
+}
+
+
+Generalization,
+InterfaceRealization{
+	roundedBendpointsRadius: 6;
+	routing: Rectilinear ;
+	bold : true;
+	jumpLinkStatus: None;
+}
+
+
+/* ************************************************************************ */  
+UseCase {
+	fillColor: #FFFFCC;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2; 
+	}
+Include {
+	fontColor:  purple;
+	lineColor: purple;
+	bold : true;
+}
+Extend {
+	fontColor:  blue;
+	lineColor: blue;
+	bold : true;
+}
+	
+	/* ************************************************************************ */  
+Interaction {
+	fillColor: #FFEEE6; 
+	fillColor: #E4FDF5; 
+	bold: true;
+	shadow: true;
+	shadowWidth: 2; 
+	}
+SequenceDiagram Interaction Lifeline,
+SequenceDiagram Interaction Property {
+	bold : true;
+	underline: true;
+	fillColor: #99FFCC;
+	fontColor: black
+}
+
+/* Interaction  Property {
+	fillColor: #6CFFCF;
+	elementIcon: true;
+	
+}
+*/
+
+SequenceDiagram BehaviorExecutionSpecification {
+	fillColor: lightgoldenrodyellow;
+	shadow: true;
+	shadowWidth: 2; 
+	}
+	
+StateMachine, Region{
+	fillColor: #E6FFF7;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2; 
+}	
+
+State  {
+	fillColor: #FFFBE6;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2; 
+}	
+Pseudostate{
+	fillColor: darkslategrey;
+	bold: true;
+	shadow: true;
+	shadowWidth: 2; 
+}	
+
+
+	/* ************************************************************************ */  
+RedefinableTemplateSignature {	
+	fillColor:  #FFF0B4;	
+	shadow: false;
+	borderStyle: custom;
+	customDash: 5 5;
+}
+/*         ce qui suit ne marche pas
+ClassifierTemplateParameter > ParameterableElement{
+	maskLabel: name type;
+}
+RedefinableTemplateSignature >TemplateParameterCompartment{
+	visible: true;
+	maskLabel: name type;
+	
+}
+*/
+
+/* ******************************************************************************* */
+Component {
+	fillColor: chocolate;
+}
+
+/* ***********************************************************************************  */
+/*                               RDBMS Styles                                           */
+/* ***********************************************************************************  */
+
+
+/* TABLE */
+Class[appliedStereotypes~="Table"] {  /* "~=" operator means "contains" : UML elements can have more than one applied stereotype */
+	fillColor: #FFF0B4;	
+}
+Class[appliedStereotypes~="table"] {
+	fillColor: #FFF0B4;	
+}
+/* Domaine */
+DataType[appliedStereotypes~="Domain"] {	
+	fillColor: #FFCCFF;
+}
+
+/* Not Null */
+Property[appliedStereotypes~="NotNull"] {
+	fontColor:  hotpink;
+	bold : true;
+}
+Property[appliedStereotypes~="not null"] {
+	fontColor:  hotpink;
+	bold : true;
+}
+
+/* Check */
+Property[appliedStereotypes~="Check"] {
+	fontColor:  forestgreen;
+	bold : true;
+}
+Property[appliedStereotypes~="check"] {
+	fontColor:  forestgreen;
+	bold : true;
+}
+
+/* Unique */
+Property[appliedStereotypes~="Unique"] {
+	fontColor:  blue;
+	bold : true;
+}
+
+/* Foreign Key */
+Property[appliedStereotypes~="FK"], Dependency[appliedStereotypes~="FK"]{
+	fontColor:  purple;
+	lineColor: purple;
+	bold : true;
+}
+
+Dependency[appliedStereotypes~="FK"]{
+	lineWidth: 2;
+}
+
+
+/* Primary Key */
+Property[appliedStereotypes~="PK"] {
+	fontColor:  red;
+	bold : true;
+}
+
+/* Stereotype visibility */
+
+/* To make the properties visible into compartment */
+Compartment[type=StereotypeCompartment]{
+	visible:true;
+} 
+
+/* To make the properties not visible into compartment*/
+Class>Compartment[type=StereotypeCompartment],
+DataType>Compartment[type=StereotypeCompartment]{
+	visible:false;
+}  
+
+/* 
+StereotypeComment  {
+	fillColor: #CCFFD4;
+	shadow: false;
+	visible:true;
+	}
+*/
+
+
+/* Display the properties in Comment into the Comment 
+StereotypeComment Compartment[type=StereotypeComment]{
+	visible:true;
+}
+*/
+/* Display the Comment shape 
+ StereotypeComment Compartment[stereotype="FK"] {
+ 	fillColor: red;
+	visible:true;
+}
+StereotypeComment Compartment[stereotype=Table] {
+	visible:false;
+	displayStereotypes: false;
+}
+*/
+/*
+StereotypeComment Compartment[empty=true] {
+	visible:false;
+	displayStereotypes: false;
+}
+
+ */
+
+
+/* Display the properties in Brace into the Comment
+StereotypeComment Compartment[type=StereotypeBrace]{
+	visible:true;
+}
+*/
+/* 
+Label[type=StereotypeLabel]{
+	depth:"-1"; /* or "none" */
+
+
+	
+
+/* ***********************************************************************************  */
+/*                               END OF RDBMS Styles                                    */
+/* ***********************************************************************************  */
+
+
+/* ***********************************************************************************  */
+/*                               SysML Styles                                           */
+/* ***********************************************************************************  */
+
+Class[appliedStereotypes~="Stakeholder"] {
+	fillColor: #66FFFF;
+	transparency: 10;
+}
+
+Class[appliedStereotypes~="System"] {
+	fillColor: #FF9933;	
+}
+
+
+Class[appliedStereotypes~="Subsystem"] {
+	fillColor: #BBDDDD;	
+}
+
+Class[appliedStereotypes~="Actuator"] , 
+Actor[appliedStereotypes~="Actuator"] {
+	fillColor:#FFB0D8 ;
+	gradient: #FF96CA;
+	transparency: 10;
+	
+}
+
+Class[appliedStereotypes~="Sensor"] , 
+Actor[appliedStereotypes~="Sensor"]  {
+	fillColor: #E7CEFF;
+	gradient: #D8B2FF;
+	transparency: 10;	
+}
+
+
+
+/* acteur et block externes */
+Class[appliedStereotypes~="External"],
+Actor[appliedStereotypes~="External"] {
+	fillColor: #C6FFFF;
+	gradient: #89FFFF;
+	transparency: 10;	
+}
+
+/* acteur et block externes */
+Class[appliedStereotypes~="Environmental"],
+Actor[appliedStereotypes~="Environmental"] {
+	fillColor: #C1FFC1;
+	gradient: #87FA87;
+	transparency: 10;	
+}
+
+
+
+/* ******************************    Requirements******************* */
+
+/* * 
+*/
+
+Class[appliedStereotypes~="Requirement"] {
+	fillColor: #C7EEFF;	
+}
+
+Class[appliedStereotypes~="businessRequirement"] {
+	fillColor: #AAD4FD;	
+}
+
+Class[appliedStereotypes~="designConstraint"] {
+	fillColor: #FFD8FD;	
+}
+
+Class[appliedStereotypes~="functionalRequirement"] {
+	fillColor: #FFE386;	
+}
+
+Class[appliedStereotypes~="interfaceRequirement"] {
+	fillColor: #E0E0E0;	
+}
+
+
+Class[appliedStereotypes~="performanceRequirement"] {
+	fillColor: #FF8181;	
+}
+
+
+Class[appliedStereotypes~="physicalRequirement"] {
+	fillColor: #CDFFD7;	
+}
+
+
+Class[appliedStereotypes~="usabilityRequirement"] {
+	fillColor: #CCE6CC;	
+}
+
+
+
+/*  les compartiments spécifiques aux stéréotypes ne sont pas pris 
+ * en compte actuellement dans  les feuilles de styles CSS dans papyrus quand on nomme  exolicitement les steréotypes. 
+ La ligne suivante n'est donc pas op�rationnelle */
+/*
+ * Class[appliedStereotypes~="SysML::Requirements::Requirement"]>Compartment[kind="«Requirement»"] { //ALT+0171  et alt + 0187  pour les guillemets
+	visible: true;
+}
+*/
+/*la seule solution consiste à afficher tous les compartiments  pour tous les stereotypes si le stéréotype SysML::Requirements::Requirement est appliqué */
+Class[appliedStereotypes~="SysML::Requirements::Requirement"]>Compartment[kind=StereotypeCompartment] { 
+	visible: true;
+}
+
+
+
+Abstraction[appliedStereotypes~="Refine"],
+Dependency[appliedStereotypes~="Refine"]{
+	lineWidth: 2;
+	fontColor:  purple;
+	lineColor: purple;
+	bold : true;
+	routing: Rectilinear ;
+}
+
+Abstraction[appliedStereotypes~="DeriveReqt"],
+Dependency[appliedStereotypes~="DeriveReqt"]{
+	lineWidth: 2;
+	fontColor:  #0000FF;
+	lineColor: #0000FF;
+	bold : true;
+	routing: Rectilinear ;
+}
+Abstraction[appliedStereotypes~="Verify"],
+Dependency[appliedStereotypes~="Verify"]{
+	lineWidth: 2;
+	fontColor:  #009900;
+	lineColor: #009900;
+	bold : true;
+	routing: Rectilinear ;
+}
+
+Abstraction[appliedStereotypes~="Satisfy"],
+Dependency[appliedStereotypes~="Satisfy"]{
+	lineWidth: 2;
+	fontColor:  #994C00;
+	lineColor: #994C00;
+	bold : true;
+	routing: Rectilinear ;
+}
+
+/* ************************************************* TestCase */
+
+OpaqueAction[appliedStereotypes~="TestCase"],
+StateMachine[appliedStereotypes~="TestCase"],
+FunctionBehavior[appliedStereotypes~="TestCase"],
+Interaction[appliedStereotypes~="TestCase"],
+Activity[appliedStereotypes~="TestCase"] {
+	fillColor: #D8FFF1;
+	gradient: #B7FDE3;
+	transparency: 10;
+	bold : true;	
+}
+
+/* ************************************************** Comments */
+Comment[appliedStereotypes~="Problem"] {	
+	fillColor: #FDC2BE;
+}
+Comment[appliedStereotypes~="Rationale"] {	
+	fillColor: #DBE6D4;
+}
+
+ 

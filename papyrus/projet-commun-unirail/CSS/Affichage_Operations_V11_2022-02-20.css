@@ -1,0 +1,16 @@
+
+/* refs : 
+ * https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS#Introduction
+ * https://wiki.eclipse.org/MDT/Papyrus/UserGuide/CSS/StereotypeDisplay
+ */
+
+
+
+/* Affichage du compartiment "operations" */
+Class > Compartment[kind="operations"],  
+Interface > Compartment[kind="operations"], 
+AssociationClass > Compartment[kind="operations"]{
+	visible: true;
+}
+
+ 
