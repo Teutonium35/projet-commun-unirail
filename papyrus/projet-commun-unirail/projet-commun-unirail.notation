@@ -12,7 +12,7 @@
     <styles xmi:type="notation:StringValueStyle" xmi:id="_GEBxceReEe-DYc58Yb74gw" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_GEBxcuReEe-DYc58Yb74gw"/>
     <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_GEBxc-ReEe-DYc58Yb74gw" diagramKindId="org.eclipse.papyrus.sysml16.diagram.useCase">
-      <owner xmi:type="uml:Model" href="projet-commun-unirail.uml#_SQ78QOM3Ee-G6OLNZtIGhg"/>
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_LdgiIORfEe-SCOdj3-Zdhg"/>
     </styles>
     <element xmi:type="uml:Model" href="projet-commun-unirail.uml#_SQ78QOM3Ee-G6OLNZtIGhg"/>
   </notation:Diagram>
