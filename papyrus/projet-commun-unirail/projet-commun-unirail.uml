@@ -11,6 +11,12 @@
       <packagedElement xmi:type="uml:Actor" xmi:id="_NXzroORfEe-SCOdj3-Zdhg" name="Passager"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_G-rJ4ORgEe-sc4pgeeNPqg" name="03_Sequence">
+      <packagedElement xmi:type="uml:Interaction" xmi:id="_Jo0b8ORgEe-sc4pgeeNPqg" name="Interaction1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_NwZVUORgEe-sc4pgeeNPqg" name="04_BlocDefinitionDiagram"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_STF4YOM3Ee-G6OLNZtIGhg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_STKw4OM3Ee-G6OLNZtIGhg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <notation:Diagram xmi:id="_htPSMOM3Ee-G6OLNZtIGhg" type="UseCase" name="UseCase" measurementUnit="Pixel">
-    <styles xmi:type="notation:StringValueStyle" xmi:id="_htPSMeM3Ee-G6OLNZtIGhg" name="diagram_compatibility_version" stringValue="1.4.0"/>
-    <styles xmi:type="notation:DiagramStyle" xmi:id="_htPSMuM3Ee-G6OLNZtIGhg"/>
-    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_htPSM-M3Ee-G6OLNZtIGhg" diagramKindId="org.eclipse.papyrus.sysml16.diagram.useCase">
-      <owner xmi:type="uml:Model" href="projet-commun-unirail.uml#_SQ78QOM3Ee-G6OLNZtIGhg"/>
-    </styles>
-    <element xmi:type="uml:Model" href="projet-commun-unirail.uml#_SQ78QOM3Ee-G6OLNZtIGhg"/>
-  </notation:Diagram>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_GEBxcOReEe-DYc58Yb74gw" type="UseCase" name="ContextDiagram" measurementUnit="Pixel">
     <styles xmi:type="notation:StringValueStyle" xmi:id="_GEBxceReEe-DYc58Yb74gw" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_GEBxcuReEe-DYc58Yb74gw"/>
@@ -15,5 +7,55 @@
       <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_LdgiIORfEe-SCOdj3-Zdhg"/>
     </styles>
     <element xmi:type="uml:Model" href="projet-commun-unirail.uml#_SQ78QOM3Ee-G6OLNZtIGhg"/>
+    <edges xmi:type="notation:Connector" xmi:id="_unkcJORfEe-sc4pgeeNPqg" type="StereotypeCommentLink">
+      <styles xmi:type="notation:FontStyle" xmi:id="_unkcJeRfEe-sc4pgeeNPqg"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_unlDMeRfEe-sc4pgeeNPqg" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="projet-commun-unirail.uml#_RWz30ORfEe-SCOdj3-Zdhg"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_unkcJuRfEe-sc4pgeeNPqg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_unkcJ-RfEe-sc4pgeeNPqg"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_unlDMORfEe-sc4pgeeNPqg"/>
+    </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_Alk50ORgEe-sc4pgeeNPqg" type="UseCase" name="UseCaseDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_Alk50eRgEe-sc4pgeeNPqg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_Alk50uRgEe-sc4pgeeNPqg"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Alk50-RgEe-sc4pgeeNPqg" diagramKindId="org.eclipse.papyrus.sysml16.diagram.useCase">
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_3ZBqsORfEe-sc4pgeeNPqg"/>
+    </styles>
+    <element xmi:type="uml:Package" href="projet-commun-unirail.uml#_3ZBqsORfEe-sc4pgeeNPqg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_CiB_cORgEe-sc4pgeeNPqg" type="PapyrusUMLClassDiagram" name="RequirementDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_CiB_ceRgEe-sc4pgeeNPqg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_CiB_cuRgEe-sc4pgeeNPqg"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_CiB_c-RgEe-sc4pgeeNPqg" diagramKindId="org.eclipse.papyrus.sysml16.diagram.requirement">
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_-PIm4ORfEe-sc4pgeeNPqg"/>
+    </styles>
+    <element xmi:type="uml:Package" href="projet-commun-unirail.uml#_-PIm4ORfEe-sc4pgeeNPqg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_KHmCoORgEe-sc4pgeeNPqg" type="PapyrusUMLSequenceDiagram" name="SequenceDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_KHmCoeRgEe-sc4pgeeNPqg" type="Interaction_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_KHmCouRgEe-sc4pgeeNPqg" type="Interaction_NameLabel"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_KHmCo-RgEe-sc4pgeeNPqg" type="Interaction_SubfragmentCompartment">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KHmCpORgEe-sc4pgeeNPqg"/>
+      </children>
+      <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_Jo0b8ORgEe-sc4pgeeNPqg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KHmCpeRgEe-sc4pgeeNPqg"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_KHmCpuRgEe-sc4pgeeNPqg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_KHmCp-RgEe-sc4pgeeNPqg"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_KHmCqORgEe-sc4pgeeNPqg" diagramKindId="org.eclipse.papyrus.sysml16.diagram.sequence">
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_G-rJ4ORgEe-sc4pgeeNPqg"/>
+    </styles>
+    <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_Jo0b8ORgEe-sc4pgeeNPqg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_Qhot4ORgEe-sc4pgeeNPqg" type="PapyrusUMLClassDiagram" name="BlockDefinitionDiagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_Qhot4eRgEe-sc4pgeeNPqg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_Qhot4uRgEe-sc4pgeeNPqg"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Qhot4-RgEe-sc4pgeeNPqg" diagramKindId="org.eclipse.papyrus.sysml16.diagram.blockdefinition">
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_NwZVUORgEe-sc4pgeeNPqg"/>
+    </styles>
+    <element xmi:type="uml:Package" href="projet-commun-unirail.uml#_NwZVUORgEe-sc4pgeeNPqg"/>
   </notation:Diagram>
 </xmi:XMI>
