@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_GEBxcOReEe-DYc58Yb74gw" type="UseCase" name="ContextDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_2sdYQORiEe-sc4pgeeNPqg" type="Actor_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_2sd_UORiEe-sc4pgeeNPqg" type="Actor_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_2sd_UeRiEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_2sd_UuRiEe-sc4pgeeNPqg" type="Actor_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_2sd_U-RiEe-sc4pgeeNPqg" x="20" y="100"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_2sd_VORiEe-sc4pgeeNPqg" type="Actor_QualifiedNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_2sd_VeRiEe-sc4pgeeNPqg" x="20" y="80"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_2sd_VuRiEe-sc4pgeeNPqg" type="Actor_FloatingNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_2sd_V-RiEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <element xmi:type="uml:Actor" href="projet-commun-unirail.uml#_NXzroORfEe-SCOdj3-Zdhg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2sdYQeRiEe-sc4pgeeNPqg" x="200" y="340"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4Gkl0ORiEe-sc4pgeeNPqg" type="Classifier_SubjectShape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_4GlM4ORiEe-sc4pgeeNPqg" type="Classifier_NameLabel"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_4GlM4eRiEe-sc4pgeeNPqg" type="Classifier_FloatingNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4GlM4uRiEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_4GlM4-RiEe-sc4pgeeNPqg" type="Classifier_UseCaseCompartment">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4GlM5ORiEe-sc4pgeeNPqg"/>
+      </children>
+      <element xmi:type="uml:Class" href="projet-commun-unirail.uml#_RWz30ORfEe-SCOdj3-Zdhg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4Gkl0eRiEe-sc4pgeeNPqg" x="380" y="240" width="221" height="121"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_4Gsho-RiEe-sc4pgeeNPqg" type="StereotypeComment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_4GshpORiEe-sc4pgeeNPqg"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_4GshpuRiEe-sc4pgeeNPqg" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="projet-commun-unirail.uml#_RWz30ORfEe-SCOdj3-Zdhg"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4GshpeRiEe-sc4pgeeNPqg" x="200"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_Bv0YAORjEe-sc4pgeeNPqg" type="Actor_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Bv0_EORjEe-sc4pgeeNPqg" type="Actor_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Bv0_EeRjEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Bv0_EuRjEe-sc4pgeeNPqg" type="Actor_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Bv0_E-RjEe-sc4pgeeNPqg" x="20" y="100"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Bv0_FORjEe-sc4pgeeNPqg" type="Actor_QualifiedNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Bv0_FeRjEe-sc4pgeeNPqg" x="20" y="80"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Bv0_FuRjEe-sc4pgeeNPqg" type="Actor_FloatingNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Bv0_F-RjEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <element xmi:type="uml:Actor" href="projet-commun-unirail.uml#_BCAPwORjEe-sc4pgeeNPqg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Bv0YAeRjEe-sc4pgeeNPqg" x="200" y="440"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_nOTLsORjEe-sc4pgeeNPqg" type="Classifier_SubjectShape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_nOTLsuRjEe-sc4pgeeNPqg" type="Classifier_NameLabel"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_nOTLs-RjEe-sc4pgeeNPqg" type="Classifier_FloatingNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nOTLtORjEe-sc4pgeeNPqg" y="15"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_nOTLteRjEe-sc4pgeeNPqg" type="Classifier_UseCaseCompartment">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nOTLtuRjEe-sc4pgeeNPqg"/>
+      </children>
+      <element xmi:type="uml:Class" href="projet-commun-unirail.uml#_lXGZgORjEe-sc4pgeeNPqg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nOTLseRjEe-sc4pgeeNPqg" x="380" y="83" width="221" height="138"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_nOZ5Y-RjEe-sc4pgeeNPqg" type="StereotypeComment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nOZ5ZORjEe-sc4pgeeNPqg"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_nOZ5ZuRjEe-sc4pgeeNPqg" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="projet-commun-unirail.uml#_lXGZgORjEe-sc4pgeeNPqg"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nOZ5ZeRjEe-sc4pgeeNPqg" x="200"/>
+    </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_GEBxceReEe-DYc58Yb74gw" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_GEBxcuReEe-DYc58Yb74gw"/>
     <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_GEBxc-ReEe-DYc58Yb74gw" diagramKindId="org.eclipse.papyrus.sysml16.diagram.useCase">
@@ -16,6 +86,26 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_unkcJuRfEe-sc4pgeeNPqg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_unkcJ-RfEe-sc4pgeeNPqg"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_unlDMORfEe-sc4pgeeNPqg"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_4GtIsORiEe-sc4pgeeNPqg" type="StereotypeCommentLink" source="_4Gkl0ORiEe-sc4pgeeNPqg" target="_4Gsho-RiEe-sc4pgeeNPqg">
+      <styles xmi:type="notation:FontStyle" xmi:id="_4GtIseRiEe-sc4pgeeNPqg"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_4GtIteRiEe-sc4pgeeNPqg" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="projet-commun-unirail.uml#_RWz30ORfEe-SCOdj3-Zdhg"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_4GtIsuRiEe-sc4pgeeNPqg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4GtIs-RiEe-sc4pgeeNPqg"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_4GtItORiEe-sc4pgeeNPqg"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_nOZ5Z-RjEe-sc4pgeeNPqg" type="StereotypeCommentLink" source="_nOTLsORjEe-sc4pgeeNPqg" target="_nOZ5Y-RjEe-sc4pgeeNPqg">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nOZ5aORjEe-sc4pgeeNPqg"/>
+      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_nOZ5bORjEe-sc4pgeeNPqg" name="BASE_ELEMENT">
+        <eObjectValue xmi:type="uml:Class" href="projet-commun-unirail.uml#_lXGZgORjEe-sc4pgeeNPqg"/>
+      </styles>
+      <element xsi:nil="true"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nOZ5aeRjEe-sc4pgeeNPqg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nOZ5auRjEe-sc4pgeeNPqg"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nOZ5a-RjEe-sc4pgeeNPqg"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_Alk50ORgEe-sc4pgeeNPqg" type="UseCase" name="UseCaseDiagram" measurementUnit="Pixel">

@@ -10,6 +10,8 @@
     <packagedElement xmi:type="uml:Package" xmi:id="_LdgiIORfEe-SCOdj3-Zdhg" name="00_Context">
       <packagedElement xmi:type="uml:Actor" xmi:id="_NXzroORfEe-SCOdj3-Zdhg" name="Passager"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_BCAPwORjEe-sc4pgeeNPqg" name="Opérateur"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lXGZgORjEe-sc4pgeeNPqg" name="Balises de localisation"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements"/>
@@ -79,4 +81,5 @@
     </profileApplication>
   </uml:Model>
   <Blocks:Block xmi:id="_RXWDUORfEe-SCOdj3-Zdhg" base_Class="_RWz30ORfEe-SCOdj3-Zdhg"/>
+  <Blocks:Block xmi:id="_lXJc0ORjEe-sc4pgeeNPqg" base_Class="_lXGZgORjEe-sc4pgeeNPqg"/>
 </xmi:XMI>
