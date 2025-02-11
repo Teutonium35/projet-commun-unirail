@@ -88,6 +88,14 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_oeDmkuRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_oeC_gORnEe-NqLnL50inmQ"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_oeENoORnEe-NqLnL50inmQ" name="aiguillages" type="_37MfcORmEe-NqLnL50inmQ" association="_oeC_gORnEe-NqLnL50inmQ"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XqwzEORoEe-NqLnL50inmQ" name="Pluie"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_d7ZDoORoEe-NqLnL50inmQ" memberEnd="_d7ZqsuRoEe-NqLnL50inmQ _d7ejMORoEe-NqLnL50inmQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d7ZqsORoEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d7ZqseRoEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_d7ZqsuRoEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_d7ZDoORoEe-NqLnL50inmQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_d7ejMORoEe-NqLnL50inmQ" name="pluie" type="_XqwzEORoEe-NqLnL50inmQ" association="_d7ZDoORoEe-NqLnL50inmQ"/>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_STF4YOM3Ee-G6OLNZtIGhg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_STKw4OM3Ee-G6OLNZtIGhg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
@@ -211,4 +219,5 @@
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Sensor xmi:id="_jTs3A-RmEe-NqLnL50inmQ" base_Class="_jTrB0ORmEe-NqLnL50inmQ"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Externalsystem xmi:id="_pjPideRmEe-NqLnL50inmQ" base_Class="_pjOUUORmEe-NqLnL50inmQ"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Actuator xmi:id="_37OUoORmEe-NqLnL50inmQ" base_Class="_37MfcORmEe-NqLnL50inmQ"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Environmentaleffect xmi:id="_aQeREORoEe-NqLnL50inmQ" base_Class="_XqwzEORoEe-NqLnL50inmQ"/>
 </xmi:XMI>
