@@ -9,12 +9,20 @@
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_LdgiIORfEe-SCOdj3-Zdhg" name="00_Context">
       <packagedElement xmi:type="uml:Actor" xmi:id="_NXzroORfEe-SCOdj3-Zdhg" name="Passager"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System" useCase="_ZbHJsOh2Ee-AB_pJZtmEXA _YGo0oOh3Ee-AB_pJZtmEXA _pl0EcOh7Ee-AB_pJZtmEXA _CkH8IOh8Ee-AB_pJZtmEXA _yk_P0OiEEe-AB_pJZtmEXA">
+      <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System" useCase="_ZbHJsOh2Ee-AB_pJZtmEXA _YGo0oOh3Ee-AB_pJZtmEXA _pl0EcOh7Ee-AB_pJZtmEXA _CkH8IOh8Ee-AB_pJZtmEXA _yk_P0OiEEe-AB_pJZtmEXA _I9FI4PQaEe-okpddkHWP5g _7PI8wPQaEe-okpddkHWP5g">
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_ZbHJsOh2Ee-AB_pJZtmEXA" name="Allumer le système" visibility="public" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_YGo0oOh3Ee-AB_pJZtmEXA" name="Eteindre le système" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_pl0EcOh7Ee-AB_pJZtmEXA" name="Donner le nombre de tours à faire" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_pl0EcOh7Ee-AB_pJZtmEXA" name="Donner la consigne de nombre de tours à chaque train" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_CkH8IOh8Ee-AB_pJZtmEXA" name="Modifier la mission d'un train" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_yk_P0OiEEe-AB_pJZtmEXA" name="Monter dans un train à l'heure" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_yk_P0OiEEe-AB_pJZtmEXA" name="Monter dans un train" subject="_RWz30ORfEe-SCOdj3-Zdhg">
+          <include xmi:type="uml:Include" xmi:id="_3MI20PQZEe-okpddkHWP5g" addition="_8VRwUPQYEe-okpddkHWP5g"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_I9FI4PQaEe-okpddkHWP5g" name="Mettre en marche les trains" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_7PI8wPQaEe-okpddkHWP5g" name="Commander les trains" subject="_RWz30ORfEe-SCOdj3-Zdhg">
+          <include xmi:type="uml:Include" xmi:id="_PpPe4PQaEe-okpddkHWP5g" addition="_I9FI4PQaEe-okpddkHWP5g"/>
+          <include xmi:type="uml:Include" xmi:id="_EsUo4PQbEe-okpddkHWP5g" addition="_CkH8IOh8Ee-AB_pJZtmEXA"/>
+          <include xmi:type="uml:Include" xmi:id="_FX-N8PQbEe-okpddkHWP5g" addition="_pl0EcOh7Ee-AB_pJZtmEXA"/>
+        </ownedUseCase>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_BCAPwORjEe-sc4pgeeNPqg" name="Opérateur"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_lXGZgORjEe-sc4pgeeNPqg" name="Balises de localisation"/>
@@ -113,21 +121,13 @@
         <ownedEnd xmi:type="uml:Property" xmi:id="_hXeG0eh3Ee-AB_pJZtmEXA" name="eteindre le système" type="_YGo0oOh3Ee-AB_pJZtmEXA" association="_hXc4sOh3Ee-AB_pJZtmEXA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_mq5ygOh7Ee-AB_pJZtmEXA" name="Gestionnaire de trafic"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_yPugkOh7Ee-AB_pJZtmEXA" memberEnd="_yPvHouh7Ee-AB_pJZtmEXA _yPvusOh7Ee-AB_pJZtmEXA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yPvHoOh7Ee-AB_pJZtmEXA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yPvHoeh7Ee-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_yPvHouh7Ee-AB_pJZtmEXA" name="gestionnaire de trafic" type="_mq5ygOh7Ee-AB_pJZtmEXA" association="_yPugkOh7Ee-AB_pJZtmEXA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_yPvusOh7Ee-AB_pJZtmEXA" name="donner le nombre de tours à faire" type="_pl0EcOh7Ee-AB_pJZtmEXA" association="_yPugkOh7Ee-AB_pJZtmEXA"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_EPbnYOh8Ee-AB_pJZtmEXA" memberEnd="_EPcOcuh8Ee-AB_pJZtmEXA _EPc1gOh8Ee-AB_pJZtmEXA">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EPcOcOh8Ee-AB_pJZtmEXA" source="org.eclipse.papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EPcOceh8Ee-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_EPcOcuh8Ee-AB_pJZtmEXA" name="gestionnaire de trafic" type="_mq5ygOh7Ee-AB_pJZtmEXA" association="_EPbnYOh8Ee-AB_pJZtmEXA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_EPc1gOh8Ee-AB_pJZtmEXA" name="modifier la mission d'un train" type="_CkH8IOh8Ee-AB_pJZtmEXA" association="_EPbnYOh8Ee-AB_pJZtmEXA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_EPc1gOh8Ee-AB_pJZtmEXA" name="modifier la mission d'un train" type="_7PI8wPQaEe-okpddkHWP5g" association="_EPbnYOh8Ee-AB_pJZtmEXA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Actor" xmi:id="_pPYLUOiEEe-AB_pJZtmEXA" name="Passager"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_2DFHUOiEEe-AB_pJZtmEXA" memberEnd="_2DGVceiEEe-AB_pJZtmEXA _2DGVcuiEEe-AB_pJZtmEXA">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2DFuYOiEEe-AB_pJZtmEXA" source="org.eclipse.papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2DGVcOiEEe-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
@@ -135,6 +135,8 @@
         <ownedEnd xmi:type="uml:Property" xmi:id="_2DGVceiEEe-AB_pJZtmEXA" name="passager" type="_pPYLUOiEEe-AB_pJZtmEXA" association="_2DFHUOiEEe-AB_pJZtmEXA"/>
         <ownedEnd xmi:type="uml:Property" xmi:id="_2DGVcuiEEe-AB_pJZtmEXA" name="monter dans un train à l'heure" type="_yk_P0OiEEe-AB_pJZtmEXA" association="_2DFHUOiEEe-AB_pJZtmEXA"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_pPYLUOiEEe-AB_pJZtmEXA" name="Passager"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_8VRwUPQYEe-okpddkHWP5g" name="Connaître les heures approximatives d'arrivée des trains en gare"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_G-rJ4ORgEe-sc4pgeeNPqg" name="03_Sequence">
