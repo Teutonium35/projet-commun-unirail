@@ -756,10 +756,37 @@
     </styles>
     <element xmi:type="uml:Package" href="projet-commun-unirail.uml#_-PIm4ORfEe-sc4pgeeNPqg"/>
   </notation:Diagram>
-  <notation:Diagram xmi:id="_KHmCoORgEe-sc4pgeeNPqg" type="PapyrusUMLSequenceDiagram" name="SequenceDiagram" measurementUnit="Pixel">
+  <notation:Diagram xmi:id="_KHmCoORgEe-sc4pgeeNPqg" type="PapyrusUMLSequenceDiagram" name="StartSequenceDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_KHmCoeRgEe-sc4pgeeNPqg" type="Interaction_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_KHmCouRgEe-sc4pgeeNPqg" type="Interaction_NameLabel"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_KHmCo-RgEe-sc4pgeeNPqg" type="Interaction_SubfragmentCompartment">
+        <children xmi:type="notation:Shape" xmi:id="_zkrfkPQnEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_zkrfkvQnEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_zkocQPQnEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zkrfkfQnEe-okpddkHWP5g" x="134" y="10"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_35XLYPQoEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_35XycPQoEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_35UIEPQoEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_35XLYfQoEe-okpddkHWP5g" x="494" y="10"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_F2f0oPQpEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_F2f0ovQpEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <children xmi:type="notation:Shape" xmi:id="_Q_x2MPQpEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_Q_x2MvQpEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Behavior">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_x2M_QpEe-okpddkHWP5g" x="18" y="18"/>
+            </children>
+            <element xmi:type="uml:BehaviorExecutionSpecification" href="projet-commun-unirail.uml#_Q_woEPQpEe-okpddkHWP5g"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Q_x2MfQpEe-okpddkHWP5g" x="40" y="266" width="20" height="100"/>
+          </children>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_F2cKQPQpEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_F2f0ofQpEe-okpddkHWP5g" x="654" y="10"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_N7_DIPQrEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_N7_qMPQrEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_N76KoPQrEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N7_DIfQrEe-okpddkHWP5g" x="314" y="10"/>
+        </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KHmCpORgEe-sc4pgeeNPqg"/>
       </children>
       <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_Jo0b8ORgEe-sc4pgeeNPqg"/>
@@ -771,6 +798,84 @@
       <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_G-rJ4ORgEe-sc4pgeeNPqg"/>
     </styles>
     <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_Jo0b8ORgEe-sc4pgeeNPqg"/>
+    <edges xmi:type="notation:Connector" xmi:id="_CtNIcPQpEe-okpddkHWP5g" type="Message_AsynchEdge" source="_zkrfkPQnEe-okpddkHWP5g" target="_35XLYPQoEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_CtNIc_QpEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CtNIdPQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_CtNIdfQpEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_CtNIdvQpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_CtNIcfQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_CtJeEPQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CtNIcvQpEe-okpddkHWP5g" points="[0, 0, -240, 0]$[240, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CtT2IPQpEe-okpddkHWP5g" id="(0.5,0.12285714285714286)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CtT2IfQpEe-okpddkHWP5g" id="(0.5,0.12285714285714286)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_IJ2-YPQpEe-okpddkHWP5g" type="Message_AsynchEdge" source="_zkrfkPQnEe-okpddkHWP5g" target="_F2f0oPQpEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_IJ2-Y_QpEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IJ2-ZPQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_IJ2-ZfQpEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IJ2-ZvQpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_IJ2-YfQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_IJyF4PQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_IJ2-YvQpEe-okpddkHWP5g" points="[0, 0, -480, 0]$[480, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IJ-TIPQpEe-okpddkHWP5g" id="(0.5,0.29428571428571426)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IJ-TIfQpEe-okpddkHWP5g" id="(0.5,0.29428571428571426)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_L9PJYPQpEe-okpddkHWP5g" type="Message_AsynchEdge" source="_zkrfkPQnEe-okpddkHWP5g" target="_F2f0oPQpEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_L9PwcPQpEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_L9PwcfQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_L9PwcvQpEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_L9Pwc_QpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_L9PJYfQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_L9K38PQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_L9PJYvQpEe-okpddkHWP5g" points="[0, 0, -480, 0]$[480, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L9XsQPQpEe-okpddkHWP5g" id="(0.5,0.20857142857142857)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L9YTUPQpEe-okpddkHWP5g" id="(0.5,0.20857142857142857)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Q_gwcPQpEe-okpddkHWP5g" type="Message_SynchEdge" source="_N7_DIPQrEe-okpddkHWP5g" target="_F2f0oPQpEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Q_gwc_QpEe-okpddkHWP5g" type="Message_SynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_gwdPQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Q_gwdfQpEe-okpddkHWP5g" type="Message_SynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_gwdvQpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Q_gwcfQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_Q_b38PQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q_gwcvQpEe-okpddkHWP5g" points="[0, 0, -480, 0]$[480, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q_qhcPQpEe-okpddkHWP5g" id="(0.5,0.38)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q_rIgPQpEe-okpddkHWP5g" id="(0.5,0.38)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Q_zrYPQpEe-okpddkHWP5g" type="Message_ReplyEdge" source="_F2f0oPQpEe-okpddkHWP5g" target="_N7_DIPQrEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Q_zrY_QpEe-okpddkHWP5g" type="Message_ReplyNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_zrZPQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Q_zrZfQpEe-okpddkHWP5g" type="Message_ReplyStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_zrZvQpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Q_zrYfQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_Q_zEUPQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q_zrYvQpEe-okpddkHWP5g" points="[0, 0, 480, 0]$[-480, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q_1gkPQpEe-okpddkHWP5g" id="(0.5,0.5228571428571429)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q_1gkfQpEe-okpddkHWP5g" id="(0.5,0.5228571428571429)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_XXdJ8PQpEe-okpddkHWP5g" type="Message_AsynchEdge" source="_F2f0oPQpEe-okpddkHWP5g" target="_35XLYPQoEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_XXdJ8_QpEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_XXdJ9PQpEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_XXdJ9fQpEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_XXdJ9vQpEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_XXdJ8fQpEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_XXXqYPQpEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_XXdJ8vQpEe-okpddkHWP5g" points="[0, 0, 240, 0]$[-240, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XXniAPQpEe-okpddkHWP5g" id="(0.5,0.6371428571428571)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XXoJEPQpEe-okpddkHWP5g" id="(0.5,0.6371428571428571)"/>
+    </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_Qhot4ORgEe-sc4pgeeNPqg" type="PapyrusUMLClassDiagram" name="BlockDefinitionDiagram" measurementUnit="Pixel">
     <styles xmi:type="notation:StringValueStyle" xmi:id="_Qhot4eRgEe-sc4pgeeNPqg" name="diagram_compatibility_version" stringValue="1.4.0"/>
@@ -783,4 +888,153 @@
   <css:ModelStyleSheets xmi:id="_rQVoUORkEe-NqLnL50inmQ">
     <stylesheets xmi:type="css:StyleSheetReference" xmi:id="_wf8gwORkEe-NqLnL50inmQ" path="/projet-commun-unirail/CSS/CameoLikeStyles_Sans_Operations_V14_2024-02-02.css"/>
   </css:ModelStyleSheets>
+  <notation:Diagram xmi:id="_abS48PQqEe-okpddkHWP5g" type="PapyrusUMLSequenceDiagram" name="ModifMissionSequenceDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_abS48fQqEe-okpddkHWP5g" type="Interaction_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_abS48vQqEe-okpddkHWP5g" type="Interaction_NameLabel"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_abS48_QqEe-okpddkHWP5g" type="Interaction_SubfragmentCompartment">
+        <children xmi:type="notation:Shape" xmi:id="_f8oakPQqEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_f8oakvQqEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_f8l-UPQqEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f8oakfQqEe-okpddkHWP5g" x="54" y="10"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_gxQ8gPQqEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_gxQ8gvQqEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_gxOgQPQqEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gxQ8gfQqEe-okpddkHWP5g" x="254" y="10"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_iGLhAPQqEe-okpddkHWP5g" type="Lifeline_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_iGLhAvQqEe-okpddkHWP5g" type="Lifeline_NameLabel"/>
+          <children xmi:type="notation:Shape" xmi:id="_syB_sfQqEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_syB_s_QqEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Behavior">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_syB_tPQqEe-okpddkHWP5g" x="18" y="18"/>
+            </children>
+            <element xmi:type="uml:BehaviorExecutionSpecification" href="projet-commun-unirail.uml#_syBYoPQqEe-okpddkHWP5g"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_syB_svQqEe-okpddkHWP5g" x="40" y="86" width="20" height="100"/>
+          </children>
+          <children xmi:type="notation:Shape" xmi:id="_y6vqYfQqEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_y6vqY_QqEe-okpddkHWP5g" type="BehaviorExecutionSpecification_Behavior">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_y6vqZPQqEe-okpddkHWP5g" x="18" y="18"/>
+            </children>
+            <element xmi:type="uml:BehaviorExecutionSpecification" href="projet-commun-unirail.uml#_y6vDUPQqEe-okpddkHWP5g"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_y6vqYvQqEe-okpddkHWP5g" x="40" y="326" width="20" height="100"/>
+          </children>
+          <element xmi:type="uml:Lifeline" href="projet-commun-unirail.uml#_iGJEwPQqEe-okpddkHWP5g"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iGLhAfQqEe-okpddkHWP5g" x="454" y="10"/>
+        </children>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_abS49PQqEe-okpddkHWP5g"/>
+      </children>
+      <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_YXUPAPQqEe-okpddkHWP5g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_abS49fQqEe-okpddkHWP5g"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_abS49vQqEe-okpddkHWP5g" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_abS49_QqEe-okpddkHWP5g"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_abS4-PQqEe-okpddkHWP5g" diagramKindId="org.eclipse.papyrus.sysml16.diagram.sequence">
+      <owner xmi:type="uml:Package" href="projet-commun-unirail.uml#_G-rJ4ORgEe-sc4pgeeNPqg"/>
+    </styles>
+    <element xmi:type="uml:Interaction" href="projet-commun-unirail.uml#_YXUPAPQqEe-okpddkHWP5g"/>
+    <edges xmi:type="notation:Connector" xmi:id="_nt0e8PQqEe-okpddkHWP5g" type="Message_AsynchEdge" source="_f8oakPQqEe-okpddkHWP5g" target="_gxQ8gPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_nt1GAPQqEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nt1GAfQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_nt1GAvQqEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nt1GA_QqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_nt0e8fQqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_ntuYUPQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nt0e8vQqEe-okpddkHWP5g" points="[0, 0, -200, 0]$[200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nt7zsPQqEe-okpddkHWP5g" id="(0.5,0.06571428571428571)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nt8awPQqEe-okpddkHWP5g" id="(0.5,0.06571428571428571)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_sx0kUPQqEe-okpddkHWP5g" type="Message_SynchEdge" source="_gxQ8gPQqEe-okpddkHWP5g" target="_iGLhAPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_sx0kU_QqEe-okpddkHWP5g" type="Message_SynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sx0kVPQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_sx0kVfQqEe-okpddkHWP5g" type="Message_SynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sx0kVvQqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_sx0kUfQqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_sxwS4PQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sx0kUvQqEe-okpddkHWP5g" points="[0, 0, -200, 0]$[200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sx8gIPQqEe-okpddkHWP5g" id="(0.5,0.12285714285714286)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sx8gIfQqEe-okpddkHWP5g" id="(0.5,0.12285714285714286)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_syD04PQqEe-okpddkHWP5g" type="Message_ReplyEdge" source="_iGLhAPQqEe-okpddkHWP5g" target="_gxQ8gPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_syD04_QqEe-okpddkHWP5g" type="Message_ReplyNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_syD05PQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_syD05fQqEe-okpddkHWP5g" type="Message_ReplyStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_syD05vQqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_syD04fQqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_syDN0PQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_syD04vQqEe-okpddkHWP5g" points="[0, 0, 200, 0]$[-200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_syFDAPQqEe-okpddkHWP5g" id="(0.5,0.26571428571428574)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_syFDAfQqEe-okpddkHWP5g" id="(0.5,0.26571428571428574)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_xF1-QPQqEe-okpddkHWP5g" type="Message_AsynchEdge" source="_iGLhAPQqEe-okpddkHWP5g" target="_gxQ8gPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_xF2lUPQqEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_xF2lUfQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_xF2lUvQqEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_xF2lU_QqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_xF1-QfQqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_xFxs0PQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xF1-QvQqEe-okpddkHWP5g" points="[0, 0, 200, 0]$[-200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xF_IMPQqEe-okpddkHWP5g" id="(0.5,0.38)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xF_IMfQqEe-okpddkHWP5g" id="(0.5,0.38)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_y6fywPQqEe-okpddkHWP5g" type="Message_SynchEdge" source="_gxQ8gPQqEe-okpddkHWP5g" target="_iGLhAPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_y6fyw_QqEe-okpddkHWP5g" type="Message_SynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_y6fyxPQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_y6fyxfQqEe-okpddkHWP5g" type="Message_SynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_y6fyxvQqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_y6fywfQqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_y6a6QPQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y6fywvQqEe-okpddkHWP5g" points="[0, 0, -200, 0]$[200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y6pjwPQqEe-okpddkHWP5g" id="(0.5,0.4657142857142857)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y6pjwfQqEe-okpddkHWP5g" id="(0.5,0.4657142857142857)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_y6xfkvQqEe-okpddkHWP5g" type="Message_ReplyEdge" source="_iGLhAPQqEe-okpddkHWP5g" target="_gxQ8gPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_y6xflfQqEe-okpddkHWP5g" type="Message_ReplyNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_y6xflvQqEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_y6xfl_QqEe-okpddkHWP5g" type="Message_ReplyStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_y6xfmPQqEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_y6xfk_QqEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_y6w4gPQqEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_y6xflPQqEe-okpddkHWP5g" points="[0, 0, 200, 0]$[-200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y6zUwPQqEe-okpddkHWP5g" id="(0.5,0.6085714285714285)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_y6zUwfQqEe-okpddkHWP5g" id="(0.5,0.6085714285714285)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_IVacMPQrEe-okpddkHWP5g" type="Message_AsynchEdge" source="_gxQ8gPQqEe-okpddkHWP5g" target="_f8oakPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_IVacM_QrEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IVacNPQrEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_IVacNfQrEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IVacNvQrEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_IVacMfQrEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_IVTHcPQrEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_IVacMvQrEe-okpddkHWP5g" points="[0, 0, 200, 0]$[-200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IVlbUPQrEe-okpddkHWP5g" id="(0.5,0.32285714285714284)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IVlbUfQrEe-okpddkHWP5g" id="(0.5,0.32285714285714284)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Jsj1UPQrEe-okpddkHWP5g" type="Message_AsynchEdge" source="_gxQ8gPQqEe-okpddkHWP5g" target="_f8oakPQqEe-okpddkHWP5g">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jsj1U_QrEe-okpddkHWP5g" type="Message_AsynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jsj1VPQrEe-okpddkHWP5g" x="1" y="-13"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Jsj1VfQrEe-okpddkHWP5g" type="Message_AsynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Jsj1VvQrEe-okpddkHWP5g" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Jsj1UfQrEe-okpddkHWP5g"/>
+      <element xmi:type="uml:Message" href="projet-commun-unirail.uml#_JscgkPQrEe-okpddkHWP5g"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Jsj1UvQrEe-okpddkHWP5g" points="[0, 0, 200, 0]$[-200, 0, 0, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jsu0cPQrEe-okpddkHWP5g" id="(0.5,0.6942857142857143)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Jsu0cfQrEe-okpddkHWP5g" id="(0.5,0.6942857142857143)"/>
+    </edges>
+  </notation:Diagram>
 </xmi:XMI>
