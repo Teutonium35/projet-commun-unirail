@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Actors="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Block="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuTJpskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuStZskEeyRkvq7aCLpdg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Actors="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Block="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Requirement="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuTJpskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuStZskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuS25skEeyRkvq7aCLpdg">
   <uml:Model xmi:id="_SQ78QOM3Ee-G6OLNZtIGhg" name="projet-commun-unirail">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_SVuVoOM3Ee-G6OLNZtIGhg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -20,7 +20,29 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_37MfcORmEe-NqLnL50inmQ" name="Aiguillages"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase"/>
-    <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_HXv4oOh7Ee-1lp3ryEUGEA" name="Projet UniRAIL">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_fWyZwOh9Ee-1lp3ryEUGEA" name="Prévention des collisions">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_Kj7ZYOh-Ee-1lp3ryEUGEA" name="Infrastructure"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_a10TgOh-Ee-1lp3ryEUGEA" name="Choix de mission"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_mBZSAPQtEe-vmdhawZNNNQ" name="Contrôle de vitesse">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_uv4DoOh9Ee-1lp3ryEUGEA" name="Respect des vitesses"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_LfKpIPQwEe-U783q9KDaFw" name="Contrôle de vitesse"/>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lj3xoOh-Ee-1lp3ryEUGEA" name="Architecture de communication">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_6eoUUOh-Ee-1lp3ryEUGEA" name="Communication entre EVC et RBC"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_h9CtgOiBEe-1lp3ryEUGEA" name="Communication actionneurs"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IR69oPCZEe-bMuGbDChDEw" name="Freinage"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_wCl5kPCdEe-bMuGbDChDEw" name="Refine6" client="_IR69oPCZEe-bMuGbDChDEw" supplier="_mnaAQPCXEe-bMuGbDChDEw"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="__Cr_MPCeEe-bMuGbDChDEw" name="DeriveReqt7" client="_z87CMOh7Ee-1lp3ryEUGEA" supplier="_5VLq4Oh8Ee-1lp3ryEUGEA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_AqKTUPCfEe-bMuGbDChDEw" name="DeriveReqt8" client="_z87CMOh7Ee-1lp3ryEUGEA" supplier="_mnaAQPCXEe-bMuGbDChDEw"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_z87CMOh7Ee-1lp3ryEUGEA" name="Localisation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_5VLq4Oh8Ee-1lp3ryEUGEA" name="Autorisation de mouvement"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mnaAQPCXEe-bMuGbDChDEw" name="Fin d'EOA"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_G-rJ4ORgEe-sc4pgeeNPqg" name="03_Sequence">
       <packagedElement xmi:type="uml:Interaction" xmi:id="_Jo0b8ORgEe-sc4pgeeNPqg" name="Interaction1"/>
     </packagedElement>
@@ -220,4 +242,35 @@
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Externalsystem xmi:id="_pjPideRmEe-NqLnL50inmQ" base_Class="_pjOUUORmEe-NqLnL50inmQ"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Actuator xmi:id="_37OUoORmEe-NqLnL50inmQ" base_Class="_37MfcORmEe-NqLnL50inmQ"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Environmentaleffect xmi:id="_aQeREORoEe-NqLnL50inmQ" base_Class="_XqwzEORoEe-NqLnL50inmQ"/>
+  <Requirements:Requirement xmi:id="_HYEowOh7Ee-1lp3ryEUGEA" base_NamedElement="_HXv4oOh7Ee-1lp3ryEUGEA" id="1" text="Le système doit permettre de contrôler 3 trains en utilisant les principes de controle d'ERTMS niveau 2" base_Class="_HXv4oOh7Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_z9BI0Oh7Ee-1lp3ryEUGEA" base_NamedElement="_z87CMOh7Ee-1lp3ryEUGEA" id="1.1.1.1" text="Chaque train doit être capable de déterminer sa position et de la communiquer au RBC" base_Class="_z87CMOh7Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_5VSYkOh8Ee-1lp3ryEUGEA" base_NamedElement="_5VLq4Oh8Ee-1lp3ryEUGEA" id="1.1.1" text="Le RBC doit pouvoir transmettre des autorisation de mouvement aux trains en fonction de leur position et des cantons occupés" base_Class="_5VLq4Oh8Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_fW3SQOh9Ee-1lp3ryEUGEA" base_NamedElement="_fWyZwOh9Ee-1lp3ryEUGEA" id="1.1" text="Le système doit garantir que les trains circulent sans collision " base_Class="_fWyZwOh9Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_uv-KQOh9Ee-1lp3ryEUGEA" base_NamedElement="_uv4DoOh9Ee-1lp3ryEUGEA" id="1.2.1" text="Chaque train doit respecter les vitesses maximales autorisées dans son canton&#xA;" base_Class="_uv4DoOh9Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_KkBgAOh-Ee-1lp3ryEUGEA" base_NamedElement="_Kj7ZYOh-Ee-1lp3ryEUGEA" id="1.1.2" text="Le système doit pouvoir contrôler l'infrastructure (signaux, aiguillages) pour établir un itinéraire sécurisé" base_Class="_Kj7ZYOh-Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_a182YOh-Ee-1lp3ryEUGEA" base_NamedElement="_a10TgOh-Ee-1lp3ryEUGEA" id="1.3" text="Un superviseur doit pouvoir définir la mission de chaque train (nombre de tours) et les repositionner à leur position initiale" base_Class="_a10TgOh-Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_lj_tcOh-Ee-1lp3ryEUGEA" base_NamedElement="_lj3xoOh-Ee-1lp3ryEUGEA" id="2" text="Le système doit être mis en oeuvre sous forme d'application distribuée" base_Class="_lj3xoOh-Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_6e1vsOh-Ee-1lp3ryEUGEA" base_NamedElement="_6eoUUOh-Ee-1lp3ryEUGEA" id="2.1" text="Le RBC et les EVC devront communiquer sur un réseau WiFi en TCP/IP, en utilisant une messagerie industrielle définie" base_Class="_6eoUUOh-Ee-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_h9QI4OiBEe-1lp3ryEUGEA" base_NamedElement="_h9CtgOiBEe-1lp3ryEUGEA" id="2.2" text="La communication avec les actionneurs (entre le RBC et l'infrastructure, et les EVC et les moteurs) doit se faire par bus CAN" base_Class="_h9CtgOiBEe-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_2MvL0PCWEe-bMuGbDChDEw" base_Class="_HXv4oOh7Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_52tjMPCWEe-bMuGbDChDEw" base_Class="_fWyZwOh9Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_7tGdEPCWEe-bMuGbDChDEw" base_Class="_z87CMOh7Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_ClB-MPCXEe-bMuGbDChDEw" base_Class="_a10TgOh-Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_EKcc0PCXEe-bMuGbDChDEw" base_Class="_uv4DoOh9Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_FLx-APCXEe-bMuGbDChDEw" base_Class="_Kj7ZYOh-Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_GZbc4PCXEe-bMuGbDChDEw" base_Class="_5VLq4Oh8Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:designConstraint xmi:id="_ISug0PCXEe-bMuGbDChDEw" base_Class="_lj3xoOh-Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:interfaceRequirement xmi:id="_K37ogPCXEe-bMuGbDChDEw" base_Class="_6eoUUOh-Ee-1lp3ryEUGEA"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:interfaceRequirement xmi:id="_L4zPoPCXEe-bMuGbDChDEw" base_Class="_h9CtgOiBEe-1lp3ryEUGEA"/>
+  <Requirements:Requirement xmi:id="_mn0P8PCXEe-bMuGbDChDEw" base_NamedElement="_mnaAQPCXEe-bMuGbDChDEw" id="1.1.3" text="Chaque train doit respecter son autorisation de mouvement et s'arrêter au dernier canton disponible&#xA;" base_Class="_mnaAQPCXEe-bMuGbDChDEw"/>
+  <Requirements:Requirement xmi:id="_ISN4kPCZEe-bMuGbDChDEw" base_NamedElement="_IR69oPCZEe-bMuGbDChDEw" id="1.1.4.1" text="Le train doit décélérer conformément à la courbe de freinage du KVB" base_Class="_IR69oPCZEe-bMuGbDChDEw"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_LlhVAPCcEe-bMuGbDChDEw" base_Class="_mnaAQPCXEe-bMuGbDChDEw"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:performanceRequirement xmi:id="_Mv42YPCcEe-bMuGbDChDEw" base_Class="_IR69oPCZEe-bMuGbDChDEw"/>
+  <Requirements:Refine xmi:id="_wCyG0PCdEe-bMuGbDChDEw" base_DirectedRelationship="_wCl5kPCdEe-bMuGbDChDEw" base_Abstraction="_wCl5kPCdEe-bMuGbDChDEw"/>
+  <Requirements:DeriveReqt xmi:id="__C-6IPCeEe-bMuGbDChDEw" base_DirectedRelationship="__Cr_MPCeEe-bMuGbDChDEw" base_Abstraction="__Cr_MPCeEe-bMuGbDChDEw"/>
+  <Requirements:DeriveReqt xmi:id="_AqY80PCfEe-bMuGbDChDEw" base_DirectedRelationship="_AqKTUPCfEe-bMuGbDChDEw" base_Abstraction="_AqKTUPCfEe-bMuGbDChDEw"/>
+  <Requirements:Requirement xmi:id="_mBlfQPQtEe-vmdhawZNNNQ" base_NamedElement="_mBZSAPQtEe-vmdhawZNNNQ" id="1.2" text="Chaque train doit contrôler sa vitesse" base_Class="_mBZSAPQtEe-vmdhawZNNNQ"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_w4KAMPQtEe-vmdhawZNNNQ" base_Class="_mBZSAPQtEe-vmdhawZNNNQ"/>
+  <Requirements:Requirement xmi:id="_LfVoQPQwEe-U783q9KDaFw" base_NamedElement="_LfKpIPQwEe-U783q9KDaFw" id="1.2.2" text="Chaque train doit pouvoir garantir une vitesse moyenne sur un canton" base_Class="_LfKpIPQwEe-U783q9KDaFw"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_LfYEgPQwEe-U783q9KDaFw" base_Class="_LfKpIPQwEe-U783q9KDaFw"/>
 </xmi:XMI>
