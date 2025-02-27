@@ -9,7 +9,21 @@
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_LdgiIORfEe-SCOdj3-Zdhg" name="00_Context">
       <packagedElement xmi:type="uml:Actor" xmi:id="_NXzroORfEe-SCOdj3-Zdhg" name="Passager"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RWz30ORfEe-SCOdj3-Zdhg" name="Unirail System" useCase="_ZbHJsOh2Ee-AB_pJZtmEXA _YGo0oOh3Ee-AB_pJZtmEXA _pl0EcOh7Ee-AB_pJZtmEXA _CkH8IOh8Ee-AB_pJZtmEXA _yk_P0OiEEe-AB_pJZtmEXA _I9FI4PQaEe-okpddkHWP5g _7PI8wPQaEe-okpddkHWP5g">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_ZbHJsOh2Ee-AB_pJZtmEXA" name="Allumer le système" visibility="public" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_YGo0oOh3Ee-AB_pJZtmEXA" name="Eteindre le système" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_pl0EcOh7Ee-AB_pJZtmEXA" name="Donner la consigne de nombre de tours à chaque train" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_CkH8IOh8Ee-AB_pJZtmEXA" name="Modifier la mission d'un train" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_yk_P0OiEEe-AB_pJZtmEXA" name="Monter dans un train" subject="_RWz30ORfEe-SCOdj3-Zdhg">
+          <include xmi:type="uml:Include" xmi:id="_3MI20PQZEe-okpddkHWP5g" addition="_8VRwUPQYEe-okpddkHWP5g"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_I9FI4PQaEe-okpddkHWP5g" name="Mettre en marche les trains" subject="_RWz30ORfEe-SCOdj3-Zdhg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_7PI8wPQaEe-okpddkHWP5g" name="Commander les trains" subject="_RWz30ORfEe-SCOdj3-Zdhg">
+          <include xmi:type="uml:Include" xmi:id="_PpPe4PQaEe-okpddkHWP5g" addition="_I9FI4PQaEe-okpddkHWP5g"/>
+          <include xmi:type="uml:Include" xmi:id="_EsUo4PQbEe-okpddkHWP5g" addition="_CkH8IOh8Ee-AB_pJZtmEXA"/>
+          <include xmi:type="uml:Include" xmi:id="_FX-N8PQbEe-okpddkHWP5g" addition="_pl0EcOh7Ee-AB_pJZtmEXA"/>
+        </ownedUseCase>
+      </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_BCAPwORjEe-sc4pgeeNPqg" name="Opérateur"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_lXGZgORjEe-sc4pgeeNPqg" name="Balises de localisation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_h6XiAORlEe-NqLnL50inmQ" name="Moteurs électriques"/>
@@ -18,6 +32,111 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_jTrB0ORmEe-NqLnL50inmQ" name="Système de localisation GPS (Marvelmind)"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_pjOUUORmEe-NqLnL50inmQ" name="Réseau de communication (WiFi)"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_37MfcORmEe-NqLnL50inmQ" name="Aiguillages"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gmtP0ORnEe-NqLnL50inmQ" memberEnd="_gmvsEORnEe-NqLnL50inmQ _gmwTIORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gmvFAORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gmvFAeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gmvsEORnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_gmtP0ORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gmwTIORnEe-NqLnL50inmQ" name="capteurs odométriques" type="_cbCWEORmEe-NqLnL50inmQ" association="_gmtP0ORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_hhBjAORnEe-NqLnL50inmQ" memberEnd="_hhCxIeRnEe-NqLnL50inmQ _hhDYMORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hhCKEORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hhCxIORnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_hhCxIeRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_hhBjAORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_hhDYMORnEe-NqLnL50inmQ" name="système de localisation gps (marvelmind)" type="_jTrB0ORmEe-NqLnL50inmQ" association="_hhBjAORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_iGoKcORnEe-NqLnL50inmQ" memberEnd="_iGoxguRnEe-NqLnL50inmQ _iGpYkORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iGoxgORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iGoxgeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_iGoxguRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_iGoKcORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_iGpYkORnEe-NqLnL50inmQ" name="balises de localisation" type="_lXGZgORjEe-sc4pgeeNPqg" association="_iGoKcORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kBeGgORnEe-NqLnL50inmQ" memberEnd="_kBetkORnEe-NqLnL50inmQ _kBetkeRnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kBeGgeRnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kBeGguRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_kBetkORnEe-NqLnL50inmQ" name="passager" type="_NXzroORfEe-SCOdj3-Zdhg" association="_kBeGgORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_kBetkeRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_kBeGgORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_lGSZgORnEe-NqLnL50inmQ" memberEnd="_lGTAkuRnEe-NqLnL50inmQ _lGTnoORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lGTAkORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGTAkeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_lGTAkuRnEe-NqLnL50inmQ" name="opérateur" type="_BCAPwORjEe-sc4pgeeNPqg" association="_lGSZgORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_lGTnoORnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_lGSZgORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_lwt2kORnEe-NqLnL50inmQ" memberEnd="_lwvEsORnEe-NqLnL50inmQ _lwvEseRnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lwudoORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lwudoeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_lwvEsORnEe-NqLnL50inmQ" name="rails alimentés" type="_qeuIsORlEe-NqLnL50inmQ" association="_lwt2kORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_lwvEseRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_lwt2kORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_mezEkORnEe-NqLnL50inmQ" memberEnd="_mezrouRnEe-NqLnL50inmQ _mezro-RnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mezroORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mezroeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mezrouRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_mezEkORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mezro-RnEe-NqLnL50inmQ" name="réseau de communication (wifi)" type="_pjOUUORmEe-NqLnL50inmQ" association="_mezEkORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_nwYBMORnEe-NqLnL50inmQ" memberEnd="_nwYoQuRnEe-NqLnL50inmQ _nwZPUORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nwYoQORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nwYoQeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_nwYoQuRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_nwYBMORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_nwZPUORnEe-NqLnL50inmQ" name="moteurs électriques" type="_h6XiAORlEe-NqLnL50inmQ" association="_nwYBMORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_oeC_gORnEe-NqLnL50inmQ" memberEnd="_oeDmkuRnEe-NqLnL50inmQ _oeENoORnEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oeDmkORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oeDmkeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_oeDmkuRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_oeC_gORnEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_oeENoORnEe-NqLnL50inmQ" name="aiguillages" type="_37MfcORmEe-NqLnL50inmQ" association="_oeC_gORnEe-NqLnL50inmQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_XqwzEORoEe-NqLnL50inmQ" name="Pluie"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_d7ZDoORoEe-NqLnL50inmQ" memberEnd="_d7ZqsuRoEe-NqLnL50inmQ _d7ejMORoEe-NqLnL50inmQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d7ZqsORoEe-NqLnL50inmQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d7ZqseRoEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_d7ZqsuRoEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_d7ZDoORoEe-NqLnL50inmQ"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_d7ejMORoEe-NqLnL50inmQ" name="pluie" type="_XqwzEORoEe-NqLnL50inmQ" association="_d7ZDoORoEe-NqLnL50inmQ"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase">
+      <packagedElement xmi:type="uml:Actor" xmi:id="_WjjGsOh2Ee-AB_pJZtmEXA" name="Gestionnaire du système"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gxQbYOh3Ee-AB_pJZtmEXA" memberEnd="_gxSQkOh3Ee-AB_pJZtmEXA _gxS3oOh3Ee-AB_pJZtmEXA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gxRpgOh3Ee-AB_pJZtmEXA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gxRpgeh3Ee-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gxSQkOh3Ee-AB_pJZtmEXA" name="allumer le système" type="_ZbHJsOh2Ee-AB_pJZtmEXA" association="_gxQbYOh3Ee-AB_pJZtmEXA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gxS3oOh3Ee-AB_pJZtmEXA" name="gestionnaire du système" type="_WjjGsOh2Ee-AB_pJZtmEXA" association="_gxQbYOh3Ee-AB_pJZtmEXA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_hXc4sOh3Ee-AB_pJZtmEXA" memberEnd="_hXeG0Oh3Ee-AB_pJZtmEXA _hXeG0eh3Ee-AB_pJZtmEXA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hXdfwOh3Ee-AB_pJZtmEXA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hXdfweh3Ee-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_hXeG0Oh3Ee-AB_pJZtmEXA" name="gestionnaire du système" type="_WjjGsOh2Ee-AB_pJZtmEXA" association="_hXc4sOh3Ee-AB_pJZtmEXA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_hXeG0eh3Ee-AB_pJZtmEXA" name="eteindre le système" type="_YGo0oOh3Ee-AB_pJZtmEXA" association="_hXc4sOh3Ee-AB_pJZtmEXA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_mq5ygOh7Ee-AB_pJZtmEXA" name="Gestionnaire de trafic"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_EPbnYOh8Ee-AB_pJZtmEXA" memberEnd="_EPcOcuh8Ee-AB_pJZtmEXA _EPc1gOh8Ee-AB_pJZtmEXA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EPcOcOh8Ee-AB_pJZtmEXA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EPcOceh8Ee-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_EPcOcuh8Ee-AB_pJZtmEXA" name="gestionnaire de trafic" type="_mq5ygOh7Ee-AB_pJZtmEXA" association="_EPbnYOh8Ee-AB_pJZtmEXA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_EPc1gOh8Ee-AB_pJZtmEXA" name="modifier la mission d'un train" type="_7PI8wPQaEe-okpddkHWP5g" association="_EPbnYOh8Ee-AB_pJZtmEXA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_2DFHUOiEEe-AB_pJZtmEXA" memberEnd="_2DGVceiEEe-AB_pJZtmEXA _2DGVcuiEEe-AB_pJZtmEXA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2DFuYOiEEe-AB_pJZtmEXA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_2DGVcOiEEe-AB_pJZtmEXA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_2DGVceiEEe-AB_pJZtmEXA" name="passager" type="_pPYLUOiEEe-AB_pJZtmEXA" association="_2DFHUOiEEe-AB_pJZtmEXA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_2DGVcuiEEe-AB_pJZtmEXA" name="monter dans un train à l'heure" type="_yk_P0OiEEe-AB_pJZtmEXA" association="_2DFHUOiEEe-AB_pJZtmEXA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_pPYLUOiEEe-AB_pJZtmEXA" name="Passager"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_8VRwUPQYEe-okpddkHWP5g" name="Connaître les heures approximatives d'arrivée des trains en gare"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_-PIm4ORfEe-sc4pgeeNPqg" name="02_Requirements">
@@ -44,80 +163,68 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_mnaAQPCXEe-bMuGbDChDEw" name="Fin d'EOA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_G-rJ4ORgEe-sc4pgeeNPqg" name="03_Sequence">
-      <packagedElement xmi:type="uml:Interaction" xmi:id="_Jo0b8ORgEe-sc4pgeeNPqg" name="Interaction1"/>
+      <packagedElement xmi:type="uml:Interaction" xmi:id="_Jo0b8ORgEe-sc4pgeeNPqg" name="Allumer le système">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_x5UfEPQpEe-okpddkHWP5g" name=""/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_yl_-4PQpEe-okpddkHWP5g" name=""/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_zkocQPQnEe-okpddkHWP5g" name="Opérateur" coveredBy="_CtKFIPQpEe-okpddkHWP5g _L9LfAPQpEe-okpddkHWP5g _IJzUAPQpEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_35UIEPQoEe-okpddkHWP5g" name="Infrastructure" coveredBy="_CtKFIfQpEe-okpddkHWP5g _XXY4gPQpEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_F2cKQPQpEe-okpddkHWP5g" name="EVC" coveredBy="_L9MGEPQpEe-okpddkHWP5g _IJzUAfQpEe-okpddkHWP5g _Q_cfAfQpEe-okpddkHWP5g _Q_zEUfQpEe-okpddkHWP5g _XXYRcPQpEe-okpddkHWP5g _Q_woEPQpEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_x5T4APQpEe-okpddkHWP5g" name="" represents="_x5UfEPQpEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_yl_X0PQpEe-okpddkHWP5g" name="" represents="_yl_-4PQpEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_N76KoPQrEe-okpddkHWP5g" name="RBC" coveredBy="_Q_cfAPQpEe-okpddkHWP5g _Q_zEUvQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CtKFIPQpEe-okpddkHWP5g" name="Message3SendEvent" covered="_zkocQPQnEe-okpddkHWP5g" message="_CtJeEPQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_CtKFIfQpEe-okpddkHWP5g" name="Message3ReceiveEvent" covered="_35UIEPQoEe-okpddkHWP5g" message="_CtJeEPQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_L9LfAPQpEe-okpddkHWP5g" name="Message10SendEvent" covered="_zkocQPQnEe-okpddkHWP5g" message="_L9K38PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_L9MGEPQpEe-okpddkHWP5g" name="Message10ReceiveEvent" covered="_F2cKQPQpEe-okpddkHWP5g" message="_L9K38PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IJzUAPQpEe-okpddkHWP5g" name="Message7SendEvent" covered="_zkocQPQnEe-okpddkHWP5g" message="_IJyF4PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IJzUAfQpEe-okpddkHWP5g" name="Message7ReceiveEvent" covered="_F2cKQPQpEe-okpddkHWP5g" message="_IJyF4PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q_cfAPQpEe-okpddkHWP5g" name="Message13SendEvent" covered="_N76KoPQrEe-okpddkHWP5g" message="_Q_b38PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q_cfAfQpEe-okpddkHWP5g" name="Message13ReceiveEvent" covered="_F2cKQPQpEe-okpddkHWP5g" message="_Q_b38PQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_Q_woEPQpEe-okpddkHWP5g" name="BehaviorExecutionSpecification16" covered="_F2cKQPQpEe-okpddkHWP5g" finish="_Q_zEUfQpEe-okpddkHWP5g" start="_Q_cfAfQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q_zEUfQpEe-okpddkHWP5g" name="Message18SendEvent" covered="_F2cKQPQpEe-okpddkHWP5g" message="_Q_zEUPQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q_zEUvQpEe-okpddkHWP5g" name="Message18ReceiveEvent" covered="_N76KoPQrEe-okpddkHWP5g" message="_Q_zEUPQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XXYRcPQpEe-okpddkHWP5g" name="Message20SendEvent" covered="_F2cKQPQpEe-okpddkHWP5g" message="_XXXqYPQpEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XXY4gPQpEe-okpddkHWP5g" name="Message20ReceiveEvent" covered="_35UIEPQoEe-okpddkHWP5g" message="_XXXqYPQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_CtJeEPQpEe-okpddkHWP5g" name="Allume l'infra" messageSort="asynchCall" receiveEvent="_CtKFIfQpEe-okpddkHWP5g" sendEvent="_CtKFIPQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_IJyF4PQpEe-okpddkHWP5g" name="Génère le parcours" messageSort="asynchCall" receiveEvent="_IJzUAfQpEe-okpddkHWP5g" sendEvent="_IJzUAPQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_L9K38PQpEe-okpddkHWP5g" name="Place le train sur son canton de départ" messageSort="asynchCall" receiveEvent="_L9MGEPQpEe-okpddkHWP5g" sendEvent="_L9LfAPQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_Q_b38PQpEe-okpddkHWP5g" name="Démarre le train" receiveEvent="_Q_cfAfQpEe-okpddkHWP5g" sendEvent="_Q_cfAPQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_Q_zEUPQpEe-okpddkHWP5g" name="Confirme la commande" messageSort="reply" receiveEvent="_Q_zEUvQpEe-okpddkHWP5g" sendEvent="_Q_zEUfQpEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_XXXqYPQpEe-okpddkHWP5g" name="Règle les aiguillages" messageSort="asynchCall" receiveEvent="_XXY4gPQpEe-okpddkHWP5g" sendEvent="_XXYRcPQpEe-okpddkHWP5g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interaction" xmi:id="_YXUPAPQqEe-okpddkHWP5g" name="Interaction3">
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_f8l-UPQqEe-okpddkHWP5g" name="Opérateur" coveredBy="_ntu_YPQqEe-okpddkHWP5g _IVUVkfQrEe-okpddkHWP5g _JsdusPQrEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_gxOgQPQqEe-okpddkHWP5g" name="RBC" coveredBy="_ntvmcPQqEe-okpddkHWP5g _sxw58PQqEe-okpddkHWP5g _syDN0vQqEe-okpddkHWP5g _IVUVkPQrEe-okpddkHWP5g _xFyT4fQqEe-okpddkHWP5g _y6bhUPQqEe-okpddkHWP5g _y6xfkfQqEe-okpddkHWP5g _JsdHoPQrEe-okpddkHWP5g"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_iGJEwPQqEe-okpddkHWP5g" name="EVC" coveredBy="_sxw58fQqEe-okpddkHWP5g _syDN0fQqEe-okpddkHWP5g _xFyT4PQqEe-okpddkHWP5g _y6bhUfQqEe-okpddkHWP5g _y6xfkPQqEe-okpddkHWP5g _syBYoPQqEe-okpddkHWP5g _y6vDUPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ntu_YPQqEe-okpddkHWP5g" name="Message4SendEvent" covered="_f8l-UPQqEe-okpddkHWP5g" message="_ntuYUPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ntvmcPQqEe-okpddkHWP5g" name="Message4ReceiveEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_ntuYUPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_sxw58PQqEe-okpddkHWP5g" name="Message7SendEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_sxwS4PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_sxw58fQqEe-okpddkHWP5g" name="Message7ReceiveEvent" covered="_iGJEwPQqEe-okpddkHWP5g" message="_sxwS4PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_syBYoPQqEe-okpddkHWP5g" name="BehaviorExecutionSpecification10" covered="_iGJEwPQqEe-okpddkHWP5g" finish="_syDN0fQqEe-okpddkHWP5g" start="_sxw58fQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_syDN0fQqEe-okpddkHWP5g" name="Message12SendEvent" covered="_iGJEwPQqEe-okpddkHWP5g" message="_syDN0PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_syDN0vQqEe-okpddkHWP5g" name="Message12ReceiveEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_syDN0PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IVUVkPQrEe-okpddkHWP5g" name="Message24SendEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_IVTHcPQrEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IVUVkfQrEe-okpddkHWP5g" name="Message24ReceiveEvent" covered="_f8l-UPQqEe-okpddkHWP5g" message="_IVTHcPQrEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xFyT4PQqEe-okpddkHWP5g" name="Message14SendEvent" covered="_iGJEwPQqEe-okpddkHWP5g" message="_xFxs0PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xFyT4fQqEe-okpddkHWP5g" name="Message14ReceiveEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_xFxs0PQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_y6bhUPQqEe-okpddkHWP5g" name="Message17SendEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_y6a6QPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_y6bhUfQqEe-okpddkHWP5g" name="Message17ReceiveEvent" covered="_iGJEwPQqEe-okpddkHWP5g" message="_y6a6QPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_y6vDUPQqEe-okpddkHWP5g" name="BehaviorExecutionSpecification20" covered="_iGJEwPQqEe-okpddkHWP5g" finish="_y6xfkPQqEe-okpddkHWP5g" start="_y6bhUfQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_y6xfkPQqEe-okpddkHWP5g" name="Message22SendEvent" covered="_iGJEwPQqEe-okpddkHWP5g" message="_y6w4gPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_y6xfkfQqEe-okpddkHWP5g" name="Message22ReceiveEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_y6w4gPQqEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JsdHoPQrEe-okpddkHWP5g" name="Message27SendEvent" covered="_gxOgQPQqEe-okpddkHWP5g" message="_JscgkPQrEe-okpddkHWP5g"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JsdusPQrEe-okpddkHWP5g" name="Message27ReceiveEvent" covered="_f8l-UPQqEe-okpddkHWP5g" message="_JscgkPQrEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_ntuYUPQqEe-okpddkHWP5g" name="Demande la modification d'une mission" messageSort="asynchCall" receiveEvent="_ntvmcPQqEe-okpddkHWP5g" sendEvent="_ntu_YPQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_sxwS4PQqEe-okpddkHWP5g" name="Communique la séquence de transition" receiveEvent="_sxw58fQqEe-okpddkHWP5g" sendEvent="_sxw58PQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_syDN0PQqEe-okpddkHWP5g" name="Prend en compte la nouvelle séquence" messageSort="reply" receiveEvent="_syDN0vQqEe-okpddkHWP5g" sendEvent="_syDN0fQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_xFxs0PQqEe-okpddkHWP5g" name="Arrive au canton de transition" messageSort="asynchCall" receiveEvent="_xFyT4fQqEe-okpddkHWP5g" sendEvent="_xFyT4PQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_y6a6QPQqEe-okpddkHWP5g" name="Communique la nouvelle mission" receiveEvent="_y6bhUfQqEe-okpddkHWP5g" sendEvent="_y6bhUPQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_y6w4gPQqEe-okpddkHWP5g" name="Prend en compte la nouvelle mission" messageSort="reply" receiveEvent="_y6xfkfQqEe-okpddkHWP5g" sendEvent="_y6xfkPQqEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_IVTHcPQrEe-okpddkHWP5g" name="Confirme le début de la transition" messageSort="asynchCall" receiveEvent="_IVUVkfQrEe-okpddkHWP5g" sendEvent="_IVUVkPQrEe-okpddkHWP5g"/>
+        <message xmi:type="uml:Message" xmi:id="_JscgkPQrEe-okpddkHWP5g" name="Confirme le début de la nouvelle mission" messageSort="asynchCall" receiveEvent="_JsdusPQrEe-okpddkHWP5g" sendEvent="_JsdHoPQrEe-okpddkHWP5g"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_NwZVUORgEe-sc4pgeeNPqg" name="04_BlocDefinitionDiagram"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_gmtP0ORnEe-NqLnL50inmQ" memberEnd="_gmvsEORnEe-NqLnL50inmQ _gmwTIORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gmvFAORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gmvFAeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_gmvsEORnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_gmtP0ORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_gmwTIORnEe-NqLnL50inmQ" name="capteurs odométriques" type="_cbCWEORmEe-NqLnL50inmQ" association="_gmtP0ORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_hhBjAORnEe-NqLnL50inmQ" memberEnd="_hhCxIeRnEe-NqLnL50inmQ _hhDYMORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hhCKEORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hhCxIORnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_hhCxIeRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_hhBjAORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_hhDYMORnEe-NqLnL50inmQ" name="système de localisation gps (marvelmind)" type="_jTrB0ORmEe-NqLnL50inmQ" association="_hhBjAORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_iGoKcORnEe-NqLnL50inmQ" memberEnd="_iGoxguRnEe-NqLnL50inmQ _iGpYkORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iGoxgORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iGoxgeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_iGoxguRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_iGoKcORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_iGpYkORnEe-NqLnL50inmQ" name="balises de localisation" type="_lXGZgORjEe-sc4pgeeNPqg" association="_iGoKcORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_kBeGgORnEe-NqLnL50inmQ" memberEnd="_kBetkORnEe-NqLnL50inmQ _kBetkeRnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kBeGgeRnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kBeGguRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_kBetkORnEe-NqLnL50inmQ" name="passager" type="_NXzroORfEe-SCOdj3-Zdhg" association="_kBeGgORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_kBetkeRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_kBeGgORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_lGSZgORnEe-NqLnL50inmQ" memberEnd="_lGTAkuRnEe-NqLnL50inmQ _lGTnoORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lGTAkORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGTAkeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_lGTAkuRnEe-NqLnL50inmQ" name="opérateur" type="_BCAPwORjEe-sc4pgeeNPqg" association="_lGSZgORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_lGTnoORnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_lGSZgORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_lwt2kORnEe-NqLnL50inmQ" memberEnd="_lwvEsORnEe-NqLnL50inmQ _lwvEseRnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lwudoORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lwudoeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_lwvEsORnEe-NqLnL50inmQ" name="rails alimentés" type="_qeuIsORlEe-NqLnL50inmQ" association="_lwt2kORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_lwvEseRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_lwt2kORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_mezEkORnEe-NqLnL50inmQ" memberEnd="_mezrouRnEe-NqLnL50inmQ _mezro-RnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mezroORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mezroeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_mezrouRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_mezEkORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_mezro-RnEe-NqLnL50inmQ" name="réseau de communication (wifi)" type="_pjOUUORmEe-NqLnL50inmQ" association="_mezEkORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_nwYBMORnEe-NqLnL50inmQ" memberEnd="_nwYoQuRnEe-NqLnL50inmQ _nwZPUORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nwYoQORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nwYoQeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_nwYoQuRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_nwYBMORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_nwZPUORnEe-NqLnL50inmQ" name="moteurs électriques" type="_h6XiAORlEe-NqLnL50inmQ" association="_nwYBMORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_oeC_gORnEe-NqLnL50inmQ" memberEnd="_oeDmkuRnEe-NqLnL50inmQ _oeENoORnEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oeDmkORnEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oeDmkeRnEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oeDmkuRnEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_oeC_gORnEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oeENoORnEe-NqLnL50inmQ" name="aiguillages" type="_37MfcORmEe-NqLnL50inmQ" association="_oeC_gORnEe-NqLnL50inmQ"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_XqwzEORoEe-NqLnL50inmQ" name="Pluie"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_d7ZDoORoEe-NqLnL50inmQ" memberEnd="_d7ZqsuRoEe-NqLnL50inmQ _d7ejMORoEe-NqLnL50inmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d7ZqsORoEe-NqLnL50inmQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_d7ZqseRoEe-NqLnL50inmQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_d7ZqsuRoEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_d7ZDoORoEe-NqLnL50inmQ"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_d7ejMORoEe-NqLnL50inmQ" name="pluie" type="_XqwzEORoEe-NqLnL50inmQ" association="_d7ZDoORoEe-NqLnL50inmQ"/>
-    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_STF4YOM3Ee-G6OLNZtIGhg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_STKw4OM3Ee-G6OLNZtIGhg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
