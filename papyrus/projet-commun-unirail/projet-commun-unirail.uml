@@ -308,6 +308,26 @@
         <message xmi:type="uml:Message" xmi:id="_IVTHcPQrEe-okpddkHWP5g" name="Confirme le début de la transition" messageSort="asynchCall" receiveEvent="_IVUVkfQrEe-okpddkHWP5g" sendEvent="_IVUVkPQrEe-okpddkHWP5g"/>
         <message xmi:type="uml:Message" xmi:id="_JscgkPQrEe-okpddkHWP5g" name="Confirme le début de la nouvelle mission" messageSort="asynchCall" receiveEvent="_JsdusPQrEe-okpddkHWP5g" sendEvent="_JsdHoPQrEe-okpddkHWP5g"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Interaction" xmi:id="_SkNXAPkDEe-r3PbKjvQE6A" name="Interaction3">
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_ULNxEPkDEe-r3PbKjvQE6A" name="EVC" coveredBy="_YlSvsPkDEe-r3PbKjvQE6A _eQ0IEfkDEe-r3PbKjvQE6A"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_Uy41EPkDEe-r3PbKjvQE6A" name="RBC" coveredBy="_YlTWwPkDEe-r3PbKjvQE6A _C10rMPkGEe-r3PbKjvQE6A _C11SQPkGEe-r3PbKjvQE6A _p2qw4PkDEe-r3PbKjvQE6A _p2rX8PkDEe-r3PbKjvQE6A _rOITEPkDEe-r3PbKjvQE6A _eQ0IEPkDEe-r3PbKjvQE6A"/>
+        <lifeline xmi:type="uml:Lifeline" xmi:id="_nkhvIPkDEe-r3PbKjvQE6A" name="Infrastructure" coveredBy="_rOITEfkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YlSvsPkDEe-r3PbKjvQE6A" name="Message3SendEvent" covered="_ULNxEPkDEe-r3PbKjvQE6A" message="_YlQTcPkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YlTWwPkDEe-r3PbKjvQE6A" name="Message3ReceiveEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_YlQTcPkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C10rMPkGEe-r3PbKjvQE6A" name="Message16SendEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_C10EIPkGEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_C11SQPkGEe-r3PbKjvQE6A" name="Message16ReceiveEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_C10EIPkGEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_p2qw4PkDEe-r3PbKjvQE6A" name="Message13SendEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_p2qJ0PkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_p2rX8PkDEe-r3PbKjvQE6A" name="Message13ReceiveEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_p2qJ0PkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_rOITEPkDEe-r3PbKjvQE6A" name="Message16SendEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_rOHsAPkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_rOITEfkDEe-r3PbKjvQE6A" name="Message16ReceiveEvent" covered="_nkhvIPkDEe-r3PbKjvQE6A" message="_rOHsAPkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_eQ0IEPkDEe-r3PbKjvQE6A" name="Message9SendEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_eQzhAPkDEe-r3PbKjvQE6A"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_eQ0IEfkDEe-r3PbKjvQE6A" name="Message9ReceiveEvent" covered="_ULNxEPkDEe-r3PbKjvQE6A" message="_eQzhAPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_YlQTcPkDEe-r3PbKjvQE6A" name="Envoi position" messageSort="asynchCall" receiveEvent="_YlTWwPkDEe-r3PbKjvQE6A" sendEvent="_YlSvsPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_eQzhAPkDEe-r3PbKjvQE6A" name="Autorisation de mouvement" messageSort="asynchCall" receiveEvent="_eQ0IEfkDEe-r3PbKjvQE6A" sendEvent="_eQ0IEPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_p2qJ0PkDEe-r3PbKjvQE6A" name="Verrouille ressource" messageSort="asynchCall" receiveEvent="_p2rX8PkDEe-r3PbKjvQE6A" sendEvent="_p2qw4PkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_rOHsAPkDEe-r3PbKjvQE6A" name="Mouvement aiguillages" messageSort="asynchCall" receiveEvent="_rOITEfkDEe-r3PbKjvQE6A" sendEvent="_rOITEPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_C10EIPkGEe-r3PbKjvQE6A" name="Calcul besoins ressources" messageSort="asynchCall" receiveEvent="_C11SQPkGEe-r3PbKjvQE6A" sendEvent="_C10rMPkGEe-r3PbKjvQE6A"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_NwZVUORgEe-sc4pgeeNPqg" name="04_BlocDefinitionDiagram"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_STF4YOM3Ee-G6OLNZtIGhg">
