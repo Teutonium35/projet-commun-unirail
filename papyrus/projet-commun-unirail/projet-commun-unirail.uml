@@ -156,8 +156,8 @@
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_u-cfUPVbEe-BcNlk6HtCGQ" name="Mise à jour position" informationSource="_L646IPVUEe-BcNlk6HtCGQ" informationTarget="_U_qQ0PVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_yNvs4PVbEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_L646IPVUEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_78IdwPVbEe-BcNlk6HtCGQ" name="Positions actuelles des trains" informationSource="_U_qQ0PVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
-      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_HclCIPVcEe-BcNlk6HtCGQ" name="Ressources occupées" informationSource="_S8yaIPVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
-      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_J-LcMPVcEe-BcNlk6HtCGQ" name="Réservation ressource" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_HclCIPVcEe-BcNlk6HtCGQ" name="Allocation ressource" informationSource="_S8yaIPVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_J-LcMPVcEe-BcNlk6HtCGQ" name="Demande ressource" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_yFXXgPVcEe-BcNlk6HtCGQ" name="Commandes" informationSource="_nrF1MPVVEe-BcNlk6HtCGQ" informationTarget="_pd_WMPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_7k4l8PVcEe-BcNlk6HtCGQ" name="Commandes" informationSource="_pd_WMPVVEe-BcNlk6HtCGQ" informationTarget="_QOhZsPUsEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_B5ySgPVdEe-BcNlk6HtCGQ" name="ACK" informationSource="_QrS1QPUsEe-BcNlk6HtCGQ" informationTarget="_qlo6wPVVEe-BcNlk6HtCGQ"/>
