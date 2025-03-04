@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Actors="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Block="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Requirement="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuTJpskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuStZskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuS25skEeyRkvq7aCLpdg">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:Requirements="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Actors="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Block="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore" xmlns:__SysML_Centrale_Lille.NonNormativeExtensions.Requirement="http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows http://www.eclipse.org/papyrus/sysml/1.6/SysML/Requirements http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements http:///__SysML_Centrale_Lille/NonNormativeExtensions/Actors.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuTJpskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Block.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuStZskEeyRkvq7aCLpdg http:///__SysML_Centrale_Lille/NonNormativeExtensions/Requirement.ecore SysML_Profile/__SysML_Centrale_Lille.profile.uml#_lTuS25skEeyRkvq7aCLpdg">
   <uml:Model xmi:id="_SQ78QOM3Ee-G6OLNZtIGhg" name="projet-commun-unirail">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_SVuVoOM3Ee-G6OLNZtIGhg">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -23,6 +23,52 @@
           <include xmi:type="uml:Include" xmi:id="_EsUo4PQbEe-okpddkHWP5g" addition="_CkH8IOh8Ee-AB_pJZtmEXA"/>
           <include xmi:type="uml:Include" xmi:id="_FX-N8PQbEe-okpddkHWP5g" addition="_pl0EcOh7Ee-AB_pJZtmEXA"/>
         </ownedUseCase>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_0t6kYPUrEe-BcNlk6HtCGQ" name="infrastructure" type="_s4PBkPUrEe-BcNlk6HtCGQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_7Nj40PVhEe-BcNlk6HtCGQ" name="superviseur" type="_4M4WEPVhEe-BcNlk6HtCGQ"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_AXInEPUoEe-BcNlk6HtCGQ" name="RBC">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_Pp4i8PUpEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_zTaxwPUqEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_0l_M4PUqEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_QOhZsPUsEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_QrS1QPUsEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_RDaaUPUsEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_hYGJ8PVREe-BcNlk6HtCGQ" name="Envoi données"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_L646IPVUEe-BcNlk6HtCGQ" name="Réception données"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_PGjIYPVVEe-BcNlk6HtCGQ" name="Calcul itinéraires et EOA"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_S8yaIPVVEe-BcNlk6HtCGQ" name="Gestion des ressources"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_U_qQ0PVVEe-BcNlk6HtCGQ" name="Gestion des positions des trains"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_nrF1MPVVEe-BcNlk6HtCGQ" name="Contrôle infrastructure"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_pd_WMPVVEe-BcNlk6HtCGQ" name="Envoi CAN"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_qlo6wPVVEe-BcNlk6HtCGQ" name="Réception CAN"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_oyViYPVbEe-BcNlk6HtCGQ" name="Class15"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_CdO7cPUpEe-BcNlk6HtCGQ" name="EVC">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_k_AGYPUpEe-BcNlk6HtCGQ" name="EVC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_uQC-gPUqEe-BcNlk6HtCGQ" name="EVC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_w5-OIPUqEe-BcNlk6HtCGQ" name="EVC" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_W1DOsPVhEe-BcNlk6HtCGQ" name="Port12" aggregation="composite"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_9q7agPVeEe-BcNlk6HtCGQ" name="Envoi données"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_-8RtoPVeEe-BcNlk6HtCGQ" name="Réception données"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_ACqG4PVfEe-BcNlk6HtCGQ" name="Gestion EOA">
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_8rYMkPVfEe-BcNlk6HtCGQ" name="Class1"/>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_8xrB0PVfEe-BcNlk6HtCGQ" name="Class2"/>
+          </nestedClassifier>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_BfHd0PVfEe-BcNlk6HtCGQ" name="Gestion mission"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_EWWJoPVfEe-BcNlk6HtCGQ" name="Contrôle vitesse"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_FfIWoPVfEe-BcNlk6HtCGQ" name="Gestion localisation"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_KbrJIPVfEe-BcNlk6HtCGQ" name="Réception CAN"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_Lg5r0PVfEe-BcNlk6HtCGQ" name="Envoi CAN"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_s4PBkPUrEe-BcNlk6HtCGQ" name="Infrastructure">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_9eaJoPUrEe-BcNlk6HtCGQ" name="Infra" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="__fcNQPUrEe-BcNlk6HtCGQ" name="Infra" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_E94L4PUsEe-BcNlk6HtCGQ" name="Infra" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_DRbooPViEe-BcNlk6HtCGQ" name="Port4" aggregation="composite"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_4M4WEPVhEe-BcNlk6HtCGQ" name="Superviseur">
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_-Yb5YPVhEe-BcNlk6HtCGQ" name="Port1" aggregation="composite"/>
+          <ownedAttribute xmi:type="uml:Port" xmi:id="_BK-ScPViEe-BcNlk6HtCGQ" name="Port2" aggregation="composite"/>
+        </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_BCAPwORjEe-sc4pgeeNPqg" name="Opérateur"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_lXGZgORjEe-sc4pgeeNPqg" name="Balises de localisation"/>
@@ -103,6 +149,45 @@
         <ownedEnd xmi:type="uml:Property" xmi:id="_d7ZqsuRoEe-NqLnL50inmQ" name="unirail system" type="_RWz30ORfEe-SCOdj3-Zdhg" association="_d7ZDoORoEe-NqLnL50inmQ"/>
         <ownedEnd xmi:type="uml:Property" xmi:id="_d7ejMORoEe-NqLnL50inmQ" name="pluie" type="_XqwzEORoEe-NqLnL50inmQ" association="_d7ZDoORoEe-NqLnL50inmQ"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_UVI3sPVWEe-BcNlk6HtCGQ" name="Rapport de position" informationSource="_Pp4i8PUpEe-BcNlk6HtCGQ" informationTarget="_L646IPVUEe-BcNlk6HtCGQ _AXInEPUoEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_YK3MEPVWEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_zTaxwPUqEe-BcNlk6HtCGQ" informationTarget="_L646IPVUEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_Y54OMPVWEe-BcNlk6HtCGQ" name="Nouvel EOA attribué" informationSource="_hYGJ8PVREe-BcNlk6HtCGQ" informationTarget="_0l_M4PUqEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_qkbyIPVbEe-BcNlk6HtCGQ" name="Nouvelle EOA attribuée" informationSource="_hYGJ8PVREe-BcNlk6HtCGQ" informationTarget="_0l_M4PUqEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_u-cfUPVbEe-BcNlk6HtCGQ" name="Mise à jour position" informationSource="_L646IPVUEe-BcNlk6HtCGQ" informationTarget="_U_qQ0PVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_yNvs4PVbEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_L646IPVUEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_78IdwPVbEe-BcNlk6HtCGQ" name="Positions actuelles des trains" informationSource="_U_qQ0PVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_HclCIPVcEe-BcNlk6HtCGQ" name="Allocation ressource" informationSource="_S8yaIPVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_J-LcMPVcEe-BcNlk6HtCGQ" name="Demande ressource" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_yFXXgPVcEe-BcNlk6HtCGQ" name="Commandes" informationSource="_nrF1MPVVEe-BcNlk6HtCGQ" informationTarget="_pd_WMPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_7k4l8PVcEe-BcNlk6HtCGQ" name="Commandes" informationSource="_pd_WMPVVEe-BcNlk6HtCGQ" informationTarget="_QOhZsPUsEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_B5ySgPVdEe-BcNlk6HtCGQ" name="ACK" informationSource="_QrS1QPUsEe-BcNlk6HtCGQ" informationTarget="_qlo6wPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_FMh1oPVdEe-BcNlk6HtCGQ" name="ACK" informationSource="_qlo6wPVVEe-BcNlk6HtCGQ" informationTarget="_nrF1MPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_IecSUPVdEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_RDaaUPUsEe-BcNlk6HtCGQ" informationTarget="_qlo6wPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_MevCgPVeEe-BcNlk6HtCGQ" name="Libération ressources" informationSource="_qlo6wPVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mc5NoPVeEe-BcNlk6HtCGQ" name="Nouvelle EOA attribuée" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_hYGJ8PVREe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_MnaLcPVgEe-BcNlk6HtCGQ" name="Nouvelle EOA" informationSource="_-8RtoPVeEe-BcNlk6HtCGQ" informationTarget="_ACqG4PVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_OFTs0PVgEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_ACqG4PVfEe-BcNlk6HtCGQ" informationTarget="_9q7agPVeEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_QScSwPVgEe-BcNlk6HtCGQ" name="EOA actuelle" informationSource="_ACqG4PVfEe-BcNlk6HtCGQ" informationTarget="_EWWJoPVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_XAJg4PVgEe-BcNlk6HtCGQ" name="Position actuelle" informationSource="_FfIWoPVfEe-BcNlk6HtCGQ" informationTarget="_EWWJoPVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_bBsDsPVgEe-BcNlk6HtCGQ" name="Nouvelle mission" informationSource="_-8RtoPVeEe-BcNlk6HtCGQ" informationTarget="_BfHd0PVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_dDkb4PVgEe-BcNlk6HtCGQ" name="Mission actuelle" informationSource="_BfHd0PVfEe-BcNlk6HtCGQ" informationTarget="_EWWJoPVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_fgntIPVgEe-BcNlk6HtCGQ" name="Rapport de position" informationSource="_FfIWoPVfEe-BcNlk6HtCGQ" informationTarget="_9q7agPVeEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_kEsVQPVgEe-BcNlk6HtCGQ" name="Balises" informationSource="_KbrJIPVfEe-BcNlk6HtCGQ" informationTarget="_FfIWoPVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_l3LmkPVgEe-BcNlk6HtCGQ" name="Vitesse nécessaire" informationSource="_EWWJoPVfEe-BcNlk6HtCGQ" informationTarget="_Lg5r0PVfEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_oo2c8PVgEe-BcNlk6HtCGQ" name="Rapport de position" informationSource="_9q7agPVeEe-BcNlk6HtCGQ" informationTarget="_k_AGYPUpEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_qX3jgPVgEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_9q7agPVeEe-BcNlk6HtCGQ" informationTarget="_CdO7cPUpEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_sDjCMPVgEe-BcNlk6HtCGQ" name="Nouvelle EOA" informationSource="_w5-OIPUqEe-BcNlk6HtCGQ" informationTarget="_-8RtoPVeEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_iKbykPVhEe-BcNlk6HtCGQ" name="Nouvelle mission" informationSource="_W1DOsPVhEe-BcNlk6HtCGQ" informationTarget="_-8RtoPVeEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_rdocQPVhEe-BcNlk6HtCGQ" name="Commandes" informationSource="_QOhZsPUsEe-BcNlk6HtCGQ" informationTarget="_9eaJoPUrEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_sn0XcPVhEe-BcNlk6HtCGQ" name="ACK" informationSource="__fcNQPUrEe-BcNlk6HtCGQ" informationTarget="_QrS1QPUsEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_tp1OEPVhEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_E94L4PUsEe-BcNlk6HtCGQ" informationTarget="_RDaaUPUsEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_EcJvUPViEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_DRbooPViEe-BcNlk6HtCGQ" informationTarget="_BK-ScPViEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_I2ZtEPViEe-BcNlk6HtCGQ" name="Nouvelle mission" informationSource="_-Yb5YPVhEe-BcNlk6HtCGQ" informationTarget="_W1DOsPVhEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_QTcGYPViEe-BcNlk6HtCGQ" name="Itinéraire à établir" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_nrF1MPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_VZI04PViEe-BcNlk6HtCGQ" name="Validation itinéraire établi" informationSource="_nrF1MPVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_ofwgcPViEe-BcNlk6HtCGQ" name="Nouvelle EOA attribuée" informationSource="_0l_M4PUqEe-BcNlk6HtCGQ" informationTarget="_w5-OIPUqEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_uS9OIPViEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_uQC-gPUqEe-BcNlk6HtCGQ" informationTarget="_zTaxwPUqEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_xPjiIPViEe-BcNlk6HtCGQ" name="Rapport de position" informationSource="_k_AGYPUpEe-BcNlk6HtCGQ" informationTarget="_Pp4i8PUpEe-BcNlk6HtCGQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_3ZBqsORfEe-sc4pgeeNPqg" name="01_UseCase">
       <packagedElement xmi:type="uml:Actor" xmi:id="_WjjGsOh2Ee-AB_pJZtmEXA" name="Gestionnaire du système"/>
@@ -339,8 +424,13 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="SysML_Profile/__SysML_Centrale_Lille.profile.uml#_11_5EAPbeta_be00301_1147434586638_637562_1900"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_8n3VcPUmEe-BcNlk6HtCGQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8n6YwPUmEe-BcNlk6HtCGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
   </uml:Model>
-  <__SysML_Centrale_Lille.NonNormativeExtensions.Block:System xmi:id="_3-Kl0ORkEe-NqLnL50inmQ" base_Class="_RWz30ORfEe-SCOdj3-Zdhg"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Sensor xmi:id="_6aO_oORkEe-NqLnL50inmQ" base_Class="_lXGZgORjEe-sc4pgeeNPqg"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Actuator xmi:id="_oKGasORlEe-NqLnL50inmQ" base_Class="_h6XiAORlEe-NqLnL50inmQ"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Actors:Externalsystem xmi:id="_zO3IoORlEe-NqLnL50inmQ" base_Class="_qeuIsORlEe-NqLnL50inmQ"/>
@@ -380,4 +470,65 @@
   <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_w4KAMPQtEe-vmdhawZNNNQ" base_Class="_mBZSAPQtEe-vmdhawZNNNQ"/>
   <Requirements:Requirement xmi:id="_LfVoQPQwEe-U783q9KDaFw" base_NamedElement="_LfKpIPQwEe-U783q9KDaFw" id="1.2.2" text="Chaque train doit pouvoir garantir une vitesse moyenne sur un canton" base_Class="_LfKpIPQwEe-U783q9KDaFw"/>
   <__SysML_Centrale_Lille.NonNormativeExtensions.Requirement:functionalRequirement xmi:id="_LfYEgPQwEe-U783q9KDaFw" base_Class="_LfKpIPQwEe-U783q9KDaFw"/>
+  <Blocks:Block xmi:id="_nZA8oPUnEe-BcNlk6HtCGQ" base_Class="_RWz30ORfEe-SCOdj3-Zdhg"/>
+  <Blocks:Block xmi:id="_AXLqYPUoEe-BcNlk6HtCGQ" base_Class="_AXInEPUoEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_CdTM4PUpEe-BcNlk6HtCGQ" base_Class="_CdO7cPUpEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_s4Sr8PUrEe-BcNlk6HtCGQ" base_Class="_s4PBkPUrEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_hYJNQPVREe-BcNlk6HtCGQ" base_Class="_hYGJ8PVREe-BcNlk6HtCGQ"/>
+  <__SysML_Centrale_Lille.NonNormativeExtensions.Block:System xmi:id="_eL6P4PVTEe-BcNlk6HtCGQ" base_Class="_RWz30ORfEe-SCOdj3-Zdhg"/>
+  <Blocks:Block xmi:id="_L68kgPVUEe-BcNlk6HtCGQ" base_Class="_L646IPVUEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_PGmLsPVVEe-BcNlk6HtCGQ" base_Class="_PGjIYPVVEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_S802YPVVEe-BcNlk6HtCGQ" base_Class="_S8yaIPVVEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_U_tUIPVVEe-BcNlk6HtCGQ" base_Class="_U_qQ0PVVEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_nrI4gPVVEe-BcNlk6HtCGQ" base_Class="_nrF1MPVVEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_peCZgPVVEe-BcNlk6HtCGQ" base_Class="_pd_WMPVVEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_qlr-EPVVEe-BcNlk6HtCGQ" base_Class="_qlo6wPVVEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_UVKs4PVWEe-BcNlk6HtCGQ" base_InformationFlow="_UVI3sPVWEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_YK6PYPVWEe-BcNlk6HtCGQ" base_InformationFlow="_YK3MEPVWEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_Y57RgPVWEe-BcNlk6HtCGQ" base_InformationFlow="_Y54OMPVWEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_qkfcgPVbEe-BcNlk6HtCGQ" base_InformationFlow="_qkbyIPVbEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_u-fioPVbEe-BcNlk6HtCGQ" base_InformationFlow="_u-cfUPVbEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_yNywMPVbEe-BcNlk6HtCGQ" base_InformationFlow="_yNvs4PVbEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_78K6APVbEe-BcNlk6HtCGQ" base_InformationFlow="_78IdwPVbEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_HcoFcPVcEe-BcNlk6HtCGQ" base_InformationFlow="_HclCIPVcEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_J-N4cPVcEe-BcNlk6HtCGQ" base_InformationFlow="_J-LcMPVcEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_yFZMsPVcEe-BcNlk6HtCGQ" base_InformationFlow="_yFXXgPVcEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_7k7pQPVcEe-BcNlk6HtCGQ" base_InformationFlow="_7k4l8PVcEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_B50uwPVdEe-BcNlk6HtCGQ" base_InformationFlow="_B5ySgPVdEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_FMkR4PVdEe-BcNlk6HtCGQ" base_InformationFlow="_FMh1oPVdEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_IeeukPVdEe-BcNlk6HtCGQ" base_InformationFlow="_IecSUPVdEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_MexewPVeEe-BcNlk6HtCGQ" base_InformationFlow="_MevCgPVeEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_mc7p4PVeEe-BcNlk6HtCGQ" base_InformationFlow="_mc5NoPVeEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_9q92wPVeEe-BcNlk6HtCGQ" base_Class="_9q7agPVeEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_-8Uw8PVeEe-BcNlk6HtCGQ" base_Class="_-8RtoPVeEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_ACtxQPVfEe-BcNlk6HtCGQ" base_Class="_ACqG4PVfEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_BfKhIPVfEe-BcNlk6HtCGQ" base_Class="_BfHd0PVfEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_EWZ0APVfEe-BcNlk6HtCGQ" base_Class="_EWWJoPVfEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_FfLZ8PVfEe-BcNlk6HtCGQ" base_Class="_FfIWoPVfEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_KbtlYPVfEe-BcNlk6HtCGQ" base_Class="_KbrJIPVfEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_Lg8vIPVfEe-BcNlk6HtCGQ" base_Class="_Lg5r0PVfEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_MncnsPVgEe-BcNlk6HtCGQ" base_InformationFlow="_MnaLcPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_OFWwIPVgEe-BcNlk6HtCGQ" base_InformationFlow="_OFTs0PVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_QSevAPVgEe-BcNlk6HtCGQ" base_InformationFlow="_QScSwPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_XAL9IPVgEe-BcNlk6HtCGQ" base_InformationFlow="_XAJg4PVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_bBvuEPVgEe-BcNlk6HtCGQ" base_InformationFlow="_bBsDsPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_dDm4IPVgEe-BcNlk6HtCGQ" base_InformationFlow="_dDkb4PVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_fgqwcPVgEe-BcNlk6HtCGQ" base_InformationFlow="_fgntIPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_kEvYkPVgEe-BcNlk6HtCGQ" base_InformationFlow="_kEsVQPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_l3OC0PVgEe-BcNlk6HtCGQ" base_InformationFlow="_l3LmkPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_oo45MPVgEe-BcNlk6HtCGQ" base_InformationFlow="_oo2c8PVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_qX5_wPVgEe-BcNlk6HtCGQ" base_InformationFlow="_qX3jgPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_sDmFgPVgEe-BcNlk6HtCGQ" base_InformationFlow="_sDjCMPVgEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_iKeO0PVhEe-BcNlk6HtCGQ" base_InformationFlow="_iKbykPVhEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_rdq4gPVhEe-BcNlk6HtCGQ" base_InformationFlow="_rdocQPVhEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_sn2zsPVhEe-BcNlk6HtCGQ" base_InformationFlow="_sn0XcPVhEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_tp3qUPVhEe-BcNlk6HtCGQ" base_InformationFlow="_tp1OEPVhEe-BcNlk6HtCGQ"/>
+  <Blocks:Block xmi:id="_4M8AcPVhEe-BcNlk6HtCGQ" base_Class="_4M4WEPVhEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_EcMLkPViEe-BcNlk6HtCGQ" base_InformationFlow="_EcJvUPViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_I2cJUPViEe-BcNlk6HtCGQ" base_InformationFlow="_I2ZtEPViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_QTeioPViEe-BcNlk6HtCGQ" base_InformationFlow="_QTcGYPViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_VZMfQPViEe-BcNlk6HtCGQ" base_InformationFlow="_VZI04PViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_ofy8sPViEe-BcNlk6HtCGQ" base_InformationFlow="_ofwgcPViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_uTARcPViEe-BcNlk6HtCGQ" base_InformationFlow="_uS9OIPViEe-BcNlk6HtCGQ"/>
+  <PortsAndFlows:ItemFlow xmi:id="_xPl-YPViEe-BcNlk6HtCGQ" base_InformationFlow="_xPjiIPViEe-BcNlk6HtCGQ"/>
 </xmi:XMI>
