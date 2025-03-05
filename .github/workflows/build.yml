@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  build EVC:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,6 +18,12 @@ jobs:
 
       - name: Build evc
         run: make evc
+  build RBC:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Build rbc
         run: make rbc
