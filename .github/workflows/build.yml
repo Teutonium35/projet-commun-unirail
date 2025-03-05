@@ -1,0 +1,23 @@
+name: Check Build success
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build evc
+        run: make evc
+
+      - name: Build rbc
+        run: make rbc
