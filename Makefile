@@ -2,7 +2,7 @@ all: evc rbc
 
 EVC_SSH_IPS = 192.168.1.172 192.168.1.173
 
-RBC_SSH_IP = 192.168.1.172
+RBC_SSH_IP = 192.168.1.148
 
 SSH_USER = pi
 SSH_PASS = raspberry
