@@ -1,1 +1,0 @@
-Lien pour le [Tableau Kanban](https://trello.com/b/PQvY4yPM/tchoutchou)
