@@ -14,7 +14,7 @@
 unsigned char resources = 0b000000; // 6 bits pour représenter les ressources
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
-void prise_ressources(unsigned char res_mask) {
+void lock_ressources(unsigned char res_mask) {
     pthread_mutex_lock(&lock);
     
     while ((resources & res_mask) != 0) { // Attente jusqu'à disponibilité
@@ -26,7 +26,7 @@ void prise_ressources(unsigned char res_mask) {
     pthread_mutex_unlock(&lock);
 }
 
-void liberation_ressources(unsigned char res_mask) {
+void unlock_ressources(unsigned char res_mask) {
     pthread_mutex_lock(&lock);
     resources &= ~res_mask; // Libérer les ressources
     pthread_mutex_unlock(&lock);

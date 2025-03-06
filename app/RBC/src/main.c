@@ -53,6 +53,10 @@ int main(int argc, char *argv[]) {
     }
 }
 
+/**
+ * @brief Handles a request and sends a response. Entry point for a new thread.
+ * @param args A handle_and_respond_args_t struct containing the received message, the client address and the socket descriptor
+ */
 void * handle_and_respond(void * args) {
 	handle_and_respond_args_t * hra = (handle_and_respond_args_t *) args;
 	message_t send_message;

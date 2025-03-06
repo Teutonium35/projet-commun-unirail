@@ -3,7 +3,16 @@
 
 	#define NB_RESSOURCES 6
 
-	void prise_ressources(unsigned char res_mask);
-	void liberation_ressources(unsigned char res_mask);
+	/**
+	 * @brief Locks the resources specified by the mask. Blocks until the resources are available.
+	 * @param res_mask The mask of the resources to lock
+	 */
+	void lock_ressources(unsigned char res_mask);
+
+	/**
+	 * @brief Unlocks the resources specified by the mask.
+	 * @param res_mask The mask of the resources to unlock
+	 */
+	void unlock_ressources(unsigned char res_mask);
 
 #endif
