@@ -29,18 +29,18 @@ const int balise_objectif = 22;
 const float objectif_roue = 500.0;
 
 
-// Calcule la distance entre deux positions sur un même chemin. Les positions sont définies par leurs numéros de balises (int bal1 et bal2) et leurs postions relatives à cette balise (pos_r_1 et pos_r_2)
+// Calcule la distance entre deux positions sur un mï¿½me chemin. Les positions sont dï¿½finies par leurs numï¿½ros de balises (int bal1 et bal2) et leurs postions relatives ï¿½ cette balise (pos_r_1 et pos_r_2)
 float get_distance(int bal1, int bal2, float pos_r_1, float pos_r_2){
-	float distance = pos_r_2 - pos_r_1; //Il est clair qu'on doit ajouter la pos relative à la bal2. De plus dans la suite on calcule la distance entière entre bal1 et la bal suivante. Donc il faut soustraire bal2
+	float distance = pos_r_2 - pos_r_1; //Il est clair qu'on doit ajouter la pos relative ï¿½ la bal2. De plus dans la suite on calcule la distance entiï¿½re entre bal1 et la bal suivante. Donc il faut soustraire bal2
 	int i = 0; 
 	while(chemin[i] != bal1){ //On se place sur la bal1
 		i++;
 	}
-	int do_first_loop = 0; // Sert à forcer le processus de faire la premiere loop du while dans certains cas. Cf if suivante
-	if(bal1  == bal2 && (pos_r_1 - pos_r_2 >= 50)){ //On verrifie si on a dépassé la pos_2, avec une petite marge d'erreur.
-		do_first_loop = 1; //Dans ce cas, on est dans le même canton mais devant notre pos_2. Donc on doit faire un tour entier du circuit. Cela se traduit pas une entrée forcée dans la boucle while lors de la premiere boucle
+	int do_first_loop = 0; // Sert ï¿½ forcer le processus de faire la premiere loop du while dans certains cas. Cf if suivante
+	if(bal1  == bal2 && (pos_r_1 - pos_r_2 >= 50)){ //On verrifie si on a dï¿½passï¿½ la pos_2, avec une petite marge d'erreur.
+		do_first_loop = 1; //Dans ce cas, on est dans le mï¿½me canton mais devant notre pos_2. Donc on doit faire un tour entier du circuit. Cela se traduit pas une entrï¿½e forcï¿½e dans la boucle while lors de la premiere boucle
 	}
-	while(chemin[i] != bal2 || do_first_loop == 1){ //On continue notre chemin et sommons les distances tant qu'on est pas arrivé à bal2
+	while(chemin[i] != bal2 || do_first_loop == 1){ //On continue notre chemin et sommons les distances tant qu'on est pas arrivï¿½ ï¿½ bal2
 		int j = 0;
 		do_first_loop = 0;
 		int next_index = (i==(n_balises-1))? 0 : (i+1);
@@ -53,8 +53,8 @@ float get_distance(int bal1, int bal2, float pos_r_1, float pos_r_2){
 	return distance;
 }
 
-//Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
-int get_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
+//Donne la consigne en vitesse ï¿½ partir de state qui est [vitesse,distance_a_objectif]
+int get_new_speed(int state[2]){ //TODO : Implï¿½menter meilleure automatique
     int G = 2;
     int K[2] = {2,2};
     int new_speed = (int) state[1]/10;
@@ -62,9 +62,9 @@ int get_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
     return new_speed;
 }
 
-//Envoie sur le bus can de l'EVC une commande de vitesse pour faire avancer le train à la vitesse v
+//Envoie sur le bus can de l'EVC une commande de vitesse pour faire avancer le train ï¿½ la vitesse v
 int mc_consigneVitesse(int v){
-	   // Créer un socket CAN
+	   // Crï¿½er un socket CAN
     int sock;
     struct sockaddr_can addr;
     struct can_frame frame;
@@ -76,7 +76,7 @@ int mc_consigneVitesse(int v){
         return 1;
     }
 
-    // Spécifier l'interface can0
+    // Spï¿½cifier l'interface can0
     strcpy(ifr.ifr_name, "can0");
     if (ioctl(sock, SIOCGIFINDEX, &ifr) < 0) {
         perror("SIOCGIFINDEX");
@@ -86,15 +86,15 @@ int mc_consigneVitesse(int v){
     addr.can_family = AF_CAN;
     addr.can_ifindex = ifr.ifr_ifindex;
 
-    // Associer le socket à l'interface can0
+    // Associer le socket ï¿½ l'interface can0
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         perror("bind");
         return 1;
     }
 
-    // Préparer le message CAN (ID 0x17 et données 0x0001)
+    // Prï¿½parer le message CAN (ID 0x17 et donnï¿½es 0x0001)
     frame.can_id = 0x17;  // Identifiant du message CAN
-    frame.can_dlc = 2;    // Taille des données (2 octets)
+    frame.can_dlc = 2;    // Taille des donnï¿½es (2 octets)
 	if(v>0){
 		frame.data[0] = v;
 		frame.data[1] = 0x01;	
@@ -123,7 +123,7 @@ int init_socket(){
         return -1;
     }
 
-    // Récupérer l'interface can0
+    // Rï¿½cupï¿½rer l'interface can0
     strncpy(ifr.ifr_name, "can0", IFNAMSIZ);
     if (ioctl(sock, SIOCGIFINDEX, &ifr) < 0) {
         perror("ioctl");
@@ -133,7 +133,7 @@ int init_socket(){
     addr.can_family = AF_CAN;
     addr.can_ifindex = ifr.ifr_ifindex;
 
-    // Lier le socket à l'interface CAN
+    // Lier le socket ï¿½ l'interface CAN
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         perror("bind");
         return -1;
@@ -186,9 +186,9 @@ int full_auto() {
 			last_balise = frame.data[5];
             printf("\n");
         }
-        if (frame.can_id == 0x02F && last_balise != 0){ //Les mesures et la commande ne se font que lorsqu'on sait où on est. Lorsque la premiere balise est rencontrée
+        if (frame.can_id == 0x02F && last_balise != 0){ //Les mesures et la commande ne se font que lorsqu'on sait oï¿½ on est. Lorsque la premiere balise est rencontrï¿½e
 			end = clock();
-			// Calcul du temps écoulé en secondes
+			// Calcul du temps ï¿½coulï¿½ en secondes
 			elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 			start = end;	
 			current_r_pos = get_relative_pos(frame);
@@ -211,17 +211,4 @@ int full_auto() {
 	}
 	close(sock);
     return 0;
-}
-
-
-// Initie le train en mode test si le premier argument est auto. Sinon arrete le train (utile pour arret d'urgence)
-int main(int argc , char** argv) {
-	if(argc > 1 && strcmp(argv[1], "auto") == 0){
-		printf("Lets gooo \n");
-		full_auto();
-	}
-	else{
-		printf("arret \n");
-		mc_consigneVitesse(0);
-	}
 }

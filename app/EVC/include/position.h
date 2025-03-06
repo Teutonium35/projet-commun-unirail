@@ -1,7 +1,7 @@
 #ifndef _UNIRAIL_POSITION_H
 	#define _UNIRAIL_POSITION_H
 
-	#include "comm.h"
+	#include "../../utility/include/comm.h"
 
 	/**
 	 * @struct position_t

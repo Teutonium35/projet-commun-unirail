@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#include "../include/comm.h"
 #include "../include/position.h"
 
 position_t pos = {0, 0.0};
