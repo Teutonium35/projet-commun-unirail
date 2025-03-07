@@ -1,6 +1,6 @@
 all: evc rbc
 
-EVC_SSH_IPS = 192.168.1.172 192.168.1.173
+EVC_SSH_IPS = 192.168.1.174 192.168.1.173 192.168.1.172
 
 RBC_SSH_IP = 192.168.1.148
 
@@ -25,12 +25,12 @@ install: install-evc-1 install-evc-2 install-rbc
 install-rbc:
 	sshpass -p $(SSH_PASS) scp -r ./app $(SSH_USER)@$(RBC_SSH_IP):$(SSH_PATH)
 	sshpass -p $(SSH_PASS) scp -r ./Makefile $(SSH_USER)@$(RBC_SSH_IP):$(SSH_PATH)
-	sshpass -p $(SSH_PASS) ssh $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && make clean && make rbc"
+	sshpass -p $(SSH_PASS) ssh $(SSH_USER)@$(RBC_SSH_IP) "export TERM=xterm; cd $(SSH_PATH) && make clean && make rbc && clear"
 
 install-evc-%:
 	sshpass -p $(SSH_PASS) scp -r ./app $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)):$(SSH_PATH)
 	sshpass -p $(SSH_PASS) scp -r ./Makefile $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)):$(SSH_PATH)
-	sshpass -p $(SSH_PASS) ssh $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && make clean && make evc"
+	sshpass -p $(SSH_PASS) ssh $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "export TERM=xterm; cd $(SSH_PATH) && make clean && make evc && clear"
 
 
 run-rbc: install-rbc
