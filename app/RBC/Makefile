@@ -29,5 +29,8 @@ $(BUILD_DIR):
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
+bin/test_aig: test/test_aig.c
+	$(CC) $(CFLAGS) $^ -o $@ $(OBJS) $(LDFLAGS)
+
 clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)

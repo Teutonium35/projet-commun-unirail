@@ -20,7 +20,7 @@ clean:
 	$(MAKE) -C app/EVC clean
 	$(MAKE) -C app/RBC clean
 
-install: install-evc install-rbc
+install: install-evc-1 install-evc-2 install-rbc
 
 install-rbc:
 	sshpass -p $(SSH_PASS) scp -r ./app $(SSH_USER)@$(RBC_SSH_IP):$(SSH_PATH)
