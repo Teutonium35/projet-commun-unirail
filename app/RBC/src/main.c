@@ -18,6 +18,7 @@
 
 #include "../../utility/include/comm.h"
 #include "../include/requests_handler.h"
+#include "../include/trains.h"
 
 typedef struct {
 	int sd;
@@ -34,6 +35,8 @@ int main(int argc, char *argv[]) {
 		pthread_t tid;
 
         printf("RBC - Initialisation\n");
+
+		init_trains();
 
         int sd = setup_udp_server(atoi(argv[1]));
 
