@@ -20,7 +20,7 @@ clean:
 	$(MAKE) -C app/EVC clean
 	$(MAKE) -C app/RBC clean
 
-install: install-evc-1 install-evc-2 install-rbc
+install: install-evc-1 install-evc-2 install-evc-3 install-rbc
 
 install-rbc:
 	sshpass -p $(SSH_PASS) scp -r ./app $(SSH_USER)@$(RBC_SSH_IP):$(SSH_PATH)
@@ -32,10 +32,14 @@ install-evc-%:
 	sshpass -p $(SSH_PASS) scp -r ./Makefile $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)):$(SSH_PATH)
 	sshpass -p $(SSH_PASS) ssh $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "export TERM=xterm; cd $(SSH_PATH) && make clean && make evc && clear"
 
-
 run-rbc: install-rbc
 	sshpass -p $(SSH_PASS) ssh -t $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && ./app/RBC/bin/rbc $(RBC_RUN_PORT)"
 
 run-evc-%: install-evc-%
 	sshpass -p $(SSH_PASS) ssh -t $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && ./app/EVC/bin/evc $* $(RBC_SSH_IP) $(RBC_RUN_PORT)"
 
+test-rbc: install-rbc
+	sshpass -p $(SSH_PASS) ssh -t $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && make test"
+
+test-evc-%: install-evc-%
+	sshpass -p $(SSH_PASS) ssh -t $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && make test"
