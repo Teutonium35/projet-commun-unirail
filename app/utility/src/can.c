@@ -45,7 +45,8 @@ int send_can_data(int can_id, int can_dlc, int data[8]){
     // Préparer le message CAN (ID 0x17 et données 0x0001)
     frame.can_id = can_id;  // Identifiant du message CAN
     frame.can_dlc = can_dlc;    // Taille des données (2 octets)
-    for (int i = 0;i<8;i++){
+    int i = 0;
+    for (i;i<8;i++){
         frame.data[i] = data[i];
     }
 
