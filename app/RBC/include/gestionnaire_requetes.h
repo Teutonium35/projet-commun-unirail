@@ -1,6 +1,6 @@
 #ifndef _UNIRAIL_GESTION_REQ_H_
 	#define _UNIRAIL_GESTION_REQ_H_
-	#include "comm.h"
+	#include "../../utility/include/comm.h"
 
 	/**
 	 * @brief Handles a request and prepares a response

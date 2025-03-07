@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#include "../include/comm.h"
+#include "../../utility/include/comm.h"
 #include "../include/gestionnaire_requetes.h"
 
 typedef struct {
