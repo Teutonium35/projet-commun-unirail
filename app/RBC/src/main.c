@@ -17,7 +17,7 @@
 #include <pthread.h>
 
 #include "../../utility/include/comm.h"
-#include "../include/gestionnaire_requetes.h"
+#include "../include/requests_handler.h"
 
 typedef struct {
 	int sd;
