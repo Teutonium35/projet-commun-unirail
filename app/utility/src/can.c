@@ -6,6 +6,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+#include "../include/can.h"
+
 // These files were initially included but dont seem useful :
 // #include <fcntl.h>
 // #include <linux/can/raw.h>
@@ -13,50 +15,51 @@
 // #include <sys/socket.h>
 // #include <time.h>
 
-int send_can_data(int can_id, int can_dlc, int data[8]){
-	   // Créer un socket CAN
-    int sock;
-    struct sockaddr_can addr;
+int send_can_data(int can_socket, int can_id, int can_dlc, int data[8]){
     struct can_frame frame;
-    struct ifreq ifr;
 
-    sock = socket(PF_CAN, SOCK_RAW, CAN_RAW);
-    if (sock < 0) {
-        // perror("socket");
-        return 1;
-    }
-
-    // Spécifier l'interface can0
-    strcpy(ifr.ifr_name, "can0");
-    if (ioctl(sock, SIOCGIFINDEX, &ifr) < 0) {
-        perror("SIOCGIFINDEX");
-        return 1;
-    }
-
-    addr.can_family = AF_CAN;
-    addr.can_ifindex = ifr.ifr_ifindex;
-
-    // Associer le socket à l'interface can0
-    if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
-        perror("bind");
-        return 1;
-    }
-
-    // Préparer le message CAN (ID 0x17 et données 0x0001)
     frame.can_id = can_id;  // Identifiant du message CAN
-    frame.can_dlc = can_dlc;    // Taille des données (2 octets)
+    frame.can_dlc = can_dlc;    // Taille des données 
     for (int i = 0;i<8;i++){
         frame.data[i] = data[i];
     }
 
     // Envoyer le message
-    if (write(sock, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
+    if (write(can_socket, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
         perror("write");
         return 1;
     }	
 
     printf("Message CAN envoyé avec succès sur can0\n");
 
-    close(sock);
     return 0;
+}
+
+
+int init_can_socket(){
+	struct sockaddr_can addr;
+	struct ifreq ifr;
+	int sock;
+	// Ouvrir le socket CAN
+    if ((sock = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
+        perror("Socket CAN");
+        return -1;
+    }
+
+    // Récupérer l'interface can0
+    strncpy(ifr.ifr_name, "can0", IFNAMSIZ);
+    if (ioctl(sock, SIOCGIFINDEX, &ifr) < 0) {
+        perror("ioctl");
+        return -1;
+    }
+
+    addr.can_family = AF_CAN;
+    addr.can_ifindex = ifr.ifr_ifindex;
+
+    // Lier le socket à l'interface CAN
+    if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
+        perror("bind");
+        return -1;
+    }
+	return sock;
 }
