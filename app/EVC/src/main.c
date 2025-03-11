@@ -14,6 +14,7 @@
 #include "../include/position.h"
 #include "../include/automatique.h"
 #include "../include/eoa_handler.h"
+#include "../include/response_listener.h"
 #include "../../utility/include/can.h"
 
 position_t pos = {0, 0.0};
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
     if (argc != 4) printf("EVC | Utilisation : ./rbc <id train> <adresse_serveur> <port serveur> \n");
     else {
         
-		pthread_t posreport_tid, eoa_tid;
+		pthread_t posreport_tid, eoa_tid, response_listener_tid;
 		client_udp_init_t client;
 
 		int train_id = atoi(argv[1]);
@@ -52,6 +53,11 @@ int main(int argc, char *argv[]) {
 		}
 
 		install_signal_deroute(SIGINT, stop_train);
+
+		response_listener_args_t rla = {client};
+
+		pthread_create(&response_listener_tid, NULL, response_listener, &rla);
+		pthread_detach(response_listener_tid);
 		
 		report_position_args_t rpa = {client, train_id, &pos, &pos_mutex};
 
@@ -77,7 +83,6 @@ void stop_train() {
 	fflush(stdout);
 	close(can_socket);
 	exit(EXIT_SUCCESS);
-	return;
 }
 
 void install_signal_deroute(int numSig, void (*pfct)(int)) {

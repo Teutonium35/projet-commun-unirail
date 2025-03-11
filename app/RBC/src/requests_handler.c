@@ -4,9 +4,10 @@
 #include "../include/trains.h"
 
 void handle_request(message_t recv_message, message_t * send_message) {
-	send_message->id = recv_message.id;
+	send_message->train_id = recv_message.train_id;
+	send_message->req_id = recv_message.req_id;
 
-	if (recv_message.id >= NB_TRAINS) {
+	if (recv_message.train_id >= NB_TRAINS) {
 		printf("RBC - ID de train inconnu\n");
 		send_message->code = 404;
 		send_message->data[0] = NULL;
@@ -17,7 +18,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 
 		// Rapport de position
 	   	case 101:
-			printf("RBC [%d] - Rapport de position reçu\n", recv_message.id);
+			printf("RBC [%d] - Rapport de position reçu\n", recv_message.train_id);
 
 			char * endptr; // Pointeur pour vérifier que la conversion s'est bien passée
 
@@ -35,18 +36,20 @@ void handle_request(message_t recv_message, message_t * send_message) {
 				break;
 			}
 
-			pthread_mutex_lock(&pos_trains_locks[recv_message.id]);
-			pos_trains[recv_message.id].bal = bal;
-			pos_trains[recv_message.id].pos_r = atof(recv_message.data[1]);
-			pthread_mutex_unlock(&pos_trains_locks[recv_message.id]);
+			pthread_mutex_lock(&pos_trains_locks[recv_message.train_id - 1]);
+			pos_trains[recv_message.train_id - 1].bal = bal;
+			pos_trains[recv_message.train_id - 1].pos_r = atof(recv_message.data[1]);
+			pthread_mutex_unlock(&pos_trains_locks[recv_message.train_id - 1]);
 
-			send_message->code = 200;
+			send_message->code = 201;
 			send_message->data[0] = NULL;
 			break;
 
 		case 102:
-			printf("RBC [%d] - Demande d'autorisation de mouvement reçu\n", recv_message.id);
+			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id);
 			// TODO
+			send_message->code = 202;
+			send_message->data[0] = NULL;
 			break;
 			
 	   	default:
