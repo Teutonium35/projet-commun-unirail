@@ -12,5 +12,7 @@
 
 	extern position_t pos_trains[NB_TRAINS]; 
 	extern pthread_mutex_t pos_trains_locks[NB_TRAINS];
+	extern int next_bal_index_req[NB_TRAINS];
+	extern int next_bal_index_lib[NB_TRAINS];
 
 #endif

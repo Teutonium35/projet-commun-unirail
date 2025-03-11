@@ -1,6 +1,8 @@
 #include "../include/trains.h"
 
-position_t pos_trains[NB_TRAINS]; 
+position_t pos_trains[NB_TRAINS];
+int next_bal_index_req[NB_TRAINS] = {0,0,0};
+int next_bal_index_lib[NB_TRAINS] = {0,0,0};
 pthread_mutex_t pos_trains_locks[NB_TRAINS];
 
 void init_trains() {
