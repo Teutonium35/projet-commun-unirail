@@ -1,7 +1,16 @@
 #ifndef _UNIRAIL_MAP_H
 	#define _UNIRAIL_MAP_H
 
-	#include "position.h"
+	/**
+	 * @struct position_t
+	 * @brief Represents a position on the rail
+	 * @var bal The balise ID
+	 * @var pos_r The position relative to the balise on the rail
+	 */
+	typedef struct {
+		int bal;
+		float pos_r;
+	} position_t;
 
 	extern const int B1[];
 	extern const int B2[];

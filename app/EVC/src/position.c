@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+
 #include "../include/position.h"
 
 void * report_position(void * args) {
 	report_position_args_t * rpa = (report_position_args_t *) args;
 	position_t local_pos;
-	message_t send_message;
+	message_t send_message, recv_message;
 	char * data[MAXDATA];
 	char pos_str[50];
 	int nbcar;
@@ -26,7 +27,7 @@ void * report_position(void * args) {
 			snprintf(data[0], 10, "%d", local_pos.bal);
 			snprintf(data[1], 10, "%.2f", local_pos.pos_r);
 
-			printf("EVC [%d] - Envoi de rapport de position : %d, %.2f\n", rpa->train_id, local_pos.bal, local_pos.pos_r);
+			printf("EVC [%d] - Envoi de rapport de position : |%d, %.2f|\n", rpa->train_id, local_pos.bal, local_pos.pos_r);
 
 			send_message.id = rpa->train_id;
 			send_message.code = 101;

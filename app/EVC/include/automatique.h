@@ -16,8 +16,7 @@
 	#include <time.h>
 	#include <pthread.h>
 
-	#include "position.h"
-	#include "map.h"
+	#include "../../utility/include/map.h"
 
 	#define PAS_ROUE_CODEUSE 0.016944 // en cm
 

@@ -2,7 +2,7 @@
 	#define _UNIRAIL_EOA_H
 
 	#include "../../utility/include/comm.h"
-	#include "../include/position.h"
+	#include "../../utility/include/map.h"
 
 	/**
 	 * @struct eoa_handler_args_t
