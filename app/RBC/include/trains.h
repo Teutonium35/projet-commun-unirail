@@ -3,7 +3,7 @@
 	#define NB_TRAINS 3
 
 	#include <pthread.h>
-	#include "position.h"
+	#include "../../utility/include/map.h"
 
 	/**
 	 * @brief Initializes the trains positions and their mutexes.
