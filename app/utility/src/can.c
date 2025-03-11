@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "../include/can.h"
+#include "../include/debug.h"
 
 // These files were initially included but dont seem useful :
 // #include <fcntl.h>
@@ -30,7 +31,7 @@ int send_can_data(int can_socket, int can_id, int can_dlc, int data[8]){
         return 1;
     }	
 
-    printf("Message CAN envoyé avec succès sur can0\n");
+    DEBUG_PRINT("Message CAN envoyé avec succès sur can0\n");
 
     return 0;
 }
