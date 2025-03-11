@@ -15,7 +15,9 @@
 	#include <fcntl.h>
 	#include <time.h>
 	#include <pthread.h>
+
 	#include "position.h"
+	#include "map.h"
 
 	#define PAS_ROUE_CODEUSE 0.016944 // en cm
 
@@ -26,7 +28,6 @@
 		int chemin_id;
 	} consigne_t;
 
-	float get_distance(position_t pos_current, position_t pos_destination, const int* chemin, int taille_chemin);
 	int compute_new_speed(int state[2]);
 	int mc_consigneVitesse(int can_socket, int v);
 	int read_speed_from_frame(struct can_frame frame);

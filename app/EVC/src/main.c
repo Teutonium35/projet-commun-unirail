@@ -13,13 +13,16 @@
 
 #include "../include/position.h"
 #include "../include/automatique.h"
+#include "../include/eoa_handler.h"
 #include "../../utility/include/can.h"
 
 position_t pos = {0, 0.0};
 position_t destination = {3, 20.0};
+position_t eoa = {3, 20.0};
 
 pthread_mutex_t pos_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t dest_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t eoa_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int max_speed = 30;
 int can_socket;
@@ -31,10 +34,12 @@ int main(int argc, char *argv[]) {
     if (argc != 4) printf("EVC | Utilisation : ./rbc <id train> <adresse_serveur> <port serveur> \n");
     else {
         
-		pthread_t posreport_tid;
+		pthread_t posreport_tid, eoa_tid;
 		client_udp_init_t client;
 
 		int train_id = atoi(argv[1]);
+
+		int chemin_id = train_id;
 		
         printf("EVC [%d] - Initialisation\n", train_id);
 
@@ -51,14 +56,14 @@ int main(int argc, char *argv[]) {
 		report_position_args_t rpa = {client, train_id, &pos, &pos_mutex};
 
 		pthread_create(&posreport_tid, NULL, report_position, &rpa);
-
 		pthread_detach(posreport_tid);
 
-		consigne_t consigne;
-		consigne.destination = &destination;
-		consigne.destination_lock = &pos_mutex;
-		consigne.max_speed = &max_speed;
-		consigne.chemin_id = 1;
+		eoa_handler_args_t eha = {client, train_id, chemin_id, &eoa, &eoa_mutex,  &pos, &pos_mutex};
+
+		pthread_create(&eoa_tid, NULL, eoa_handler, &eha);
+		pthread_detach(eoa_tid);
+
+		consigne_t consigne = {&destination, &dest_mutex, &max_speed, chemin_id};
 
 		boucle_automatique(&pos, &pos_mutex, consigne, can_socket);
 
