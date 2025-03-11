@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#include "../include/gestionnaire_ressources.h"
+#include "../include/ressources.h"
 
 
 unsigned char resources = 0b000000; // 6 bits pour représenter les ressources
