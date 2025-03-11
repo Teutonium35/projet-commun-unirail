@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+
 #include "../include/eoa_handler.h"
 #include "../include/automatique.h"
 #include "../include/map.h"
+#include "../include/response_listener.h"
 
 void * eoa_handler(void * args) {
 	eoa_handler_args_t * eha = (eoa_handler_args_t *) args;
@@ -32,7 +34,7 @@ void * eoa_handler(void * args) {
 			distance = get_distance(local_pos, *(eha->eoa), eha->chemin_id);
 			pthread_mutex_unlock(eha->eoa_mutex);
 
-			printf("EVC [%d] - Distance jusqu'à l'EOA : %.2f\n", eha->train_id, distance);
+			printf("EVC [%d] - [EOA] Distance jusqu'à l'EOA : %.2f\n", eha->train_id, distance);
 			fflush(stdout);
 
 			// Sends a request once when the train reaches each threshold, or continuously if it is past the last threshold
@@ -46,8 +48,9 @@ void * eoa_handler(void * args) {
 			}
 
 			if (request_new_eoa) {
-				printf("EVC [%d] - Envoi d'une nouvelle demande d'autorisation de mouvement\n", eha->train_id);
-				send_message.id = eha->train_id;
+				printf("EVC [%d] - [EOA] Envoi d'une nouvelle demande d'autorisation de mouvement...", eha->train_id);
+				send_message.req_id = generate_unique_req_id();
+				send_message.train_id = eha->train_id;
 				send_message.code = 102;
 				for (int i = 0; i < MAXDATA; i++) {
 					send_message.data[i] = NULL;
@@ -58,7 +61,14 @@ void * eoa_handler(void * args) {
 				request_new_eoa = 0;
 				last_distance_triggered = distance;
 
-				//receive_data(eha->client.sd, NULL, &recv_message);
+				wait_for_response(send_message.req_id, &recv_message);
+
+				if (recv_message.code == 202) {
+					printf("OK\n");
+				} else {
+					printf("EVC [%d] - Erreur lors de l'envoi de la demande d'autorisation de mouvement: %d\n", eha->train_id, recv_message.code);
+				}
+				
 			}
 		}
 

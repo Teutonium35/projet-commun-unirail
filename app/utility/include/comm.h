@@ -11,7 +11,8 @@
 	#include <netinet/in.h>
 
 	typedef struct {
-		int id;
+		int req_id;
+		int train_id;
 		int code;
 		char *data[MAXDATA];
 	} message_t;
@@ -21,6 +22,12 @@
 		struct sockaddr_in adr_serv;
 		socklen_t adr_serv_len;
 	} client_udp_init_t;
+
+	/**
+	 *	@brief Generates a unique request ID
+	 *	@return The generated request ID
+	**/
+	int generate_unique_req_id();
 
 	/** 
 	 *	@brief Creates and binds a UDP server socket
