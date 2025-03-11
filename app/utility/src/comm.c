@@ -4,8 +4,22 @@
 #include <sys/socket.h>      
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <pthread.h>
 
 #include "../include/comm.h"
+#include "../include/debug.h"
+
+
+static pthread_mutex_t reqid_mutex = PTHREAD_MUTEX_INITIALIZER;
+static int next_req_id = 1;
+
+int generate_unique_req_id() {
+    int req_id;
+    pthread_mutex_lock(&reqid_mutex);
+    req_id = next_req_id++;
+    pthread_mutex_unlock(&reqid_mutex);
+    return req_id;
+}
 
 void setup_udp_client(client_udp_init_t * client, char * server_ip, int server_port) {
 
@@ -57,8 +71,9 @@ void send_data(int sd, struct sockaddr_in send_adr, message_t message) {
         } else break;
     }
 
-    sprintf(buff_send, "%d:%d:%s", message.id, message.code, data_str);
-	printf("Envoi de données : %s\n", buff_send);
+    sprintf(buff_send, "%d:%d:%d:%s", message.req_id, message.train_id, message.code, data_str);
+	DEBUG_PRINT("Envoi de données : %s\n", buff_send);
+	fflush(stdout);
     
     nbcar=sendto(sd, buff_send, strlen(buff_send) + 1, 0, (struct sockaddr *)&send_adr, send_adr_len);
 	CHECK_ERROR(nbcar,0,"\nErreur lors de l'émission des données");
@@ -70,22 +85,33 @@ void receive_data(int sd, struct sockaddr_in * recv_adr, message_t *message) {
 	socklen_t recv_adr_len = sizeof(*recv_adr);
 	char buff_recv[MAXOCTETS + 1];
 
-	printf("Attente de données...\n");
+	DEBUG_PRINT("Attente de données...\n");
 	
 	nbcar = recvfrom(sd, buff_recv, MAXOCTETS + 1, 0, (struct sockaddr *)recv_adr, &recv_adr_len);
 	CHECK_ERROR(nbcar,0,"\nErreur lors de la réception des données");
 	buff_recv[nbcar] = '\0';
 
-	printf("Réception de données : %s\n", buff_recv);
+	DEBUG_PRINT("Réception de données : %s\n", buff_recv);
+	fflush(stdout);
 
 	ptr = strtok(buff_recv, ":");
 	if (ptr == NULL) {
-		message->id = -1;
+		message->req_id = -1;
+		message->train_id = -1;
 		message->code = 500;
 		fprintf(stderr, "Erreur: message malformée\n");
 		return;
 	}
-	message->id = atoi(ptr);
+	message->req_id = atoi(ptr);
+
+	ptr = strtok(NULL, ":");
+	if (ptr == NULL) {
+		message->train_id = -1;
+		message->code = 500;
+		fprintf(stderr, "Erreur: message malformée\n");
+		return;
+	}
+	message->train_id = atoi(ptr);
 
 	ptr = strtok(NULL, ":");
 	if (ptr == NULL) {

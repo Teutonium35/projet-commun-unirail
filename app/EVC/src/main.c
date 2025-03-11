@@ -4,35 +4,45 @@
 
 #define _GNU_SOURCE
 
+#define DEBUG 0
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <signal.h>
 
 #include "../include/position.h"
 #include "../include/automatique.h"
+#include "../include/eoa_handler.h"
+#include "../include/response_listener.h"
 #include "../../utility/include/can.h"
 
 position_t pos = {0, 0.0};
 position_t destination = {3, 20.0};
+position_t eoa = {3, 20.0};
 
 pthread_mutex_t pos_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t dest_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t eoa_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int max_speed = 30;
 int can_socket;
 
+void install_signal_deroute(int numSig, void (*pfct)(int));
 void stop_train();
 
 int main(int argc, char *argv[]) {
     if (argc != 4) printf("EVC | Utilisation : ./rbc <id train> <adresse_serveur> <port serveur> \n");
     else {
         
-		pthread_t posreport_tid;
+		pthread_t posreport_tid, eoa_tid, response_listener_tid;
 		client_udp_init_t client;
 
 		int train_id = atoi(argv[1]);
+
+		int chemin_id = train_id;
 		
-        printf("EVC - Initialisation\n");
+        printf("EVC [%d] - Initialisation\n", train_id);
 
 		setup_udp_client(&client, argv[2], atoi(argv[3]));
 
@@ -42,20 +52,24 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_FAILURE);
 		}
 
-		atexit(&stop_train);
+		install_signal_deroute(SIGINT, stop_train);
+
+		response_listener_args_t rla = {client};
+
+		pthread_create(&response_listener_tid, NULL, response_listener, &rla);
+		pthread_detach(response_listener_tid);
 		
 		report_position_args_t rpa = {client, train_id, &pos, &pos_mutex};
 
 		pthread_create(&posreport_tid, NULL, report_position, &rpa);
-
 		pthread_detach(posreport_tid);
 
+		eoa_handler_args_t eha = {client, train_id, chemin_id, &eoa, &eoa_mutex,  &pos, &pos_mutex};
 
-		consigne_t consigne;
-		consigne.destination = &destination;
-		consigne.destination_lock = &pos_mutex;
-		consigne.max_speed = &max_speed;
-		consigne.chemin_id = 1;
+		pthread_create(&eoa_tid, NULL, eoa_handler, &eha);
+		pthread_detach(eoa_tid);
+
+		consigne_t consigne = {&destination, &dest_mutex, &max_speed, chemin_id};
 
 		boucle_automatique(&pos, &pos_mutex, consigne, can_socket);
 
@@ -64,8 +78,17 @@ int main(int argc, char *argv[]) {
 }
 
 void stop_train() {
-	printf("Arrêt de l'EVC\n");
+	printf("\nArrêt de l'EVC...\n");
 	mc_consigneVitesse(can_socket, 0);
+	fflush(stdout);
 	close(can_socket);
-	return;
+	exit(EXIT_SUCCESS);
+}
+
+void install_signal_deroute(int numSig, void (*pfct)(int)) {
+	struct sigaction newAct;
+	newAct.sa_handler = pfct;
+	CHECK_ERROR(sigemptyset (&newAct.sa_mask), -1, "-- sigemptyset() --");
+	newAct.sa_flags = SA_RESTART;
+	CHECK_ERROR(sigaction (numSig, &newAct, NULL), -1, "-- sigaction() --");
 }
