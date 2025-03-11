@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 		pthread_create(&eoa_tid, NULL, eoa_handler, &eha);
 		pthread_detach(eoa_tid);
 
-		consigne_t consigne = {&destination, &dest_mutex, &max_speed, chemin_id};
+		consigne_t consigne = {&eoa, &eoa_mutex, &max_speed, chemin_id};
 
 		boucle_automatique(&pos, &pos_mutex, consigne, can_socket);
 
