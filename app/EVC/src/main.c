@@ -4,6 +4,8 @@
 
 #define _GNU_SOURCE
 
+#define DEBUG 0
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
@@ -34,7 +36,7 @@ int main(int argc, char *argv[]) {
 
 		int train_id = atoi(argv[1]);
 		
-        printf("EVC - Initialisation\n");
+        printf("EVC [%d] - Initialisation\n", train_id);
 
 		setup_udp_client(&client, argv[2], atoi(argv[3]));
 

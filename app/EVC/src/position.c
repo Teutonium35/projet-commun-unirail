@@ -26,6 +26,8 @@ void * report_position(void * args) {
 			snprintf(data[0], 10, "%d", local_pos.bal);
 			snprintf(data[1], 10, "%.2f", local_pos.pos_r);
 
+			printf("EVC [%d] - Envoi de rapport de position : %d, %.2f\n", rpa->train_id, local_pos.bal, local_pos.pos_r);
+
 			send_message.id = rpa->train_id;
 			send_message.code = 101;
 			for (int i = 0; i < MAXDATA; i++) {
