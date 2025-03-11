@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <signal.h>
 
 #include "../include/position.h"
 #include "../include/automatique.h"
@@ -21,6 +22,7 @@ pthread_mutex_t dest_mutex = PTHREAD_MUTEX_INITIALIZER;
 int max_speed = 30;
 int can_socket;
 
+void install_signal_deroute(int numSig, void (*pfct)(int));
 void stop_train();
 
 int main(int argc, char *argv[]) {
@@ -42,14 +44,13 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_FAILURE);
 		}
 
-		atexit(&stop_train);
+		install_signal_deroute(SIGINT, stop_train);
 		
 		report_position_args_t rpa = {client, train_id, &pos, &pos_mutex};
 
 		pthread_create(&posreport_tid, NULL, report_position, &rpa);
 
 		pthread_detach(posreport_tid);
-
 
 		consigne_t consigne;
 		consigne.destination = &destination;
@@ -64,8 +65,18 @@ int main(int argc, char *argv[]) {
 }
 
 void stop_train() {
-	printf("Arrêt de l'EVC\n");
+	printf("\nArrêt de l'EVC...\n");
 	mc_consigneVitesse(can_socket, 0);
+	fflush(stdout);
 	close(can_socket);
+	exit(EXIT_SUCCESS);
 	return;
+}
+
+void install_signal_deroute(int numSig, void (*pfct)(int)) {
+	struct sigaction newAct;
+	newAct.sa_handler = pfct;
+	CHECK_ERROR(sigemptyset (&newAct.sa_mask), -1, "-- sigemptyset() --");
+	newAct.sa_flags = SA_RESTART;
+	CHECK_ERROR(sigaction (numSig, &newAct, NULL), -1, "-- sigaction() --");
 }
