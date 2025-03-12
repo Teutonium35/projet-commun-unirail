@@ -17,6 +17,8 @@
 void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains);
 void free_resources(int * next_bal_index, int no_train, position_t * pos_trains);
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins);
+
+#define DEBUG_EOA 0
 #define DEBUG_RES 0
 
 
@@ -179,6 +181,12 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 		i++;
 	}
     int num_balise_check = i;
+		if (DEBUG_EOA){
+			printf("Indice balise actuelle : %d\n", num_balise_check);
+			printf("Balise actuelle supposée : %d\n", chemin[i]);
+			printf("Balise actuelle réelle : %d\n", pos_trains[num_train].bal);
+		}
+
     // Cas spécial où la balise actuelle est la même qu'un des objectif (et devant notre position)
     if(next_balise_avant_ressource == chemin[num_balise_check] && current_position.pos_r <= 0) return((position_t) {next_balise_avant_ressource, 0.0});
     if(pos_trains[(num_train+1)%3].bal == chemin[num_balise_check] && pos_trains[(num_train+1)%3].pos_r >= current_position.pos_r) return(pos_trains[(num_train+1)%3]);
@@ -187,17 +195,29 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
     while(1)
     {
         num_balise_check = (num_balise_check+1)%len_chemin;
+		if (DEBUG_EOA){
+			printf("Indice prochaine balise : %d\n", num_balise_check);
+		}
         int objectif_sur_balise[3] = {0,0,0};
         float list_pos_r[3] = {0.0,0.0,0.0};
         if(next_balise_avant_ressource == chemin[num_balise_check]){
+			if (DEBUG_EOA){
+				("Prochaine balise bloquée par ressource : %d", next_balise_avant_ressource);
+			}
             objectif_sur_balise[0] = 1;
             list_pos_r[0] = 0.0;
         }
         if(pos_trains[(num_train+1)%3].bal == chemin[num_balise_check]){
+			if (DEBUG_EOA){
+				("Prochaine balise bloquée par train+1 : %d", next_balise_avant_ressource);
+			}
             objectif_sur_balise[1] = 1;
             list_pos_r[1] = pos_trains[(num_train+1)%3].pos_r;
         }
         if(pos_trains[(num_train+2)%3].bal == chemin[num_balise_check]){
+			if (DEBUG_EOA){
+				("Prochaine balise bloquée par train+2 : %d", next_balise_avant_ressource);
+			}
             objectif_sur_balise[2] = 1;
             list_pos_r[2] = pos_trains[(num_train+2)%3].pos_r;
         }
