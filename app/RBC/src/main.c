@@ -17,6 +17,7 @@
 #include <pthread.h>
 
 #include "../../utility/include/comm.h"
+#include "../../utility/include/const_chemins.h"
 #include "../include/requests_handler.h"
 #include "../include/trains.h"
 
