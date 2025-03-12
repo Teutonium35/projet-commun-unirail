@@ -21,6 +21,7 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 #define DEBUG_EOA 0
 #define DEBUG_RES 0
 #define DEBUG_POS 0
+#define DEBUG_RES_FREE 0
 
 
 void handle_request(message_t recv_message, message_t * send_message) {
@@ -64,6 +65,10 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			pos_trains[recv_message.train_id - 1].bal = bal;
 			pos_trains[recv_message.train_id - 1].pos_r = atof(recv_message.data[1]);
 			free_resources(&next_bal_index_lib[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains);
+			if (DEBUG_RES_FREE){
+				printf("Ressource libérée : %d\n", next_bal_index_lib[recv_message.train_id - 1]);
+				printf("Ressources libres : %d\n", resources);
+			}
 			pthread_mutex_unlock(&pos_trains_locks[recv_message.train_id - 1]);
 
 
@@ -177,6 +182,9 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 void free_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 	if ((pos_trains[no_train].bal == L_res_lib[no_train][*next_bal_index]) && (pos_trains[no_train].pos_r >= 0)){
 		unlock_ressources(L_mask_lib[no_train][*next_bal_index]);
+		if (DEBUG_RES_FREE){
+			printf("Balise %d, libère ressource %d\n", pos_trains[no_train].bal, L_mask_lib[no_train][*next_bal_index]);
+		}
 
 
 		// Si on est au bout du chemin, la prochaine balise est à nouveau la balise 0.
