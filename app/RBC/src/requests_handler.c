@@ -157,6 +157,7 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 	if (resource_to_lock && (pos_trains[no_train].pos_r >= 0)){
 		if (DEBUG_RES){
 			printf("Ressources avant lock: %d\n", resources);
+			printf("Ressource à lock: %d\n", L_mask_req[no_train][*next_bal_index]);
 		}
 		lock_ressources(L_mask_req[no_train][*next_bal_index]);
 		if (DEBUG_RES){
