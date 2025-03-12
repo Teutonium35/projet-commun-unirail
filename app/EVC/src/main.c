@@ -4,8 +4,6 @@
 
 #define _GNU_SOURCE
 
-#define DEBUG 0
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
@@ -18,8 +16,9 @@
 #include "../../utility/include/can.h"
 
 position_t pos = {0, 0.0};
+position_t eoa = {-1, 0.0};
 position_t destination = {3, 20.0};
-position_t eoa = {3, 20.0};
+
 
 pthread_mutex_t pos_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t dest_mutex = PTHREAD_MUTEX_INITIALIZER;

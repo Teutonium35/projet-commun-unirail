@@ -101,7 +101,8 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 			current_speed = read_speed_from_frame(frame);
 
 			pthread_mutex_lock(consigne.destination_lock);
-			dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
+			if (consigne.destination->bal < 1) dist = 0;
+			else dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
 			pthread_mutex_unlock(consigne.destination_lock);
 
 			int state[2] = {current_speed, (int) dist};

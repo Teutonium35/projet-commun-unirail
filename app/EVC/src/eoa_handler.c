@@ -32,7 +32,8 @@ void * eoa_handler(void * args) {
 
 		if (local_pos.bal  != 0) {
 			pthread_mutex_lock(eha->eoa_mutex);
-			distance = get_distance(local_pos, *(eha->eoa), eha->chemin_id);
+			if (eha->eoa->bal != -1) distance = get_distance(local_pos, *(eha->eoa), eha->chemin_id);
+			else request_new_eoa = 1; // Initialize the EOA after startup
 			pthread_mutex_unlock(eha->eoa_mutex);
 
 			DEBUG_PRINT("EVC [%d] - [EOA] Distance jusqu'à l'EOA : %.2f\n", eha->train_id, distance);
