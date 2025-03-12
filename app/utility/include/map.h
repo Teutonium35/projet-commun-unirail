@@ -18,7 +18,11 @@
 	extern const int chemin3[];
 	extern const int chemin2[];
 	extern const int chemin1[];
+	extern const int v_limit1[];
+	extern const int v_limit2[];
+	extern const int v_limit3[];
 
+	extern const int * v_limits[3];
 	extern const int * chemins[3];
 	extern const int tailles_chemins[3];
 

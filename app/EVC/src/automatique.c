@@ -2,9 +2,6 @@
 #include "../../utility/include/can.h"
 #include "../../utility/include/debug.h"
 
-
-const int min_speed = 2;
-
 //Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
 int compute_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
     int G = 2;
@@ -43,6 +40,17 @@ float read_relative_pos_from_frame(struct can_frame frame){
 	return pos;
 }
 
+int get_min_speed(position_t pos_current, const int chemin_id){
+	const int* chemin = chemins[chemin_id - 1];
+	int bal1 = pos_current.bal;
+	int i = 0; 
+	while(chemin[i] != bal1){ //On se place sur la bal1
+		i++;
+	}
+	return(v_limits[chemin_id - 1][i]);
+}
+
+
 int init_train(int can_socket) {
     struct can_frame frame;
 	int last_balise = 0;
@@ -70,6 +78,7 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 	float erreur;
 	int current_speed;
 	float dist;
+	int min_speed = 0;
 
 	int last_balise = init_train(can_socket);
 
@@ -102,7 +111,10 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 
 			pthread_mutex_lock(consigne.destination_lock);
 			if (consigne.destination->bal < 1) dist = 0;
-			else dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
+			else{
+				dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
+				min_speed = get_limit_vitesse(pos_current,consigne.chemin_id);
+			}
 			pthread_mutex_unlock(consigne.destination_lock);
 
 			int state[2] = {current_speed, (int) dist};
@@ -110,6 +122,7 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 			
 			DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed);
 			fflush(stdout);
+
 
 			if(newSpeed > *consigne.max_speed) newSpeed = *consigne.max_speed;
 			if(newSpeed <= min_speed) newSpeed = 0;
