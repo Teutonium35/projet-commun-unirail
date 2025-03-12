@@ -70,7 +70,11 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id);
 			ask_resources(&next_bal_index_req[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains);
 
-			printf("Ressource accordée : %d", next_bal_index_req[recv_message.train_id - 1]);
+
+			if (DEBUG_RES){
+				printf("Ressource accordée : %d\n", next_bal_index_req[recv_message.train_id - 1]);
+				printf("Ressources libres : %d\n", resources);
+			}
 
 			if (DEBUG_EOA){
 				printf("Prochaine EOA pour train %d: balise %d, position %f\n", recv_message.train_id - 1, EOA.bal, EOA.pos_r);
