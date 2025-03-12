@@ -6,6 +6,8 @@
 #include "../include/position.h"
 #include "../include/response_listener.h"
 
+#define DEBUG_POS 0
+
 void * report_position(void * args) {
 	report_position_args_t * rpa = (report_position_args_t *) args;
 	position_t local_pos;
@@ -27,6 +29,10 @@ void * report_position(void * args) {
 
 			snprintf(data[0], 10, "%d", local_pos.bal);
 			snprintf(data[1], 10, "%.2f", local_pos.pos_r);
+
+			if (DEBUG_POS){
+				printf("Current position : %d, %f\n", local_pos.bal, local_pos.pos_r);
+			}
 
 			send_message.req_id = generate_unique_req_id();
 			send_message.train_id = rpa->train_id;
