@@ -26,6 +26,9 @@
 	extern const int * chemins[3];
 	extern const int tailles_chemins[3];
 
+	extern const float max_acceleration; // Acceleration en cm.s-2
+
+
 	/** 
 	 *	@brief Calcule la distance entre deux positions sur un même chemin. Une position est définie par sa balise et sa position relative à cette balise.
 	*	@param pos_current position de départ

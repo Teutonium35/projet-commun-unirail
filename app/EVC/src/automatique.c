@@ -2,6 +2,8 @@
 #include "../../utility/include/can.h"
 #include "../../utility/include/debug.h"
 
+int min_speed = 2;
+
 //Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
 int compute_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
     int G = 2;
@@ -40,14 +42,24 @@ float read_relative_pos_from_frame(struct can_frame frame){
 	return pos;
 }
 
-int get_min_speed(position_t pos_current, const int chemin_id){
+int get_limit_speed(position_t pos_current, const int chemin_id){
 	const int* chemin = chemins[chemin_id - 1];
+	const int taille_chemin = tailles_chemins[chemin_id - 1];
 	int bal1 = pos_current.bal;
 	int i = 0; 
 	while(chemin[i] != bal1){ //On se place sur la bal1
 		i++;
 	}
-	return(v_limits[chemin_id - 1][i]);
+	int v1 = v_limits[chemin_id - 1][i];
+	int v2 = v_limits[chemin_id - 1][(i+1)%taille_chemin];
+	int j = 0;
+	while((B1[j] != chemin[i] || B2[j] != chemin[(i+1)%taille_chemin]) && (B1[j] != chemin[(i+1)%taille_chemin] || B2[j] != chemin[i])){ //On trouve l'arc qui va de notre balise jusqu'a la prochaine balise
+		j++;
+	}
+	float pos_r_debut_deacceleration = D[j] - ((v2^2 - v1^2))/(2*max_acceleration);
+	if(pos_current.pos_r < pos_r_debut_deacceleration) return v1;
+	if(pos_current.pos_r > D[j]) return v2;
+	return (sqrtf(v1*v1 + 2* max_acceleration * (pos_current.pos_r - pos_r_debut_deacceleration)));
 }
 
 
@@ -83,8 +95,9 @@ void * boucle_automatique(void * args) {
 	float erreur;
 	int current_speed;
 	float dist;
-	int min_speed = 0;
 	int initialized = 0;
+	int speed_limit = 0;
+	int min_speed = 2;
 
 	int last_balise = init_train(baa->can_socket);
 
@@ -141,8 +154,8 @@ void * boucle_automatique(void * args) {
 				DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d -- min_speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed, min_speed);
 				fflush(stdout);
 
-				if(newSpeed >= min_speed) newSpeed = min_speed;
-				if(newSpeed <= 2) newSpeed = 0;
+				if(newSpeed > speed_limit) newSpeed = speed_limit;
+				if(newSpeed <= min_speed) newSpeed = 0;
 				mc_consigneVitesse(baa->can_socket, newSpeed);
 			}
 		}

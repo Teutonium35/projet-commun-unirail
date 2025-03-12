@@ -15,6 +15,7 @@
 	#include <fcntl.h>
 	#include <time.h>
 	#include <pthread.h>
+	#include <math.h>
 
 	#include "../../utility/include/map.h"
 
@@ -49,7 +50,7 @@
 	**/
 	float read_relative_pos_from_frame(struct can_frame frame);
 
-	int get_min_speed(position_t pos_current, const int chemin_id);
+	int get_limit_speed(position_t pos_current, const int chemin_id);
 
 	/** 
 	 *	@brief Initie l'automatique du train en le faisant avancer jusqu'a la première balise (afin qu'il connaisse sa position initiale).
