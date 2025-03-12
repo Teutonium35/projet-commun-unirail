@@ -19,7 +19,7 @@ void * eoa_handler(void * args) {
 	int request_new_eoa = 0;
 	int initialized = 0;
 
-	const int distance_triggers[] = { 5000, 2500, 500 };
+	const int distance_triggers[] = { 5000, 2500, 1000 };
 	const int distance_triggers_size = sizeof(distance_triggers) / sizeof(int);
 
 	double distance;

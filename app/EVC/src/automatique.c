@@ -144,14 +144,14 @@ void * boucle_automatique(void * args) {
 				if (baa->destination->bal < 1) dist = 0;
 				else{
 					dist = get_distance(pos_current, *baa->destination, baa->chemin_id);
-					min_speed = get_limit_speed(pos_current, baa->chemin_id);
+					speed_limit = get_limit_speed(pos_current, baa->chemin_id);
 				}
 				pthread_mutex_unlock(baa->destination_lock);
 
 				int state[2] = {current_speed, (int) dist};
 				int newSpeed = compute_new_speed(state);
 				
-				DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d -- min_speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed, min_speed);
+				DEBUG_PRINT("Bal %d -- Pos %f -- Distance %f -- Speed %d -- newSpeed %d -- speedLimit %d \n",pos_current.bal,pos_current.pos_r,dist,current_speed,newSpeed, speed_limit);
 				fflush(stdout);
 
 				if(newSpeed > speed_limit) newSpeed = speed_limit;
