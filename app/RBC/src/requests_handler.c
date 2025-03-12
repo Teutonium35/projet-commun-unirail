@@ -72,7 +72,9 @@ void handle_request(message_t recv_message, message_t * send_message) {
 
 			printf("Ressource accordée : %d", next_bal_index_req[recv_message.train_id - 1]);
 
-			position_t EOA = next_eoa(recv_message.train_id,pos_trains,next_bal_index_req[recv_message.train_id - 1], chemins, tailles_chemins);
+			if (DEBUG_EOA){
+				printf("Prochaine EOA pour train %d: balise %d, position %f\n", recv_message.train_id - 1, EOA.bal, EOA.pos_r);
+			}
 
 			send_message->code = 202;
 			
