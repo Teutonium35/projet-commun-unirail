@@ -20,6 +20,7 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 
 #define DEBUG_EOA 0
 #define DEBUG_RES 0
+#define DEBUG_POS 0
 
 
 void handle_request(message_t recv_message, message_t * send_message) {
@@ -53,6 +54,10 @@ void handle_request(message_t recv_message, message_t * send_message) {
 				send_message->code = 401;
 				send_message->data[0] = NULL;
 				break;
+			}
+
+			if (DEBUG_POS){
+				printf("Position : bal %ld, pos %lf\n", bal, pos_r);
 			}
 
 			pthread_mutex_lock(&pos_trains_locks[recv_message.train_id - 1]);
