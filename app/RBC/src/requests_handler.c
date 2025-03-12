@@ -169,7 +169,7 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 
 		// Si on est au bout du chemin, la prochaine balise est à nouveau la balise 0.
 		// Sinon, c'est la prochaine dans le chemin
-		*next_bal_index = (*next_bal_index + 1)%tailles_chemins[no_train];
+		*next_bal_index = (*next_bal_index + 1)%L_res_size[no_train];
 	}
 	
 	if (DEBUG_RES){
