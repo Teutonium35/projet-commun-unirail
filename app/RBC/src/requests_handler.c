@@ -163,14 +163,14 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 			printf("Ressources après lock: %d\n", resources);
 		}
 
-	if (DEBUG_RES){
-		printf("Test condition :\n Indice actuel %d\n Limite %ld\n", *next_bal_index, sizeof(L_res_req[no_train])/sizeof(int));
-	}
+		if (DEBUG_RES){
+			printf("Test condition :\n Indice actuel %d\n Limite %ld\n", *next_bal_index, sizeof(L_res_req[no_train])/sizeof(int));
+		}
 
 		// Si on est au bout du chemin, la prochaine balise est à nouveau la balise 0.
 		// Sinon, c'est la prochaine dans le chemin
 		*next_bal_index = (*next_bal_index + 1)%tailles_chemins[no_train];
-		}
+	}
 	
 	if (DEBUG_RES){
 		printf("Indice de la prochaine ressource : %d \nProchaine ressource à verrouiller : %d\n", *next_bal_index, L_mask_req[no_train][*next_bal_index]);
