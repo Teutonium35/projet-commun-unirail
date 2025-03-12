@@ -15,8 +15,8 @@ const int * v_limits[3] = {v_limit1,v_limit2,v_limit3};
 const int * chemins[3] = {chemin1, chemin2, chemin3};
 const int tailles_chemins[3] = {sizeof(chemin1)/sizeof(int), sizeof(chemin2)/sizeof(int), sizeof(chemin3)/sizeof(int)};
 
-const float max_acceleration = 10.0; // Acceleration en cm.s-2
-
+const float max_acceleration = 5.0; // Acceleration en cm.s-2
+const float max_deacceleration = -2.0; // Acceleration en cm.s-2
 // Calcule la distance entre deux positions sur un même chemin. Les positions sont définies par leurs numéros de balises (int bal1 et bal2) et leurs postions relatives à cette balise (pos_r_1 et pos_r_2)
 float get_distance(position_t pos_current, position_t pos_destination, const int chemin_id){
 	const int* chemin = chemins[chemin_id - 1];

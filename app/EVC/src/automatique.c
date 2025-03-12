@@ -47,6 +47,7 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	const int taille_chemin = tailles_chemins[chemin_id - 1];
 	int bal1 = pos_current.bal;
 	int i = 0; 
+	float a;
 	while(chemin[i] != bal1){ //On se place sur la bal1
 		i++;
 	}
@@ -56,10 +57,13 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	while((B1[j] != chemin[i] || B2[j] != chemin[(i+1)%taille_chemin]) && (B1[j] != chemin[(i+1)%taille_chemin] || B2[j] != chemin[i])){ //On trouve l'arc qui va de notre balise jusqu'a la prochaine balise
 		j++;
 	}
-	float pos_r_debut_deacceleration = D[j] - ((v2^2 - v1^2))/(2*max_acceleration);
-	if(pos_current.pos_r < pos_r_debut_deacceleration) (return v1);
+	if(v1>=v2) a = max_deacceleration;
+	else() a = max_acceleration;
+	float pos_r_debut_acceleration = D[j] - ((v2^2 - v1^2))/(2*a);
+	printf("distance freinage/acceleration : %s \n" , ((v2^2 - v1^2))/(2*a))
+	if(pos_current.pos_r < pos_r_debut_acceleration) (return v1);
 	if(pos_current.pos_r > D[j]) (return v2);
-	return (sqrtf(v1^2 + 2* max_acceleration * (pos_current.pos_r - pos_r_debut_deacceleration)));
+	return (sqrtf(v1^2 + 2* a * (pos_current.pos_r - pos_r_debut_acceleration)));
 }
 
 
