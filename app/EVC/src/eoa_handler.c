@@ -17,12 +17,21 @@ void * eoa_handler(void * args) {
 	char pos_str[50];
 	int nbcar;
 	int request_new_eoa = 0;
+	int initialized = 0;
 
-	const int distance_triggers[] = { 5000, 2500, 100 };
+	const int distance_triggers[] = { 5000, 2500, 500 };
 	const int distance_triggers_size = sizeof(distance_triggers) / sizeof(int);
 
 	double distance;
 	double last_distance_triggered = distance_triggers[0];
+
+	pthread_mutex_lock(eha->init_pos_mutex);
+	while (!*(eha->pos_initialized)) {
+		pthread_cond_wait(eha->init_pos_cond, eha->init_pos_mutex);
+	}
+	pthread_mutex_unlock(eha->init_pos_mutex);
+
+	request_new_eoa = 1;
 
 	while (1) {
 		pthread_mutex_lock(eha->pos_mutex);
@@ -33,7 +42,6 @@ void * eoa_handler(void * args) {
 		if (local_pos.bal  != 0) {
 			pthread_mutex_lock(eha->eoa_mutex);
 			if (eha->eoa->bal != -1) distance = get_distance(local_pos, *(eha->eoa), eha->chemin_id);
-			else request_new_eoa = 1; // Initialize the EOA after startup
 			pthread_mutex_unlock(eha->eoa_mutex);
 
 			DEBUG_PRINT("EVC [%d] - [EOA] Distance jusqu'à l'EOA : %.2f\n", eha->train_id, distance);
@@ -50,7 +58,7 @@ void * eoa_handler(void * args) {
 			}
 
 			if (request_new_eoa) {
-				printf("EVC [%d] - [EOA] Envoi d'une nouvelle demande d'autorisation de mouvement...", eha->train_id);
+				printf("EVC [%d] - Envoi d'une nouvelle demande d'autorisation de mouvement...", eha->train_id);
 				send_message.req_id = generate_unique_req_id();
 				send_message.train_id = eha->train_id;
 				send_message.code = 102;
@@ -93,6 +101,14 @@ void * eoa_handler(void * args) {
 					printf("EVC [%d] - Erreur lors de l'envoi de la demande d'autorisation de mouvement: %d\n", eha->train_id, recv_message.code);
 				}
 				
+				if (!initialized) {
+					printf("EVC [%d] - Initialisation terminée\n", eha->train_id);
+					pthread_mutex_lock(eha->init_eoa_mutex);
+					pthread_cond_signal(eha->init_eoa_cond);
+					*eha->eoa_initialized = 1;
+					pthread_mutex_unlock(eha->init_eoa_mutex);
+					initialized = 1;
+				}
 			}
 		}
 

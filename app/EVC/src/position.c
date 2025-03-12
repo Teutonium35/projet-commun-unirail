@@ -13,6 +13,7 @@ void * report_position(void * args) {
 	char * data[MAXDATA];
 	char pos_str[50];
 	int nbcar;
+	int initialized = 0;
 
 	while (1) {
 		pthread_mutex_lock(rpa->pos_mutex);
@@ -37,10 +38,22 @@ void * report_position(void * args) {
 
 			send_data(rpa->client.sd, rpa->client.adr_serv, send_message);
 
+			if (!initialized) printf("EVC [%d] - Position initialisée, envoi au RBC...", rpa->train_id);
+
 			wait_for_response(send_message.req_id, &recv_message);
 
 			if (recv_message.code != 201) {
 				printf("EVC [%d] - Erreur lors de l'envoi du rapport de position: %d\n", rpa->train_id, recv_message.code);
+			} else {
+				// Signals to the EOA handler that the RBC acknowledged the first position
+				if (!initialized) {
+					printf("OK\nEVC [%d] - Position initiale acquittée par le RBC\n", rpa->train_id);
+					pthread_mutex_lock(rpa->init_pos_mutex);
+					*rpa->pos_initialized = 1;
+					initialized = 1;
+					pthread_cond_signal(rpa->init_pos_cond);
+					pthread_mutex_unlock(rpa->init_pos_mutex);
+				}
 			}
 		
 		}

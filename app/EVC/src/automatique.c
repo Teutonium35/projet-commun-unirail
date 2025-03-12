@@ -56,6 +56,8 @@ int init_train(int can_socket) {
 	int last_balise = 0;
 
 	mc_consigneVitesse(can_socket, 20);
+	printf("EVC - Recherche de balise...");
+	fflush(stdout);
     while (last_balise == 0) {
         // Lire un message CAN
         if (read(can_socket, &frame, sizeof(struct can_frame)) < 0) {
@@ -66,10 +68,13 @@ int init_train(int can_socket) {
 			last_balise = frame.data[5];
         }
 	}
+	printf("OK\nEVC - Balise trouvée: %d\n",last_balise);
+	fflush(stdout);
 	return last_balise;
 }
 
-void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock, consigne_t consigne, const int can_socket) {
+void * boucle_automatique(void * args) {
+	boucle_automatique_args_t * baa = (boucle_automatique_args_t *) args;
     struct can_frame frame;
 	clock_t start, end;
 	position_t pos_current;
@@ -79,21 +84,20 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 	int current_speed;
 	float dist;
 	int min_speed = 0;
+	int initialized = 0;
 
-	int last_balise = init_train(can_socket);
+	int last_balise = init_train(baa->can_socket);
+
+	mc_consigneVitesse(baa->can_socket, 0);
 
 	pos_current.bal = last_balise;
 	pos_current.pos_r = 0.0;
 	
 	start = clock();
     while (1) {
-		pthread_mutex_lock(position_lock);
-		position->bal = pos_current.bal;
-		position->pos_r = pos_current.pos_r;
-		pthread_mutex_unlock(position_lock);
 
         // Lire un message CAN
-        if (read(can_socket, &frame, sizeof(struct can_frame)) < 0) {
+        if (read(baa->can_socket, &frame, sizeof(struct can_frame)) < 0) {
 			fprintf(stderr, "Failed to read data from CAN\n");
             continue;
         }
@@ -109,25 +113,40 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 			pos_current.pos_r = read_relative_pos_from_frame(frame);
 			current_speed = read_speed_from_frame(frame);
 
-			pthread_mutex_lock(consigne.destination_lock);
-			if (consigne.destination->bal < 1) dist = 0;
-			else{
-				dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
-				min_speed = get_limit_vitesse(pos_current,consigne.chemin_id);
+			pthread_mutex_lock(baa->position_lock);
+			baa->position->bal = pos_current.bal;
+			baa->position->pos_r = pos_current.pos_r;
+			pthread_mutex_unlock(baa->position_lock);
+
+			if (!initialized) {
+				pthread_mutex_lock(baa->init_mutex);
+				while (!*(baa->initialized)) {
+					pthread_cond_wait(baa->init_cond, baa->init_mutex);
+				}
+				pthread_mutex_unlock(baa->init_mutex);
+				initialized = 1;
+			} else {
+
+				pthread_mutex_lock(baa->destination_lock);
+				if (baa->destination->bal < 1) dist = 0;
+				else{
+					dist = get_distance(pos_current, *baa->destination, baa->chemin_id);
+					min_speed = get_min_speed(pos_current, baa->chemin_id);
+				}
+				pthread_mutex_unlock(baa->destination_lock);
+
+				int state[2] = {current_speed, (int) dist};
+				int newSpeed = compute_new_speed(state);
+				
+				DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d -- min_speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed, min_speed);
+				fflush(stdout);
+
+				if(newSpeed >= min_speed) newSpeed = min_speed;
+				if(newSpeed <= 2) newSpeed = 0;
+				mc_consigneVitesse(baa->can_socket, newSpeed);
 			}
-			pthread_mutex_unlock(consigne.destination_lock);
-
-			int state[2] = {current_speed, (int) dist};
-			int newSpeed = compute_new_speed(state);
-			
-			DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed);
-			fflush(stdout);
-
-
-			if(newSpeed > *consigne.max_speed) newSpeed = *consigne.max_speed;
-			if(newSpeed <= min_speed) newSpeed = 0;
-			mc_consigneVitesse(can_socket, newSpeed);
 		}
+
 	}
     
 }
