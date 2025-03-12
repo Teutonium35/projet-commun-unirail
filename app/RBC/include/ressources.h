@@ -15,4 +15,6 @@
 	 */
 	void unlock_ressources(unsigned char res_mask);
 
+	extern unsigned char resources; // 6 bits pour représenter les ressources
+
 #endif
