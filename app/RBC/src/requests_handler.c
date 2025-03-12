@@ -88,6 +88,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			for (int i = 0; i < 2; i++) {
 				send_message->data[i] = data[i];
 			}
+			break;
 
 		case 100:
 			send_message->code = 200;
