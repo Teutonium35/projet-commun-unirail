@@ -236,20 +236,3 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
         }
     }
 }
-
-// int main(){
-//     int num_train = 0;
-//     const int chemin3[] = {22,23,24,25,250,26,251,27,28,29,11,12,13,7,8,9};
-//     const int chemin2[] = {11,251,26,250,25,20,21,17};
-//     const int chemin1[] = {7,8,9,1,2,3,12,13};
-//     const int * chemins[3] = {chemin1, chemin2, chemin3};
-//     const int len_chemins[3] = {sizeof(chemin1)/sizeof(int), sizeof(chemin2)/sizeof(int), sizeof(chemin3)/sizeof(int)};
-//     position_t pos1 = {9,20.0};
-//     position_t pos2 = {2,60.0};
-//     position_t pos3 = {2,50.0};
-//     position_t pos_trains[3] = {pos1,pos2,pos3};
-//     int next_balise_avant_ressource = 2;
-//     position_t EOA = next_eoa(num_train,pos_trains,next_balise_avant_ressource, chemins, len_chemins);
-//     printf("balise EOA : %d , Position relative : %f \n" , EOA.bal, EOA.pos_r);
-// }
-
