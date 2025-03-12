@@ -172,6 +172,9 @@ void free_resources(int * next_bal_index, int no_train, position_t * pos_trains)
  *	@return Renvoie l'EOA
 **/
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins){
+	if (DEBUG_EOA){
+	printf("Entrée dans next EOA\nNo train: %d\n Pos train actuel: %d, %f\nProchaine balise avant ressource: %d\n", num_train, pos_trains[num_train].bal, pos_trains[num_train].pos_r, next_balise_avant_ressource);
+	}
     int i = 0; 
     position_t current_position = pos_trains[num_train];
     const int * chemin = chemins[num_train];
