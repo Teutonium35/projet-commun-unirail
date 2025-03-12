@@ -75,8 +75,11 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			position_t EOA = next_eoa(recv_message.train_id,pos_trains,next_bal_index_req[recv_message.train_id - 1], chemins, tailles_chemins);
 
 			send_message->code = 202;
-			snprintf(send_message->data[0], 10, "%d", EOA.bal);
-			snprintf(send_message->data[1], 10, "%.2f", EOA.pos_r);
+
+		case 100:
+			send_message->code = 200;
+			send_message->data[0] = NULL;
+			send_message->data[1] = NULL;
 
 			break;
 			
