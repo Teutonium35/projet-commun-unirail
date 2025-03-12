@@ -20,3 +20,4 @@ const int * L_res_req[3] = {L_res_req1, L_res_req2, L_res_req2};
 const int * L_res_lib[3] = {L_res_lib1, L_res_lib2, L_res_lib2};
 const int * L_mask_req[3] = {L_mask_req1, L_mask_req2, L_mask_req2};
 const int * L_mask_lib[3] = {L_mask_lib1, L_mask_lib2, L_mask_lib2};
+const int L_res_size[3] = {2, 3, 4};
