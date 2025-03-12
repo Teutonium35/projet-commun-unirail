@@ -86,6 +86,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 				printf("Ressources libres : %d\n", resources);
 			}
 
+			position_t EOA = next_eoa(recv_message.train_id-1,pos_trains,L_res_req[recv_message.train_id - 1][next_bal_index_req[recv_message.train_id - 1]], chemins, tailles_chemins);
 			if (DEBUG_EOA){
 				printf("Prochaine EOA pour train %d: balise %d, position %f\n", recv_message.train_id - 1, EOA.bal, EOA.pos_r);
 			}
