@@ -144,7 +144,7 @@ void * boucle_automatique(void * args) {
 				if (baa->destination->bal < 1) dist = 0;
 				else{
 					dist = get_distance(pos_current, *baa->destination, baa->chemin_id);
-					min_speed = get_min_speed(pos_current, baa->chemin_id);
+					min_speed = get_limit_speed(pos_current, baa->chemin_id);
 				}
 				pthread_mutex_unlock(baa->destination_lock);
 

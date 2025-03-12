@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 		init_message.code = 100;
 		init_message.data[0] = NULL;
 
-		printf("EVC [%d] - En attente du RBC...\n", train_id);
+		printf("EVC [%d] - En attente du RBC...", train_id);
 
 		send_data(client.sd, client.adr_serv, init_message);
 
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_FAILURE);
 		}
 
-		printf("EVC [%d] - Connexion établie\n", train_id);
+		printf("OK\nEVC [%d] - Connexion établie\n", train_id);
 
 		response_listener_args_t rla = {client};
 
