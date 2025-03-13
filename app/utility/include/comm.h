@@ -1,5 +1,30 @@
 #ifndef _UNIRAIL_COMM_H
 	#define _UNIRAIL_COMM_H
+	
+	/**
+	 * UNIRAIL - Communication
+	 * ========================
+	 * Requêtes
+	 * ---------
+	 * 100 - Vérification de la connexion au RBC
+	 * 101 - Rapport de position au RBC (DATA: [balise, position relative])
+	 * 102 - Demande d'autorisation de mouvement au RBC
+	 * 103 - Envoi d'une nouvelle mission à l'EVC (DATA: [nombre de tours])
+	 * ---------
+	 * Acknowledges
+	 * ---------
+	 * 200 - Connexion établie
+	 * 201 - Rapport de position reçu
+	 * 202 - Demande d'autorisation de mouvement reçue (DATA: [balise EOA, position relative EOA])
+	 * 203 - Mission reçue
+	 * ---------
+	 * Erreurs
+	 * ---------
+	 * 400 - Code de requête inconnu
+	 * 401 - Impossible de lire la position reçue
+	 * 404 - ID de train inconnue
+	 * ========================
+	 */
 
 	#define MAXOCTETS 150
 	#define MAXDATA 2

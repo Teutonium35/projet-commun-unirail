@@ -60,12 +60,11 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	if(v1>=v2) a = max_deacceleration;
 	else a = max_acceleration;
 	float pos_r_debut_acceleration = D[j] - 10*((v2^2 - v1^2))/(2*a);
-	printf("distance freinage/acceleration : %f \n" , 10*((v2^2 - v1^2))/(2*a))
+	printf("distance freinage/acceleration : %f \n" , 10*((v2^2 - v1^2))/(2*a));
 	if(pos_current.pos_r < pos_r_debut_acceleration) return v1;
 	if(pos_current.pos_r > D[j]) return v2;
 	return (sqrtf(v1*v1 + 2* a * (pos_current.pos_r - pos_r_debut_acceleration)));
 }
-
 
 int init_train(int can_socket) {
     struct can_frame frame;
@@ -98,20 +97,30 @@ void * boucle_automatique(void * args) {
 	float integration_erreur = 0;
 	float erreur;
 	int current_speed;
-	float dist;
+	float dist, dist_eoa, dist_start;
 	int initialized = 0;
 	int speed_limit = 0;
 	int min_speed = 2;
+	int local_mission = 0;
+	position_t start_pos;
 
-	int last_balise = init_train(baa->can_socket);
+	int init_balise = init_train(baa->can_socket);
+	int last_balise = init_balise;
+
+	start_pos.bal = start_chemins[baa->chemin_id - 1];
+	start_pos.pos_r = 0.0;
 
 	mc_consigneVitesse(baa->can_socket, 0);
 
-	pos_current.bal = last_balise;
+	pos_current.bal = init_balise;
 	pos_current.pos_r = 0.0;
 	
 	start = clock();
     while (1) {
+
+		pthread_mutex_lock(baa->mission_mutex);
+		local_mission = *(baa->mission);
+		pthread_mutex_unlock(baa->mission_mutex);
 
         // Lire un message CAN
         if (read(baa->can_socket, &frame, sizeof(struct can_frame)) < 0) {
@@ -120,6 +129,18 @@ void * boucle_automatique(void * args) {
         }
 		if (frame.can_id == 0x30) { //On passe sur une nouvelle balise
 			pos_current.bal = frame.data[5];
+			if (pos_current.bal != last_balise) {
+				if (pos_current.bal == start_pos.bal) {
+					// On a fait un tour complet
+					pthread_mutex_lock(baa->mission_mutex);
+					*(baa->mission) -= 1;
+					local_mission -= 1;
+					pthread_mutex_unlock(baa->mission_mutex);
+					printf("EVC [%d] - Tours restants: %d\n", baa->chemin_id, local_mission);
+				}
+				last_balise = pos_current.bal;
+			}
+				
         }
         if (frame.can_id == 0x02F){
 			end = clock();
@@ -144,13 +165,17 @@ void * boucle_automatique(void * args) {
 				initialized = 1;
 			} else {
 
-				pthread_mutex_lock(baa->destination_lock);
-				if (baa->destination->bal < 1) dist = 0;
+				pthread_mutex_lock(baa->eoa_lock);
+				if (baa->eoa->bal < 1) dist = 0;
 				else{
-					dist = get_distance(pos_current, *baa->destination, baa->chemin_id);
-					speed_limit = get_limit_speed(pos_current, baa->chemin_id);
+					dist_eoa = get_distance(pos_current, *baa->eoa, baa->chemin_id);
+					dist_start = get_distance(pos_current, start_pos, baa->chemin_id);
 				}
-				pthread_mutex_unlock(baa->destination_lock);
+				pthread_mutex_unlock(baa->eoa_lock);
+
+				if (local_mission > 0 || dist_eoa < dist_start) dist = dist_eoa; 
+				else dist = dist_start;
+				speed_limit = get_limit_speed(pos_current, baa->chemin_id);
 
 				int state[2] = {current_speed, (int) dist};
 				int newSpeed = compute_new_speed(state);

@@ -58,6 +58,7 @@ void wait_for_response(int req_id, message_t *recv_message) {
 
 }
 void dispatch_message(message_t *recv_message) {
+        
     pthread_mutex_lock(&response_list_mutex);
     response_t *response = response_list;
 	// Looks for the received message in the waiting list, adds it to the response struct and signals the condition
@@ -83,7 +84,22 @@ void *response_listener(void * args) {
 		
 		receive_data(rla->client.sd, &rla->client.adr_serv, &recv_message);
 
-        dispatch_message(&recv_message);
+        // Only case where the message is not a response but a new mission request
+        if (recv_message.code == 103) {
+            char * endptr; 
+            long local_mission = strtol(recv_message.data[0], &endptr, 10); // Le pointeur n'a pas bougé, la conversion a échoué
+            if (endptr == recv_message.data[0]) {
+                fprintf(stderr, "EVC [%d] - Erreur lors de la réception d'une nouvelle mission: %s\n", recv_message.train_id, recv_message.data[0]);
+                continue;
+            }
+            pthread_mutex_lock(rla->mission_mutex);
+            *rla->mission = local_mission;
+            pthread_mutex_unlock(rla->mission_mutex);
+
+        // Otherwise, dispatch the message to the right thread waiting for it
+        } else {
+            dispatch_message(&recv_message);
+        }
 
     }
     return NULL;

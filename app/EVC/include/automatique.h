@@ -60,12 +60,14 @@
 	int init_train(int can_socket);
 
 	/**
-	 * @struct consigne_t
+	 * @struct boucle_automatique_args_t
 	 * @brief Structure pour stocker les arguments de la boucle automatique.
-	 * @param position pointeur vers la position à rejoindre.
+	 * @param position pointeur vers la position actuelle.
 	 * @param position_lock mutex pour l'écriture/lecture de position
-	 * @param destination Pointeur vers la position à rejoindre.
-	 * @param destination_lock Mutex pour l'écriture/lecture de la position.
+	 * @param eoa Pointeur vers l'eoa.
+	 * @param eoa_lock Mutex pour l'écriture/lecture de l'eoa.
+	 * @param mission Pointeur vers le nombre de tours à effectuer.
+	 * @param mission_mutex Mutex pour l'écriture/lecture de la mission.
 	 * @param chemin_id Identifiant du chemin à suivre.
 	 * @param can_socket socket du bus CAN de l'EVC.
 	 * @param initialized Flag to indicate if the position has been initialized
@@ -75,8 +77,10 @@
 	typedef struct {
 		position_t * position;
 		pthread_mutex_t * position_lock;
-		position_t * destination;
-		pthread_mutex_t * destination_lock;
+		position_t * eoa;
+		pthread_mutex_t * eoa_lock;
+		int * mission;
+		pthread_mutex_t * mission_mutex;
 		int chemin_id;
 		int can_socket;
 		int * initialized;
