@@ -128,9 +128,9 @@ void receive_data(int sd, struct sockaddr_in * recv_adr, message_t *message) {
 		return;
 	}
 	message->code = atoi(ptr);
-
+	int i = 0;
 	ptr = strtok(NULL, ":");
-	for (int i = 0; ptr != NULL && i < MAXDATA; i++) {
+	for (i; ptr != NULL && i < MAXDATA; i++) {
 		message->data[i] = malloc(strlen(ptr) + 1);
 		if (message->data[i] == NULL) {
 			perror("Memory allocation error");
@@ -139,5 +139,34 @@ void receive_data(int sd, struct sockaddr_in * recv_adr, message_t *message) {
 		strcpy(message->data[i], ptr);
 		ptr = strtok(NULL, ":");
 	}
+
+	for (; i < MAXDATA; i++) {
+        message->data[i] = NULL;
+    }
+
 	return;
+}
+
+
+message_t * copy_message(message_t *src) {
+    message_t *dest = malloc(sizeof(message_t));
+    if (!dest) {
+        fprintf(stderr, "Memory allocation error	\n");
+		exit(EXIT_FAILURE);
+    }
+    dest->req_id = src->req_id;
+    dest->train_id = src->train_id;
+    dest->code = src->code;
+    for (int i = 0; i < MAXDATA; i++) {
+        if (src->data[i] != NULL) {
+            dest->data[i] = strdup(src->data[i]);
+            if (!dest->data[i]) {
+                fprintf(stderr, "Strdup memory allocation error");
+                exit(EXIT_FAILURE);
+            }
+        } else {
+            dest->data[i] = NULL;
+        }
+    }
+    return dest;
 }

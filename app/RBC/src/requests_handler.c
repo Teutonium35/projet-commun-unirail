@@ -84,7 +84,7 @@ void handle_request(message_t recv_message, message_t * send_message, int can_so
 			break;
 
 		case 102:
-			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id - 1, recv_message.train_id - 1);
+			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id - 1);
 			ask_resources(&next_bal_index_req[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains, can_socket);
 
 
