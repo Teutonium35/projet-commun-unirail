@@ -1,10 +1,10 @@
 #include "../../EVC/include/automatique.h"
 #include "../include/const_chemins.h"
 
-const int L_res_req1[2] = {9,3};
-const int L_res_lib1[2] = {1,12};
-const int L_mask_req1[2] = {0b00001,0b01000};
-const int L_mask_lib1[2] = {0b00001,0b01000};
+const int L_res_req1[2] = {3,9};
+const int L_res_lib1[2] = {12,1};
+const int L_mask_req1[2] = {0b01000,0b00001};
+const int L_mask_lib1[2] = {0b01000,0b00001};
 
 const int L_res_req2[3] = {21,17,11};
 const int L_res_lib2[4] = {17,11,251,20};

@@ -10,8 +10,8 @@ void init_trains() {
 		pos_trains[i].pos_r = 0.0;
 		pthread_mutex_init(&pos_trains_locks[i], NULL);
 	}
-	pos_trains[0].bal = 7;
-	pos_trains[1].bal = 11;
+	pos_trains[0].bal = 1;
+	pos_trains[1].bal = 21;
 	pos_trains[2].bal = 22;
 
 }
