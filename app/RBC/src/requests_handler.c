@@ -210,6 +210,7 @@ void free_resources(int * next_bal_index, int no_train, position_t * pos_trains)
  *	@return Renvoie l'EOA
 **/
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins){
+	pthread_mutex_lock(&pos_trains_locks[num_train]);
 	if (DEBUG_EOA){
 	printf("Entrée dans next EOA\nNo train: %d\n Pos train actuel: %d, %f\nProchaine balise avant ressource: %d\n", num_train, pos_trains[num_train].bal, pos_trains[num_train].pos_r, next_balise_avant_ressource);
 	}
@@ -229,9 +230,20 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 		}
 
     // Cas spécial où la balise actuelle est la même qu'un des objectif (et devant notre position)
-    if(next_balise_avant_ressource == chemin[num_balise_check] && current_position.pos_r <= 0) return((position_t) {next_balise_avant_ressource, 0.0});
-    if(pos_trains[(num_train+1)%3].bal == chemin[num_balise_check] && pos_trains[(num_train+1)%3].pos_r >= current_position.pos_r) return(pos_trains[(num_train+1)%3]);
-    if(pos_trains[(num_train+2)%3].bal == chemin[num_balise_check] && pos_trains[(num_train+2)%3].pos_r >= current_position.pos_r) return(pos_trains[(num_train+2)%3]);
+    if(next_balise_avant_ressource == chemin[num_balise_check] && current_position.pos_r <= 0){
+		pthread_mutex_unlock(&pos_trains_locks[num_train]);
+		return((position_t) {next_balise_avant_ressource, 0.0});
+	} 
+    if(pos_trains[(num_train+1)%3].bal == chemin[num_balise_check] && pos_trains[(num_train+1)%3].pos_r >= current_position.pos_r){
+		position_t next_train_position = pos_trains[(num_train+1)%3]; 
+		pthread_mutex_unlock(&pos_trains_locks[num_train]);
+		return(next_train_position);
+	} 
+    if(pos_trains[(num_train+2)%3].bal == chemin[num_balise_check] && pos_trains[(num_train+2)%3].pos_r >= current_position.pos_r){
+	 	position_t next_train_position = pos_trains[(num_train+2)%3];
+		pthread_mutex_unlock(&pos_trains_locks[num_train]);
+		return(next_train_position);
+	}
     // Cas général, recherche du premier objectif trouvé
     while(1)
     {
@@ -270,6 +282,7 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
                     min_pos_r = list_pos_r[j];
                 }
             }
+				pthread_mutex_unlock(&pos_trains_locks[num_train]);
             return((position_t) {chemin[num_balise_check], min_pos_r});
         }
     }
