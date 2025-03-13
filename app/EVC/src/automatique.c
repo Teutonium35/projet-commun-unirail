@@ -63,7 +63,7 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	int v_last = v_limits[chemin_id - 1][(i-1+taille_chemin)%taille_chemin];
 	int v1 = v_limits[chemin_id - 1][i];
 	int v_next = v_limits[chemin_id - 1][(i+1)%taille_chemin];
-	if(v1<= v_next && v1<=v_last) return v1
+	if(v1<= v_next && v1<=v_last) return v1;
 	if(v1>v_next){ // On ralentis à la fin du tronçon
 		int j = 0;
 		while((B1[j] != chemin[i] || B2[j] != chemin[(i+1)%taille_chemin]) && (B1[j] != chemin[(i+1)%taille_chemin] || B2[j] != chemin[i])){ //On trouve l'arc qui va de notre balise jusqu'a la prochaine balise
@@ -80,7 +80,7 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 		a = max_acceleration;
 		float pos_r_fin_acceleration = 10*((v1*v1 - v_last*v_last))/(2*a);
 		if(pos_current.pos_r > pos_r_fin_acceleration) (v_limite_pente_last = v1);
-		else (v_limite_pente_last =(sqrtf(v_last*v_last + 0.2 * a * (pos_r_fin_acceleration - pos_current.pos_r))))
+		else (v_limite_pente_last =(sqrtf(v_last*v_last + 0.2 * a * (pos_r_fin_acceleration - pos_current.pos_r))));
 	}
 	if(v_limite_pente_last > v_limite_pente_next) return v_limite_pente_next;
 	else return v_limite_pente_last;

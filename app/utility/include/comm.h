@@ -66,8 +66,9 @@
 	 *	@param client The client_udp_init_t struct to initialize
 	 *	@param server_ip The IP address of the server
 	 *	@param server_port The port of the server
+	 *	@param client_port The port of the client. If 0, the OS will assign a port
 	**/
-	void setup_udp_client(client_udp_init_t * client, char * server_ip, int server_port);
+	void setup_udp_client(client_udp_init_t * client, char * server_ip, int server_port, int client_port);
 
 	/** 
 	 *	@brief Sends a message to the server

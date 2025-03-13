@@ -40,7 +40,7 @@ void install_signal_deroute(int numSig, void (*pfct)(int));
 void stop_train();
 
 int main(int argc, char *argv[]) {
-    if (argc != 5) printf("EVC | Utilisation : ./rbc <id train> <nombre de tours> <adresse_serveur> <port serveur> \n");
+    if (argc != 6) printf("EVC | Utilisation : ./rbc <id train> <nombre de tours> <adresse_serveur> <port serveur> <port train>\n");
     else {
         
 		pthread_t posreport_tid, eoa_tid, response_listener_tid;
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 		
         printf("EVC [%d] - Initialisation\n", train_id);
 
-		setup_udp_client(&client, argv[3], atoi(argv[4]));
+		setup_udp_client(&client, argv[3], atoi(argv[4]), atoi(argv[5]));
 
 		can_socket = init_can_socket();
 		if (can_socket == -1) {

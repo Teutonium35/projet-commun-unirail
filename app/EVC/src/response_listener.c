@@ -109,6 +109,14 @@ void *response_listener(void * args) {
             *rla->mission = local_mission;
             pthread_mutex_unlock(rla->mission_mutex);
 
+            message_t send_message;
+            send_message.req_id = recv_message.req_id;
+            send_message.train_id = recv_message.train_id;
+            send_message.code = 203;
+            send_message.data[0] = NULL;
+
+            send_data(rla->client.sd, rla->client.adr_serv, send_message);
+
         // Otherwise, dispatch the message to the right thread waiting for it
         } else {
             dispatch_message(&recv_message);

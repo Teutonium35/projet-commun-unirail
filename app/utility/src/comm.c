@@ -9,7 +9,6 @@
 #include "../include/comm.h"
 #include "../include/debug.h"
 
-
 static pthread_mutex_t reqid_mutex = PTHREAD_MUTEX_INITIALIZER;
 static int next_req_id = 1;
 
@@ -21,11 +20,20 @@ int generate_unique_req_id() {
     return req_id;
 }
 
-void setup_udp_client(client_udp_init_t * client, char * server_ip, int server_port) {
+void setup_udp_client(client_udp_init_t * client, char * server_ip, int server_port, int client_port) {
+	int erreur;
 
 	client->sd=socket(AF_INET,SOCK_DGRAM,0); 
 	CHECK_ERROR(client->sd,-1, "EVC - Erreur lors de la création du socket de dialogue\n");
 	printf("EVC - N° du socket de dialogue : %d \n", client->sd);
+
+	struct sockaddr_in client_addr;
+    client_addr.sin_family = AF_INET;
+    client_addr.sin_port = htons(client_port);
+    client_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    erreur = bind(client->sd, (struct sockaddr *)&client_addr, sizeof(client_addr));
+	CHECK_ERROR(erreur, -1, "EVC - Erreur lors du bind du socket de dialogue\n");
 	
 	// Préparation de l'adresse
 	client->adr_serv.sin_family=AF_INET;

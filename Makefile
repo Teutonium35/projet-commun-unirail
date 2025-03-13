@@ -9,6 +9,7 @@ SSH_PASS = raspberry
 SSH_PATH = /home/pi/Unirail-25
 
 RBC_RUN_PORT = 3000
+EVC_RUN_PORT = 3000
 
 evc:
 	$(MAKE) -C app/EVC
@@ -16,9 +17,13 @@ evc:
 rbc:
 	$(MAKE) -C app/RBC
 
+supervisor:
+	$(MAKE) -C app/MissionSupervisor
+
 clean:
 	$(MAKE) -C app/EVC clean
 	$(MAKE) -C app/RBC clean
+	$(MAKE) -C app/MissionSupervisor clean
 
 install: install-evc-1 install-evc-2 install-evc-3 install-rbc
 
@@ -38,7 +43,11 @@ run-rbc: install-rbc
 	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && ./app/RBC/bin/rbc $(RBC_RUN_PORT)"
 
 run-evc-%: install-evc-%
-	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && ./app/EVC/bin/evc $* 1 $(RBC_SSH_IP) $(RBC_RUN_PORT)"
+	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && ./app/EVC/bin/evc $* 3 $(RBC_SSH_IP) $(RBC_RUN_PORT) $(EVC_RUN_PORT)"
+
+run-supervisor: supervisor
+	./app/MissionSupervisor/bin/mission_supervisor $(EVC_RUN_PORT)
+
 
 test-rbc: install-rbc
 	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && make test"
