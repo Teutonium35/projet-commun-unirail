@@ -9,9 +9,20 @@ const int chemin1[] = {1,2,3,12,13,7,8,9};
 const int chemin2[] = {21,17,11,251,26,250,25,20};
 const int chemin3[] = {22,23,24,25,250,26,251,27,28,29,11,12,13,7,8,9};
 
+const int v_limit3[] = {40,40,35,40,40,30,40,40,40,30,35,40,30,40,40,25};
+const int chemin2[] = {11,251,26,250,25,20,21,17};
+const int v_limit2[] = {30,40,40,40,30,40,35,35};
+const int chemin1[] = {7,8,9,1,2,3,12,13};
+const int v_limit1[] = {40,40,30,40,40,30,40,35};
+
+const int * v_limits[3] = {v_limit1,v_limit2,v_limit3};
 const int * chemins[3] = {chemin1, chemin2, chemin3};
 const int tailles_chemins[3] = {sizeof(chemin1)/sizeof(int), sizeof(chemin2)/sizeof(int), sizeof(chemin3)/sizeof(int)};
 
+const int start_chemins[3] = {1, 20, 22};
+
+const float max_acceleration = 10.0; // Acceleration en cm.s-2
+const float max_deacceleration = -10.0; // Acceleration en cm.s-2
 // Calcule la distance entre deux positions sur un même chemin. Les positions sont définies par leurs numéros de balises (int bal1 et bal2) et leurs postions relatives à cette balise (pos_r_1 et pos_r_2)
 float get_distance(position_t pos_current, position_t pos_destination, const int chemin_id){
 	const int* chemin = chemins[chemin_id - 1];

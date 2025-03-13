@@ -4,6 +4,9 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <pthread.h>
+	#include <time.h>
+	#include <sys/time.h>
+	#include <errno.h>
 
 	#include "../../utility/include/comm.h"
 
@@ -12,7 +15,7 @@
 	 * @param req_id The ID of the sent request to await the response for
 	 * @param recv_message The message struct in which the received message will be stored
 	 */
-	void wait_for_response(int req_id, message_t *recv_message);
+	void wait_for_response(int req_id, message_t *recv_messag, int timeout_sec);
 
 	/**
 	 * @brief Dispatches a received message to the appropriate thread
@@ -23,12 +26,12 @@
 	/**
 	 * @struct response_t
 	 * @brief Linked list structure to store waiting responses
-	 * @var response_t::req_id The ID of the request to await the response for
-	 * @var response_t::message The message struct in which the received message will be stored
-	 * @var response_t::ready Flag to indicate if the response is ready to be read
-	 * @var response_t::cond Thread condition to signal when the response is ready
-	 * @var response_t::mutex Thread mutex to lock the response struct
-	 * @var response_t::next Pointer to the next response in the linked list
+	 * @param req_id The ID of the request to await the response for
+	 * @param message The message struct in which the received message will be stored
+	 * @param ready Flag to indicate if the response is ready to be read
+	 * @param cond Thread condition to signal when the response is ready
+	 * @param mutex Thread mutex to lock the response struct
+	 * @param next Pointer to the next response in the linked list
 	 */
 	typedef struct response_t {
 		int req_id;
@@ -42,10 +45,14 @@
 	/**
 	 * @struct response_listener_args_t
 	 * @brief Structure to pass arguments to the response listener thread
-	 * @var response_listener_args_t::client The client struct to use for communication
+	 * @param client The client struct to use for communication
+	 * @param mission The current mission
+	 * @param mission_mutex The mutex to lock when accessing the mission
 	 */
 	typedef struct {
 		client_udp_init_t client;
+		int * mission;
+		pthread_mutex_t * mission_mutex;
 	} response_listener_args_t;
 
 	/**

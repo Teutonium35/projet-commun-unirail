@@ -5,8 +5,8 @@
 response_t *response_list = NULL;
 pthread_mutex_t response_list_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void wait_for_response(int req_id, message_t *recv_message) {
-
+void wait_for_response(int req_id, message_t *recv_message, int timeout_sec) {
+    struct timespec ts;
 	// Allocate a new response struct
     response_t *response = malloc(sizeof(response_t));
     if (!response) {
@@ -28,10 +28,23 @@ void wait_for_response(int req_id, message_t *recv_message) {
     response_list = response;
     pthread_mutex_unlock(&response_list_mutex);
 
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += timeout_sec;
 	// Awaits for the condition to be signaled
     pthread_mutex_lock(&response->mutex);
     while (!response->ready) {
-        pthread_cond_wait(&response->cond, &response->mutex);
+        if (timeout_sec == 0) {
+            pthread_cond_wait(&response->cond, &response->mutex);
+        } else {
+            int result = pthread_cond_timedwait(&response->cond, &response->mutex, &ts);
+            if (result == ETIMEDOUT) {
+                response->message.code = -1;
+                response->message.data[0] = NULL;
+                response->ready = 1;
+                fprintf(stderr, "EVC - Pas de réponse reçue la requête %d après %d secondes\n", req_id, timeout_sec);
+                break;
+            }
+        }
     }
     pthread_mutex_unlock(&response->mutex);
 	
@@ -58,6 +71,7 @@ void wait_for_response(int req_id, message_t *recv_message) {
 
 }
 void dispatch_message(message_t *recv_message) {
+        
     pthread_mutex_lock(&response_list_mutex);
     response_t *response = response_list;
 	// Looks for the received message in the waiting list, adds it to the response struct and signals the condition
@@ -83,7 +97,30 @@ void *response_listener(void * args) {
 		
 		receive_data(rla->client.sd, &rla->client.adr_serv, &recv_message);
 
-        dispatch_message(&recv_message);
+        // Only case where the message is not a response but a new mission request
+        if (recv_message.code == 103) {
+            char * endptr; 
+            long local_mission = strtol(recv_message.data[0], &endptr, 10); // Le pointeur n'a pas bougé, la conversion a échoué
+            if (endptr == recv_message.data[0]) {
+                fprintf(stderr, "EVC [%d] - Erreur lors de la réception d'une nouvelle mission: %s\n", recv_message.train_id, recv_message.data[0]);
+                continue;
+            }
+            pthread_mutex_lock(rla->mission_mutex);
+            *rla->mission = local_mission;
+            pthread_mutex_unlock(rla->mission_mutex);
+
+            message_t send_message;
+            send_message.req_id = recv_message.req_id;
+            send_message.train_id = recv_message.train_id;
+            send_message.code = 203;
+            send_message.data[0] = NULL;
+
+            send_data(rla->client.sd, rla->client.adr_serv, send_message);
+
+        // Otherwise, dispatch the message to the right thread waiting for it
+        } else {
+            dispatch_message(&recv_message);
+        }
 
     }
     return NULL;

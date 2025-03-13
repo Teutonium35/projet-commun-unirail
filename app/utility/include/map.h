@@ -18,9 +18,18 @@
 	extern const int chemin3[];
 	extern const int chemin2[];
 	extern const int chemin1[];
+	extern const int v_limit1[];
+	extern const int v_limit2[];
+	extern const int v_limit3[];
 
+	extern const int * v_limits[3];
 	extern const int * chemins[3];
 	extern const int tailles_chemins[3];
+
+	extern const float max_acceleration; // Acceleration en cm.s-2
+	extern const float max_deacceleration; // Acceleration en cm.s-2
+
+	extern const int start_chemins[3];
 
 	/** 
 	 *	@brief Calcule la distance entre deux positions sur un même chemin. Une position est définie par sa balise et sa position relative à cette balise.

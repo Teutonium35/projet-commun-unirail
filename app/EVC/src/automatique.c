@@ -2,16 +2,22 @@
 #include "../../utility/include/can.h"
 #include "../../utility/include/debug.h"
 
-
-const int min_speed = 2;
+int min_speed = 2;
 
 //Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
-int compute_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
-    int G = 2;
-    int K[2] = {2,2};
-    int new_speed = (int) state[1]/10;
-
-    return new_speed;
+int compute_new_speed(int state[2],double elapsed_time, double *retenue_sur_vitesse){ 
+    int v = state[0];
+	int d = state[1];
+    int new_speed = v;
+	float dist_freinage = - 10*((v*v))/(2*max_deacceleration);
+	if(d<=dist_freinage){
+		*retenue_sur_vitesse = (double) v;
+		DEBUG_PRINT("vitesse : %d -- distance freinage: %f\n", v, dist_freinage);
+		return((int) (sqrtf(v*v + 0.2* max_deacceleration * (dist_freinage - d))));
+	}
+	*retenue_sur_vitesse += max_acceleration * elapsed_time; //L'idée est qu'on souhaite incrémenter v par cette valeur (<1) , mais v est un int. Donc on retient cette valeur et on continue à l'incrémenter à chaque appel de la fonction
+	DEBUG_PRINT("vitesse : %d -- retenue : %f\n", v, *retenue_sur_vitesse);
+	return (int) *retenue_sur_vitesse;
 }
 
 //Envoie sur le bus can de l'EVC une commande de vitesse pour faire avancer le train à la vitesse v
@@ -43,11 +49,50 @@ float read_relative_pos_from_frame(struct can_frame frame){
 	return pos;
 }
 
+int get_limit_speed(position_t pos_current, const int chemin_id){
+	const int* chemin = chemins[chemin_id - 1];
+	const int taille_chemin = tailles_chemins[chemin_id - 1];
+	int bal1 = pos_current.bal;
+	int i = 0; 
+	float a;
+	int v_limite_pente_next = 100000000;
+	int v_limite_pente_last = 100000000;
+	while(chemin[i] != bal1){ //On se place sur la bal1
+		i++;
+	}
+	int v_last = v_limits[chemin_id - 1][(i-1+taille_chemin)%taille_chemin];
+	int v1 = v_limits[chemin_id - 1][i];
+	int v_next = v_limits[chemin_id - 1][(i+1)%taille_chemin];
+	if(v1<= v_next && v1<=v_last) return v1;
+	if(v1>v_next){ // On ralentis à la fin du tronçon
+		int j = 0;
+		while((B1[j] != chemin[i] || B2[j] != chemin[(i+1)%taille_chemin]) && (B1[j] != chemin[(i+1)%taille_chemin] || B2[j] != chemin[i])){ //On trouve l'arc qui va de notre balise jusqu'a la prochaine balise
+			j++;
+		}
+		a = max_deacceleration;
+		float pos_r_debut_deacceleration = D[j] - 10*((v_next*v_next - v1*v1))/(2*a);
+		DEBUG_PRINT("v1 v_next : %d %d -- pos_r %f  -- pos acceleration %f -- distance_fin %f \n" , v1, v_next, pos_current.pos_r, pos_r_debut_deacceleration, D[j]);
+		if(pos_current.pos_r < pos_r_debut_deacceleration) (v_limite_pente_next = v1);
+		else if(pos_current.pos_r > D[j]) (v_limite_pente_next = v_next);
+		else (v_limite_pente_next = sqrtf(v1*v1 + 0.2 * a * (pos_current.pos_r - pos_r_debut_deacceleration)));
+	}
+	if(v1>v_last){ //On accelere au début du tronçon
+		a = max_acceleration;
+		float pos_r_fin_acceleration = 10*((v1*v1 - v_last*v_last))/(2*a);
+		if(pos_current.pos_r > pos_r_fin_acceleration) (v_limite_pente_last = v1);
+		else (v_limite_pente_last =(sqrtf(v_last*v_last + 0.2 * a * (pos_r_fin_acceleration - pos_current.pos_r))));
+	}
+	if(v_limite_pente_last > v_limite_pente_next) return v_limite_pente_next;
+	else return v_limite_pente_last;
+}
+
 int init_train(int can_socket) {
     struct can_frame frame;
 	int last_balise = 0;
 
 	mc_consigneVitesse(can_socket, 20);
+	printf("EVC - Recherche de balise...");
+	fflush(stdout);
     while (last_balise == 0) {
         // Lire un message CAN
         if (read(can_socket, &frame, sizeof(struct can_frame)) < 0) {
@@ -58,10 +103,13 @@ int init_train(int can_socket) {
 			last_balise = frame.data[5];
         }
 	}
+	printf("OK\nEVC - Balise trouvée: %d\n",last_balise);
+	fflush(stdout);
 	return last_balise;
 }
 
-void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock, consigne_t consigne, const int can_socket) {
+void * boucle_automatique(void * args) {
+	boucle_automatique_args_t * baa = (boucle_automatique_args_t *) args;
     struct can_frame frame;
 	clock_t start, end;
 	position_t pos_current;
@@ -69,52 +117,101 @@ void * boucle_automatique(position_t * position, pthread_mutex_t * position_lock
 	float integration_erreur = 0;
 	float erreur;
 	int current_speed;
-	float dist;
+	float dist, dist_eoa, dist_start;
+	int initialized = 0;
+	int speed_limit = 0;
+	int min_speed = 2;
+	int local_mission = 0;
+	double retenue_sur_vitesse = 0.0;
+	position_t start_pos;
 
-	int last_balise = init_train(can_socket);
+	int init_balise = init_train(baa->can_socket);
+	int last_balise = init_balise;
 
-	pos_current.bal = last_balise;
+	start_pos.bal = start_chemins[baa->chemin_id - 1];
+	start_pos.pos_r = 0.0;
+
+	mc_consigneVitesse(baa->can_socket, 0);
+
+	pos_current.bal = init_balise;
 	pos_current.pos_r = 0.0;
 	
 	start = clock();
     while (1) {
-		pthread_mutex_lock(position_lock);
-		position->bal = pos_current.bal;
-		position->pos_r = pos_current.pos_r;
-		pthread_mutex_unlock(position_lock);
+
+		pthread_mutex_lock(baa->mission_mutex);
+		local_mission = *(baa->mission);
+		pthread_mutex_unlock(baa->mission_mutex);
 
         // Lire un message CAN
-        if (read(can_socket, &frame, sizeof(struct can_frame)) < 0) {
+        if (read(baa->can_socket, &frame, sizeof(struct can_frame)) < 0) {
 			fprintf(stderr, "Failed to read data from CAN\n");
             continue;
         }
 		if (frame.can_id == 0x30) { //On passe sur une nouvelle balise
 			pos_current.bal = frame.data[5];
+			if (pos_current.bal != last_balise) {
+				if (pos_current.bal == start_pos.bal) {
+					// On a fait un tour complet
+					pthread_mutex_lock(baa->mission_mutex);
+					*(baa->mission) -= 1;
+					local_mission -= 1;
+					pthread_mutex_unlock(baa->mission_mutex);
+					printf("EVC [%d] - Tours restants: %d\n", baa->chemin_id, local_mission);
+				}
+				last_balise = pos_current.bal;
+			}
+				
         }
         if (frame.can_id == 0x02F){
 			end = clock();
 			// Calcul du temps écoulé en secondes
-			elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+			elapsed_time = 100 * ((double)(end - start)) / CLOCKS_PER_SEC;
 			start = end;
 
 			pos_current.pos_r = read_relative_pos_from_frame(frame);
 			current_speed = read_speed_from_frame(frame);
 
-			pthread_mutex_lock(consigne.destination_lock);
-			if (consigne.destination->bal < 1) dist = 0;
-			else dist = get_distance(pos_current, *consigne.destination, consigne.chemin_id);
-			pthread_mutex_unlock(consigne.destination_lock);
+			pthread_mutex_lock(baa->position_lock);
+			baa->position->bal = pos_current.bal;
+			baa->position->pos_r = pos_current.pos_r;
+			pthread_mutex_unlock(baa->position_lock);
 
-			int state[2] = {current_speed, (int) dist};
-			int newSpeed = compute_new_speed(state);
-			
-			DEBUG_PRINT("Balise %d -- Pos %f -- Speed %d -- Distance %f -- D_Speed %d \n",pos_current.bal,pos_current.pos_r,current_speed,dist,newSpeed);
-			fflush(stdout);
+			if (!initialized) {
+				pthread_mutex_lock(baa->init_mutex);
+				while (!*(baa->initialized)) {
+					pthread_cond_wait(baa->init_cond, baa->init_mutex);
+				}
+				pthread_mutex_unlock(baa->init_mutex);
+				initialized = 1;
+			} else {
 
-			if(newSpeed > *consigne.max_speed) newSpeed = *consigne.max_speed;
-			if(newSpeed <= min_speed) newSpeed = 0;
-			mc_consigneVitesse(can_socket, newSpeed);
+				pthread_mutex_lock(baa->eoa_lock);
+				if (baa->eoa->bal < 1) dist = 0;
+				else{
+					dist_eoa = get_distance(pos_current, *baa->eoa, baa->chemin_id);
+					dist_start = get_distance(pos_current, start_pos, baa->chemin_id);
+				}
+				pthread_mutex_unlock(baa->eoa_lock);
+
+				if (local_mission > 0 || dist_eoa < dist_start) dist = dist_eoa; 
+				else dist = dist_start;
+				speed_limit = get_limit_speed(pos_current, baa->chemin_id);
+
+				int state[2] = {current_speed, (int) dist};
+				int newSpeed = compute_new_speed(state, elapsed_time,&retenue_sur_vitesse);
+				
+				DEBUG_PRINT("Bal %d -- Pos %f -- Distance %f -- Speed %d -- newSpeed %d -- speedLimit %d \n",pos_current.bal,pos_current.pos_r,dist,current_speed,newSpeed, speed_limit);
+				fflush(stdout);
+
+				if(newSpeed > speed_limit){
+					newSpeed = speed_limit;
+					retenue_sur_vitesse = (double) speed_limit;
+				}
+				mc_consigneVitesse(baa->can_socket, newSpeed);
+			}
 		}
+
 	}
     
 }
