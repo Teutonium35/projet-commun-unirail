@@ -5,12 +5,20 @@
 int min_speed = 2;
 
 //Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
-int compute_new_speed(int state[2]){ //TODO : Implémenter meilleure automatique
-    int G = 2;
-    int K[2] = {2,2};
-    int new_speed = (int) state[1]/10;
+int compute_new_speed(int state[2],double elapsed_time, double retenue_sur_vitesse){ 
+    int v = state[0];
+	int d = state[1];
+    int new_speed = v;
 
     return new_speed;
+	float dist_freinage = 10*((v*v))/(2*max_deacceleration);
+	if(d<=dist_freinage) return((int) (sqrtf(v*v + 2* max_deacceleration * (dist_freinage - d))));
+	retenue_sur_vitesse += max_acceleration * elapsed_time; //L'idée est qu'on souhaite incrémenter v par cette valeur (<1) , mais v est un int. Donc on retient cette valeur et on continue à l'incrémenter à chaque appel de la fonction
+	while(retenue_sur_vitesse >= 1){
+		retenue_sur_vitesse -= 1;
+		v += 1;
+	}
+	return v;
 }
 
 //Envoie sur le bus can de l'EVC une commande de vitesse pour faire avancer le train à la vitesse v
@@ -102,6 +110,7 @@ void * boucle_automatique(void * args) {
 	int speed_limit = 0;
 	int min_speed = 2;
 	int local_mission = 0;
+	double retenue_sur_vitesse = 0.0;
 	position_t start_pos;
 
 	int init_balise = init_train(baa->can_socket);
@@ -178,12 +187,15 @@ void * boucle_automatique(void * args) {
 				speed_limit = get_limit_speed(pos_current, baa->chemin_id);
 
 				int state[2] = {current_speed, (int) dist};
-				int newSpeed = compute_new_speed(state);
+				int newSpeed = compute_new_speed(state, elapsed_time,retenue_sur_vitesse);
 				
 				DEBUG_PRINT("Bal %d -- Pos %f -- Distance %f -- Speed %d -- newSpeed %d -- speedLimit %d \n",pos_current.bal,pos_current.pos_r,dist,current_speed,newSpeed, speed_limit);
 				fflush(stdout);
 
-				if(newSpeed > speed_limit) newSpeed = speed_limit;
+				if(newSpeed > speed_limit){
+					newSpeed = speed_limit;
+					retenue_sur_vitesse = 0;
+				}
 				if(newSpeed <= min_speed) newSpeed = 0;
 				mc_consigneVitesse(baa->can_socket, newSpeed);
 			}
