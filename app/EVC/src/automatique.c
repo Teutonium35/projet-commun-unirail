@@ -59,8 +59,8 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	}
 	if(v1>=v2) a = max_deacceleration;
 	else a = max_acceleration;
-	float pos_r_debut_acceleration = D[j] - 10*((v2^2 - v1^2))/(2*a);
-	printf("distance freinage/acceleration : %f \n" , 10*((v2^2 - v1^2))/(2*a));
+	float pos_r_debut_acceleration = D[j] - 10*((v2*v2 - v1*v1))/(2*a);
+	DEBUG_PRINT("v1 v2 : %d %d -- acceleration : %f -- distance freinage/acceleration : %f \n" , v1, v2, a , 10*((v2*v2 - v1*v1))/(2*a));
 	if(pos_current.pos_r < pos_r_debut_acceleration) return v1;
 	if(pos_current.pos_r > D[j]) return v2;
 	return (sqrtf(v1*v1 + 2* a * (pos_current.pos_r - pos_r_debut_acceleration)));
