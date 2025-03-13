@@ -196,16 +196,9 @@ void free_resources(int * next_bal_index, int no_train, position_t * pos_trains)
 		if (DEBUG_RES_FREE){
 			printf("Balise %d, libère ressource %d\n", pos_trains[no_train].bal, L_mask_lib[no_train][*next_bal_index]);
 		}
-
-
 		// Si on est au bout du chemin, la prochaine balise est à nouveau la balise 0.
-		if (*next_bal_index == (sizeof(L_res_req[no_train])/sizeof(int))){
-			*next_bal_index = 0;
-		}
 		// Sinon, c'est la prochaine dans le chemin
-		else {
-			*next_bal_index += 1;
-		}
+		*next_bal_index = (*next_bal_index + 1)%L_res_size[no_train];
 	}
 }
 
