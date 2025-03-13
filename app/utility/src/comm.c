@@ -72,7 +72,8 @@ void send_data(int sd, struct sockaddr_in send_adr, message_t message) {
     }
 
     sprintf(buff_send, "%d:%d:%d:%s", message.req_id, message.train_id, message.code, data_str);
-	DEBUG_PRINT("Envoi de données : %s\n", buff_send);
+
+	DEBUG_PRINT("Envoi de données : %s à %s\n", buff_send, inet_ntoa(send_adr.sin_addr));
 	fflush(stdout);
     
     nbcar=sendto(sd, buff_send, strlen(buff_send) + 1, 0, (struct sockaddr *)&send_adr, send_adr_len);

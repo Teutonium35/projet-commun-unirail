@@ -28,6 +28,24 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 
 
 void handle_request(message_t recv_message, message_t * send_message, int can_socket) {
+	// printf("In can test\n");
+
+	// sleep(10);
+
+	// printf("Init socket\n");
+
+	// set_switch_straight(0x1F2, can_socket);
+
+	// sleep(3);
+
+	// set_switch_turn(0x1F2, can_socket);
+	
+	// sleep(3);
+
+	// set_switch_straight(0x1F2, can_socket);
+
+	// exit(0);
+
 	send_message->train_id = recv_message.train_id;
 	send_message->req_id = recv_message.req_id;
 
@@ -84,7 +102,7 @@ void handle_request(message_t recv_message, message_t * send_message, int can_so
 			break;
 
 		case 102:
-			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id - 1, recv_message.train_id - 1);
+			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id - 1);
 			ask_resources(&next_bal_index_req[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains, can_socket);
 
 

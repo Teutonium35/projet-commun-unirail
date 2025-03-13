@@ -2,6 +2,7 @@
 #include "../include/can_infra.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <pthread.h>
 
 
 // 1 = turn
@@ -29,6 +30,7 @@ const int length_bal_3[] = {2,2,5,5};
 const int * length_bal[] = {length_bal_1, length_bal_2, length_bal_3};
 
 
+pthread_mutex_t switch_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 /// @brief Commande l'ensemble des aiguillages qui sont sensée être modifié pour le passage du train num_train lors du passage de next_bal_index
 /// @param num_train numero du train, entre 0 et 2
@@ -45,16 +47,20 @@ int set_all_switch(int num_train, int next_bal_index, int can_socket){
         commande_aig command = list_command[i];
         if(command.dir == 1){
 
+            pthread_mutex_lock(&switch_mutex);
             for (int j=0;j<3;j++){
                 printf("Setting %x to turn\n", command.name);
                 result = set_switch_turn(command.name,can_socket);
             }
+            pthread_mutex_unlock(&switch_mutex);
         } 
         else {
+            pthread_mutex_lock(&switch_mutex);
             for (int j=0;j<3;j++){
                 printf("Setting %x to straight\n", command.name);
                 result = set_switch_straight(command.name,can_socket);
             }
+            pthread_mutex_unlock(&switch_mutex);
         }
         if(result) return 1;
 

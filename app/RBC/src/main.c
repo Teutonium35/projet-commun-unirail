@@ -70,9 +70,18 @@ void * handle_and_respond(void * args) {
 	handle_and_respond_args_t * hra = (handle_and_respond_args_t *) args;
 	message_t send_message;
 
+
+	#define _GNUSOURCE
+	pid_t tid = gettid();
+	printf("%d, %s, %d", tid, inet_ntoa(hra->client_adr.sin_addr), send_message.train_id);
+
 	handle_request(hra->recv_message, &send_message, hra->can_socket);
 
+	printf("%d, %s, %d", tid, inet_ntoa(hra->client_adr.sin_addr), send_message.train_id);
+
 	send_data(hra->sd, hra->client_adr, send_message);
+
+	printf("%d, %s, %d", tid, inet_ntoa(hra->client_adr.sin_addr), send_message.train_id);
 
 	pthread_exit(NULL);
 
