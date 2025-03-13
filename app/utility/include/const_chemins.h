@@ -21,4 +21,5 @@
     extern const int * L_res_lib[3];
     extern const int * L_mask_req[3];
     extern const int * L_mask_lib[3];
+    extern const int L_res_size[3];
 #endif
