@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <errno.h>
 
 #include "../../utility/include/comm.h"
 #include "../../utility/include/const_chemins.h"
@@ -52,10 +53,23 @@ int main(int argc, char *argv[]) {
 
             receive_data(sd, &client_adr, &recv_message);
 
-			handle_and_respond_args_t hra = {sd, client_adr, recv_message, can_socket};
+			handle_and_respond_args_t *hra = malloc(sizeof(handle_and_respond_args_t));
+			if (!hra) {
+				fprintf(stderr, "Erreur d'allocation lors du traitement de la requête : %s\n", strerror(errno));
+				continue;
+			}
 
-            pthread_create(&tid, NULL, handle_and_respond, &hra);
+			message_t *copied_message = copy_message(&recv_message);
+
+			hra->sd = sd;
+			hra->client_adr = client_adr;
+			hra->recv_message = *copied_message;
+			hra->can_socket = can_socket;
+
+            pthread_create(&tid, NULL, handle_and_respond, hra);
 			pthread_detach(tid);
+
+			free(copied_message);
         }
 
     exit(EXIT_SUCCESS);
