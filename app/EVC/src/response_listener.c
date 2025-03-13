@@ -5,8 +5,8 @@
 response_t *response_list = NULL;
 pthread_mutex_t response_list_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void wait_for_response(int req_id, message_t *recv_message) {
-
+void wait_for_response(int req_id, message_t *recv_message, int timeout_sec) {
+    struct timespec ts;
 	// Allocate a new response struct
     response_t *response = malloc(sizeof(response_t));
     if (!response) {
@@ -28,10 +28,23 @@ void wait_for_response(int req_id, message_t *recv_message) {
     response_list = response;
     pthread_mutex_unlock(&response_list_mutex);
 
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += timeout_sec;
 	// Awaits for the condition to be signaled
     pthread_mutex_lock(&response->mutex);
     while (!response->ready) {
-        pthread_cond_wait(&response->cond, &response->mutex);
+        if (timeout_sec == 0) {
+            pthread_cond_wait(&response->cond, &response->mutex);
+        } else {
+            int result = pthread_cond_timedwait(&response->cond, &response->mutex, &ts);
+            if (result == ETIMEDOUT) {
+                response->message.code = -1;
+                response->message.data[0] = NULL;
+                response->ready = 1;
+                fprintf(stderr, "EVC - Pas de réponse reçue la requête %d après %d secondes\n", req_id, timeout_sec);
+                break;
+            }
+        }
     }
     pthread_mutex_unlock(&response->mutex);
 	

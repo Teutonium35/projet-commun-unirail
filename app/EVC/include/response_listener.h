@@ -4,6 +4,9 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <pthread.h>
+	#include <time.h>
+	#include <sys/time.h>
+	#include <errno.h>
 
 	#include "../../utility/include/comm.h"
 
@@ -12,7 +15,7 @@
 	 * @param req_id The ID of the sent request to await the response for
 	 * @param recv_message The message struct in which the received message will be stored
 	 */
-	void wait_for_response(int req_id, message_t *recv_message);
+	void wait_for_response(int req_id, message_t *recv_messag, int timeout_sec);
 
 	/**
 	 * @brief Dispatches a received message to the appropriate thread
