@@ -7,5 +7,5 @@
 	 * @param recv_message The message that was received to handle
 	 * @param send_message The message in which to store the response
 	 */
-	void handle_request(message_t recv_message, message_t * send_message);
+	void handle_request(message_t recv_message, message_t * send_message, int can_socket);
 #endif

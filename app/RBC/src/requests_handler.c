@@ -13,8 +13,10 @@
 #include "../include/trains.h"
 #include "../../utility/include/const_chemins.h"
 #include "../../utility/include/map.h"
+#include "../../utility/include/can.h"
+#include "../../utility/include/can_infra.h"
 
-void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains);
+void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, int can_socket);
 void free_resources(int * next_bal_index, int no_train, position_t * pos_trains);
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins);
 
@@ -126,7 +128,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
    }
 }
 
-void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
+void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, int can_socket){
 	pthread_mutex_lock(&pos_trains_locks[no_train]);
 	if (DEBUG_RES){
 		printf("\n\nDans demande ressource\nPosition bal: %d, pos: %f\n", pos_trains[no_train].bal, pos_trains[no_train].pos_r);
@@ -174,7 +176,13 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 		}
 
 		if (DEBUG_RES){
-			printf("Test condition :\n Indice actuel %d\n Limite %ld\n", *next_bal_index, sizeof(L_res_req[no_train])/sizeof(int));
+
+		if (DEBUG_AIG){
+			printf("RBC [%d] - Setting switches\n",no_train);
+		}
+		set_all_switch(no_train, *next_bal_index, can_socket);
+		if (DEBUG_AIG){
+			printf("RBC [%d] - Switches set\n",no_train);
 		}
 
 		// Si on est au bout du chemin, la prochaine balise est à nouveau la balise 0.
