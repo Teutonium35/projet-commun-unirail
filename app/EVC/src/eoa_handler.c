@@ -71,7 +71,7 @@ void * eoa_handler(void * args) {
 				request_new_eoa = 0;
 				last_distance_triggered = distance;
 
-				wait_for_response(send_message.req_id, &recv_message);
+				wait_for_response(send_message.req_id, &recv_message, 0);
 
 				if (recv_message.code == 202) {
 					printf("OK\n");
