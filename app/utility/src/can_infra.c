@@ -1,22 +1,32 @@
 #include "../include/can.h"
 #include "../include/can_infra.h"
+#include <stdio.h>
+#include <unistd.h>
 
-const commande_aig command_aig_t1_r1[] = {{0x11,1},{0x10,0}};
-const commande_aig command_aig_t1_r4[] = {{0x1A,1},{0x19,1},{0x21,0},{0x20,0},{0x1D,1},{0x1E,1}};
-const commande_aig * command_aig_t1[2] = {command_aig_t1_r1,command_aig_t1_r4};
 
-const commande_aig command_aig_t2_r2[] = {{0x13,0},{0x14,0}};
-const commande_aig command_aig_t2_r3[] = {{0x15,0},{0x16,0}};
-const commande_aig command_aig_t2_r4[] = {{0x19,0},{0x21,1},{0x1F,0},{0x1B,1},{0x18,0}};
-const commande_aig * command_aig_t2[3] = {command_aig_t2_r2,command_aig_t2_r3,command_aig_t2_r4};
+// 1 = turn
+// 0 = straight
+const commande_aig command_aig_t1_r4[] = {{0x1A2,1},{0x192,1},{0x212,0},{0x202,0},{0x1D2,1},{0x1E2,1}};
+const commande_aig command_aig_t1_r1[] = {{0x112,1},{0x102,0}};
+const commande_aig * command_aig_t1[] = {command_aig_t1_r4, command_aig_t1_r1};
 
-const commande_aig command_aig_t3_r5[] = {{0x1B,0},{0x1F,1}};
-const commande_aig command_aig_t3_r3[] = {{0x15,1},{0x16,0}};
-const commande_aig command_aig_t3_r4[] = {{0x19,0},{0x21,0},{0x20,0},{0x1D,1},{0x1E,1}};
-const commande_aig command_aig_t2_r1_2[] = {{0x10,0},{0x11,0},{0x12,1},{0x13,1},{0x14,1}};
-const commande_aig * command_aig_t3[4] = {command_aig_t3_r5,command_aig_t3_r3,command_aig_t3_r4,command_aig_t2_r1_2};
+const commande_aig command_aig_t2_r2[] = {{0x132,0},{0x142,0}};
+const commande_aig command_aig_t2_r3[] = {{0x152,0},{0x162,0}};
+const commande_aig command_aig_t2_r4[] = {{0x192,0},{0x212,1},{0x1F2,0},{0x1B2,1},{0x182,0}};
+const commande_aig * command_aig_t2[] = {command_aig_t2_r2,command_aig_t2_r3,command_aig_t2_r4};
 
-const commande_aig ** all_command_aig[3] = {command_aig_t1,command_aig_t2,command_aig_t3};
+const commande_aig command_aig_t3_r5[] = {{0x1B2,0},{0x1F2,1}};
+const commande_aig command_aig_t3_r3[] = {{0x152,1},{0x162,0}};
+const commande_aig command_aig_t3_r4[] = {{0x192,0},{0x212,0},{0x202,0},{0x1D2,1},{0x1E2,1}};
+const commande_aig command_aig_t2_r1_2[] = {{0x102,0},{0x112,0},{0x122,1},{0x132,1},{0x142,1}};
+const commande_aig * command_aig_t3[] = {command_aig_t3_r5,command_aig_t3_r3,command_aig_t3_r4,command_aig_t2_r1_2};
+
+const commande_aig ** all_command_aig[] = {command_aig_t1,command_aig_t2,command_aig_t3};
+
+const int length_bal_1[] = {6,2};
+const int length_bal_2[] = {2,2,5};
+const int length_bal_3[] = {2,2,5,5};
+const int * length_bal[] = {length_bal_1, length_bal_2, length_bal_3};
 
 
 
@@ -26,14 +36,29 @@ const commande_aig ** all_command_aig[3] = {command_aig_t1,command_aig_t2,comman
 /// @param can_socket can
 /// @return 1 en cas d'erreur, 0 sinon
 int set_all_switch(int num_train, int next_bal_index, int can_socket){
-    const commande_aig * list_command = all_command_aig[num_train][next_bal_index];
-    int longueur = sizeof(list_command)/sizeof(commande_aig);
+    const commande_aig *list_command = all_command_aig[num_train][next_bal_index];
+    const int longueur = length_bal[num_train][next_bal_index];
     int result;
+
+    printf("Setting %d switches for train %d, bal index %d, on socket %d\n", longueur, num_train, next_bal_index, can_socket);
     for(int i = 0; i<longueur; i++){
         commande_aig command = list_command[i];
-        if(command.dir == 1) result = set_switch_turn(command.name,can_socket);
-        else result = set_switch_straight(command.name,can_socket);
+        if(command.dir == 1){
+
+            for (int j=0;j<3;j++){
+                printf("Setting %x to turn\n", command.name);
+                result = set_switch_turn(command.name,can_socket);
+            }
+        } 
+        else {
+            for (int j=0;j<3;j++){
+                printf("Setting %x to straight\n", command.name);
+                result = set_switch_straight(command.name,can_socket);
+            }
+        }
         if(result) return 1;
+
+        sleep(1);
     }
     return 0;
 }
@@ -41,7 +66,7 @@ int set_all_switch(int num_train, int next_bal_index, int can_socket){
 int set_switch_straight(int aig_name, int can_socket){
     int can_dlc = 3;
     int command_mode = 'W'; // For positioning, L to lock, U to unlock, I to reset
-    int turn_mode = 0x01; // For straight, 0x00 for turn
+    int turn_mode = 0x00; // For turn, 0x01 for straight
     int data[8] = {command_mode,turn_mode,0,0,0,0,0,0};
     return send_can_data(can_socket, aig_name, can_dlc, data);
 }
@@ -49,7 +74,7 @@ int set_switch_straight(int aig_name, int can_socket){
 int set_switch_turn(int aig_name, int can_socket){
     int can_dlc = 3;
     int command_mode = 'W'; // For positioning, L to lock, U to unlock, I to reset
-    int turn_mode = 0x00; // For turn, 0x01 for straight
+    int turn_mode = 0x01; // For straight, 0x00 for turn
     int data[8] = {command_mode,turn_mode,0,0,0,0,0,0};
     return send_can_data(can_socket, aig_name, can_dlc, data);
 }
