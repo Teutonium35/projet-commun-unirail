@@ -20,13 +20,14 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, 
 void free_resources(int * next_bal_index, int no_train, position_t * pos_trains);
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins);
 
-#define DEBUG_EOA 0
-#define DEBUG_RES 0
-#define DEBUG_POS 0
-#define DEBUG_RES_FREE 0
+#define DEBUG_EOA 1
+#define DEBUG_RES 1
+#define DEBUG_POS 1
+#define DEBUG_RES_FREE 1
+#define DEBUG_AIG 1
 
 
-void handle_request(message_t recv_message, message_t * send_message) {
+void handle_request(message_t recv_message, message_t * send_message, int can_socket) {
 	send_message->train_id = recv_message.train_id;
 	send_message->req_id = recv_message.req_id;
 
@@ -45,7 +46,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 
 		// Rapport de position
 	   	case 101:
-			printf("RBC [%d] - Rapport de position reçu\n", recv_message.train_id);
+			printf("RBC [%d] - Rapport de position reçu\n", recv_message.train_id-1);
 
 			char * endptr; // Pointeur pour vérifier que la conversion s'est bien passée
 
@@ -64,7 +65,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			}
 
 			if (DEBUG_POS){
-				printf("Position : bal %ld, pos %lf\n", bal, pos_r);
+				printf("RBC [%d] - Position : bal %ld, pos %lf\n", recv_message.train_id - 1, bal, pos_r);
 			}
 
 			pthread_mutex_lock(&pos_trains_locks[recv_message.train_id - 1]);
@@ -72,8 +73,8 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			pos_trains[recv_message.train_id - 1].pos_r = atof(recv_message.data[1]);
 			free_resources(&next_bal_index_lib[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains);
 			if (DEBUG_RES_FREE){
-				printf("Prochaine ressource libérée : %d\n", next_bal_index_lib[recv_message.train_id - 1]);
-				printf("Ressources libres : %d\n", resources);
+				printf("RBC [%d] - Prochaine ressource libérée : %d\n", recv_message.train_id - 1, next_bal_index_lib[recv_message.train_id - 1]);
+				printf("RBC [%d] - Ressources libres : %d\n", recv_message.train_id - 1, resources);
 			}
 			pthread_mutex_unlock(&pos_trains_locks[recv_message.train_id - 1]);
 
@@ -83,18 +84,18 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			break;
 
 		case 102:
-			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id);
-			ask_resources(&next_bal_index_req[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains);
+			printf("RBC [%d] - Demande d'autorisation de mouvement reçue\n", recv_message.train_id - 1, recv_message.train_id - 1);
+			ask_resources(&next_bal_index_req[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains, can_socket);
 
 
 			if (DEBUG_RES){
-				printf("Ressource accordée : %d\n", next_bal_index_req[recv_message.train_id - 1]);
-				printf("Ressources libres : %d\n", resources);
+				printf("RBC [%d] - Ressource accordée : %d\n", recv_message.train_id - 1, next_bal_index_req[recv_message.train_id - 1]);
+				printf("RBC [%d] - Ressources libres : %d\n", recv_message.train_id - 1, resources);
 			}
 
 			position_t EOA = next_eoa(recv_message.train_id-1,pos_trains,L_res_req[recv_message.train_id - 1][next_bal_index_req[recv_message.train_id - 1]], chemins, tailles_chemins);
 			if (DEBUG_EOA){
-				printf("Prochaine EOA pour train %d: balise %d, position %f\n", recv_message.train_id - 1, EOA.bal, EOA.pos_r);
+				printf("RBC [%d] - Prochaine EOA pour train %d: balise %d, position %f\n", recv_message.train_id - 1, recv_message.train_id - 1, EOA.bal, EOA.pos_r);
 			}
 
 			send_message->code = 202;
@@ -131,20 +132,20 @@ void handle_request(message_t recv_message, message_t * send_message) {
 void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, int can_socket){
 	pthread_mutex_lock(&pos_trains_locks[no_train]);
 	if (DEBUG_RES){
-		printf("\n\nDans demande ressource\nPosition bal: %d, pos: %f\n", pos_trains[no_train].bal, pos_trains[no_train].pos_r);
-		printf("Indice de la prochaine ressource : %d \nRessource à verrouiller : %d\n", *next_bal_index, L_mask_req[no_train][*next_bal_index]);
-		printf("Balise actuelle: %d, balise à attendre pour demande: %d | %d | %d\n",pos_trains[no_train].bal, L_res_req[no_train][(*next_bal_index - 1 + tailles_chemins[no_train])%tailles_chemins[no_train]], no_train, (*next_bal_index - 1 + tailles_chemins[no_train])%tailles_chemins[no_train]);
+		printf("RBC [%d] - \n\nDans demande ressource\nPosition bal: %d, pos: %f\n",no_train, pos_trains[no_train].bal, pos_trains[no_train].pos_r);
+		printf("RBC [%d] - Indice de la prochaine ressource : %d \nRessource à verrouiller : %d\n",no_train, *next_bal_index, L_mask_req[no_train][*next_bal_index]);
+		printf("RBC [%d] - Balise actuelle: %d, balise à attendre pour demande: %d | %d | %d\n",no_train,pos_trains[no_train].bal, L_res_req[no_train][(*next_bal_index - 1 + tailles_chemins[no_train])%tailles_chemins[no_train]], no_train, (*next_bal_index - 1 + tailles_chemins[no_train])%tailles_chemins[no_train]);
 	}
 
 	// Si la position du train correspond à la position de demande de la prochaine ressource
 	// On veut vérifier : bal actuelle = bal de ressource - 1
 	if (DEBUG_RES){
-		printf("Taille chemin %d: %d\n", no_train, tailles_chemins[no_train]);
+		printf("RBC [%d] - Taille chemin %d: %d\n",no_train, no_train, tailles_chemins[no_train]);
 	}
 	int resource_to_lock = 0;
 	for (int i=0;i<tailles_chemins[no_train];i++){
 		if (DEBUG_RES){
-			printf("Dans loop\n");
+			printf("RBC [%d] - Dans loop\n",no_train);
 		}
 		// donc bal actuelle = bal d'indice i - i
 		int condition_1 = (pos_trains[no_train].bal == chemins[no_train][(i-1 + tailles_chemins[no_train])%tailles_chemins[no_train]]);
@@ -153,29 +154,31 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, 
 		// ET bal de ressource = bal d'indice i
 		int condition_2 = (L_res_req[no_train][*next_bal_index] == chemins[no_train][i]);
 		if (DEBUG_RES){
-			printf("Condition 1: %d 1bis: %d 2: %d\n", condition_1, condition_1bis, condition_2);
-			printf("Balise actuelle %d\nBalise d'indice i - 1 %d\nBalise de ressource %d\nBalise d'indice i %d\n", pos_trains[no_train].bal, chemins[no_train][(i-1 + tailles_chemins[no_train])%tailles_chemins[no_train]], L_res_req[no_train][*next_bal_index], chemins[no_train][i]);
+			printf("RBC [%d] - Condition 1: %d 1bis: %d 2: %d\n",no_train, condition_1, condition_1bis, condition_2);
+			printf("RBC [%d] - Balise actuelle %d\nBalise d'indice i - 1 %d\nBalise de ressource %d\nBalise d'indice i %d\n",no_train, pos_trains[no_train].bal, chemins[no_train][(i-1 + tailles_chemins[no_train])%tailles_chemins[no_train]], L_res_req[no_train][*next_bal_index], chemins[no_train][i]);
 		}
 
 		if ((condition_1 || condition_1bis) && condition_2){
 			resource_to_lock = 1;
 			if (DEBUG_RES){
-				printf("La ressource doit être verrouillée\n");
+				printf("RBC [%d] - La ressource doit être verrouillée\n",no_train);
 			}
 			break;
 		}
 	}
 	if (resource_to_lock && (pos_trains[no_train].pos_r >= 0)){
 		if (DEBUG_RES){
-			printf("Ressources avant lock: %d\n", resources);
-			printf("Ressource à lock: %d\n", L_mask_req[no_train][*next_bal_index]);
+			printf("RBC [%d] - Ressources avant lock: %d\n",no_train, resources);
+			printf("RBC [%d] - Ressource à lock: %d\n",no_train, L_mask_req[no_train][*next_bal_index]);
 		}
 		lock_ressources(L_mask_req[no_train][*next_bal_index]);
 		if (DEBUG_RES){
-			printf("Ressources après lock: %d\n", resources);
+			printf("RBC [%d] - Ressources après lock: %d\n",no_train, resources);
 		}
 
 		if (DEBUG_RES){
+			printf("RBC [%d] - Test condition :\n Indice actuel %d\n Limite %ld\n",no_train, *next_bal_index, sizeof(L_res_req[no_train])/sizeof(int));
+		}
 
 		if (DEBUG_AIG){
 			printf("RBC [%d] - Setting switches\n",no_train);
@@ -191,9 +194,9 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains, 
 	}
 	
 	if (DEBUG_RES){
-		printf("Indice de la prochaine ressource : %d \nProchaine ressource à verrouiller : %d\n", *next_bal_index, L_mask_req[no_train][*next_bal_index]);
+		printf("RBC [%d] - Indice de la prochaine ressource : %d \nProchaine ressource à verrouiller : %d\n",no_train, *next_bal_index, L_mask_req[no_train][*next_bal_index]);
 
-		printf("Sortie demande ressource\n\n");
+		printf("RBC [%d] - Sortie demande ressource\n\n",no_train);
 	}
 	pthread_mutex_unlock(&pos_trains_locks[no_train]);
 }
