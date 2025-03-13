@@ -70,7 +70,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 			pos_trains[recv_message.train_id - 1].pos_r = atof(recv_message.data[1]);
 			free_resources(&next_bal_index_lib[recv_message.train_id - 1],recv_message.train_id - 1, pos_trains);
 			if (DEBUG_RES_FREE){
-				printf("Ressource libérée : %d\n", next_bal_index_lib[recv_message.train_id - 1]);
+				printf("Prochaine ressource libérée : %d\n", next_bal_index_lib[recv_message.train_id - 1]);
 				printf("Ressources libres : %d\n", resources);
 			}
 			pthread_mutex_unlock(&pos_trains_locks[recv_message.train_id - 1]);
