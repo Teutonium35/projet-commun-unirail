@@ -85,4 +85,6 @@
 	 *  @param message The message struct to store the received message
 	 */
 	void receive_data(int sd, struct sockaddr_in * recv_adr, message_t *message);
+
+	message_t * copy_message(message_t *src);
 #endif
