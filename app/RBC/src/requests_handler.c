@@ -141,7 +141,7 @@ void ask_resources(int * next_bal_index, int no_train, position_t * pos_trains){
 			printf("Dans loop\n");
 		}
 		// donc bal actuelle = bal d'indice i - i
-		int condition_1 = (pos_trains[no_train].bal == chemins[no_train][(i-1)%tailles_chemins[no_train]]);
+		int condition_1 = (pos_trains[no_train].bal == chemins[no_train][(i-1 + tailles_chemins[no_train])%tailles_chemins[no_train]]);
 		// ou bal actuelle = bal d'indice i
 		int condition_1bis = (pos_trains[no_train].bal == chemins[no_train][i]);
 		// ET bal de ressource = bal d'indice i
