@@ -28,7 +28,7 @@ void handle_request(message_t recv_message, message_t * send_message) {
 	send_message->train_id = recv_message.train_id;
 	send_message->req_id = recv_message.req_id;
 
-	if (recv_message.train_id >= NB_TRAINS) {
+	if (recv_message.train_id - 1 >= NB_TRAINS) {
 		printf("RBC - ID de train inconnu\n");
 		send_message->code = 404;
 		send_message->data[0] = NULL;
