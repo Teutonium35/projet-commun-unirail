@@ -26,8 +26,8 @@ const commande_aig ** all_command_aig[3] = {command_aig_t1,command_aig_t2,comman
 /// @param can_socket can
 /// @return 1 en cas d'erreur, 0 sinon
 int set_all_switch(int num_train, int next_bal_index, int can_socket){
-    commande_aig * list_command = all_command_aig[num_train][next_bal_index];
-    int longueur = size(list_command)/sizeof(commande_aig);
+    const commande_aig * list_command = all_command_aig[num_train][next_bal_index];
+    int longueur = sizeof(list_command)/sizeof(commande_aig);
     int result;
     for(int i = 0; i<longueur; i++){
         commande_aig command = list_command[i];

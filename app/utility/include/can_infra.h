@@ -4,22 +4,22 @@ typedef struct {
 } commande_aig;
 
 
-const commande_aig command_aig_t1_r1[];
-const commande_aig command_aig_t1_r4[];
-const commande_aig * command_aig_t1[2];
+extern const commande_aig command_aig_t1_r1[];
+extern const commande_aig command_aig_t1_r4[];
+extern const commande_aig * command_aig_t1[2];
 
-const commande_aig command_aig_t2_r2[];
-const commande_aig command_aig_t2_r3[];
-const commande_aig command_aig_t2_r4[];
-const commande_aig * command_aig_t2[3];
+extern const commande_aig command_aig_t2_r2[];
+extern const commande_aig command_aig_t2_r3[];
+extern const commande_aig command_aig_t2_r4[];
+extern const commande_aig * command_aig_t2[3];
 
-const commande_aig command_aig_t3_r5[];
-const commande_aig command_aig_t3_r3[];
-const commande_aig command_aig_t3_r4[];
-const commande_aig command_aig_t2_r1_2[];
-const commande_aig * command_aig_t3[4];
+extern const commande_aig command_aig_t3_r5[];
+extern const commande_aig command_aig_t3_r3[];
+extern const commande_aig command_aig_t3_r4[];
+extern const commande_aig command_aig_t2_r1_2[];
+extern const commande_aig * command_aig_t3[4];
 
-const commande_aig ** all_command_aig[3];
+extern const commande_aig ** all_command_aig[3];
 
 /// @brief Commande l'ensemble des aiguillages qui sont sensée être modifié pour le passage du train num_train lors du passage de next_bal_index
 /// @param num_train numero du train, entre 0 et 2
