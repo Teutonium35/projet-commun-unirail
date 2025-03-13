@@ -29,6 +29,6 @@ const commande_aig ** all_command_aig[3];
 
 int set_all_switch(int num_train, int next_bal_index, int can_socket);
 
-int set_switch_straight(int aig_name);
+int set_switch_straight(int aig_name, int can_socket);
 
-int set_switch_turn(int aig_name);
+int set_switch_turn(int aig_name, int can_socket);
