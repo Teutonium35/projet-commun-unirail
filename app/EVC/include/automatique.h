@@ -24,9 +24,11 @@
 	/** 
 	 *	@brief Donne la consigne en vitesse à partir de l'etat actuel du train.
 	*	@param state état du train, composée de [distance à la destination,vitesse_actuelle] en [cm,cm/s].
+	*	@param elapsed_time temps écoulé depuis le dernier appel de la fonction.
+	*	@param retenue_sur_vitesse valeur de la vitesse à ajouter à la vitesse actuelle.
 	*	@return La commande en vitesse (en cm/s) nécessaire pour arriver à destination sans dépassement et en respectant les courbes de freinage (TODO).
 	**/
-	int compute_new_speed(int state[2]);
+	int compute_new_speed(int state[2],double elapsed_time, double *retenue_sur_vitesse);
 
 	/** 
 	 *	@brief Envoie une commande sur le bus CAN de l'EVC pour commander la vitesse.

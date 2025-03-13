@@ -5,20 +5,19 @@
 int min_speed = 2;
 
 //Donne la consigne en vitesse à partir de state qui est [vitesse,distance_a_objectif]
-int compute_new_speed(int state[2],double elapsed_time, double retenue_sur_vitesse){ 
+int compute_new_speed(int state[2],double elapsed_time, double *retenue_sur_vitesse){ 
     int v = state[0];
 	int d = state[1];
     int new_speed = v;
-
-    return new_speed;
-	float dist_freinage = 10*((v*v))/(2*max_deacceleration);
-	if(d<=dist_freinage) return((int) (sqrtf(v*v + 2* max_deacceleration * (dist_freinage - d))));
-	retenue_sur_vitesse += max_acceleration * elapsed_time; //L'idée est qu'on souhaite incrémenter v par cette valeur (<1) , mais v est un int. Donc on retient cette valeur et on continue à l'incrémenter à chaque appel de la fonction
-	while(retenue_sur_vitesse >= 1){
-		retenue_sur_vitesse -= 1;
-		v += 1;
+	float dist_freinage = - 10*((v*v))/(2*max_deacceleration);
+	if(d<=dist_freinage){
+		*retenue_sur_vitesse = (double) v;
+		DEBUG_PRINT("vitesse : %d -- distance freinage: %f\n", v, dist_freinage);
+		return((int) (sqrtf(v*v + 0.2* max_deacceleration * (dist_freinage - d))));
 	}
-	return v;
+	*retenue_sur_vitesse += max_acceleration * elapsed_time; //L'idée est qu'on souhaite incrémenter v par cette valeur (<1) , mais v est un int. Donc on retient cette valeur et on continue à l'incrémenter à chaque appel de la fonction
+	DEBUG_PRINT("vitesse : %d -- retenue : %f\n", v, *retenue_sur_vitesse);
+	return (int) *retenue_sur_vitesse;
 }
 
 //Envoie sur le bus can de l'EVC une commande de vitesse pour faire avancer le train à la vitesse v
@@ -68,10 +67,10 @@ int get_limit_speed(position_t pos_current, const int chemin_id){
 	if(v1>=v2) a = max_deacceleration;
 	else a = max_acceleration;
 	float pos_r_debut_acceleration = D[j] - 10*((v2*v2 - v1*v1))/(2*a);
-	DEBUG_PRINT("v1 v2 : %d %d -- acceleration : %f -- distance freinage/acceleration : %f \n" , v1, v2, a , 10*((v2*v2 - v1*v1))/(2*a));
+	DEBUG_PRINT("v1 v2 : %d %d -- pos_r %f  -- pos acceleration %f -- distance_fin %f \n" , v1, v2, pos_current.pos_r, pos_r_debut_acceleration, D[j]);
 	if(pos_current.pos_r < pos_r_debut_acceleration) return v1;
 	if(pos_current.pos_r > D[j]) return v2;
-	return (sqrtf(v1*v1 + 2* a * (pos_current.pos_r - pos_r_debut_acceleration)));
+	return (sqrtf(v1*v1 + 0.2 * a * (pos_current.pos_r - pos_r_debut_acceleration)));
 }
 
 int init_train(int can_socket) {
@@ -154,7 +153,7 @@ void * boucle_automatique(void * args) {
         if (frame.can_id == 0x02F){
 			end = clock();
 			// Calcul du temps écoulé en secondes
-			elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+			elapsed_time = 100 * ((double)(end - start)) / CLOCKS_PER_SEC;
 			start = end;
 
 			pos_current.pos_r = read_relative_pos_from_frame(frame);
@@ -187,16 +186,15 @@ void * boucle_automatique(void * args) {
 				speed_limit = get_limit_speed(pos_current, baa->chemin_id);
 
 				int state[2] = {current_speed, (int) dist};
-				int newSpeed = compute_new_speed(state, elapsed_time,retenue_sur_vitesse);
+				int newSpeed = compute_new_speed(state, elapsed_time,&retenue_sur_vitesse);
 				
 				DEBUG_PRINT("Bal %d -- Pos %f -- Distance %f -- Speed %d -- newSpeed %d -- speedLimit %d \n",pos_current.bal,pos_current.pos_r,dist,current_speed,newSpeed, speed_limit);
 				fflush(stdout);
 
 				if(newSpeed > speed_limit){
 					newSpeed = speed_limit;
-					retenue_sur_vitesse = 0;
+					retenue_sur_vitesse = (double) speed_limit;
 				}
-				if(newSpeed <= min_speed) newSpeed = 0;
 				mc_consigneVitesse(baa->can_socket, newSpeed);
 			}
 		}
