@@ -7,19 +7,19 @@
 	/**
 	 * @struct eoa_handler_args_t
 	 * @brief Arguments to pass to the eoa handler thread function
-	 * @var client The client struct to use for communication
-	 * @var train_id The ID of the train to track the eoa of
-	 * @var chemin_id The ID of the track to use
-	 * @var eoa The current end of authorization
-	 * @var eoa_mutex The mutex to lock when accessing the eoa
-	 * @var pos The current position of the train
-	 * @var pos_mutex The mutex to lock when accessing the position
-	 * @var pos_inittialized Flag to indicate if the position has been initialized
-	 * @var init_pos_cond The condition that signals when the position is initialized
-	 * @var init_pos_mutex The mutex to lock when accessing the initialization condition
-	 * @var eoa_inittialized Flag to indicate if the eoa has been initialized
-	 * @var init_eoa_cond The condition to signal when the eoa is initialized
-	 * @var init_eoa_mutex The mutex to lock when accessing the eoa initialization condition
+	 * @param client The client struct to use for communication
+	 * @param train_id The ID of the train to track the eoa of
+	 * @param chemin_id The ID of the track to use
+	 * @param eoa The current end of authorization
+	 * @param eoa_mutex The mutex to lock when accessing the eoa
+	 * @param pos The current position of the train
+	 * @param pos_mutex The mutex to lock when accessing the position
+	 * @param pos_inittialized Flag to indicate if the position has been initialized
+	 * @param init_pos_cond The condition that signals when the position is initialized
+	 * @param init_pos_mutex The mutex to lock when accessing the initialization condition
+	 * @param eoa_inittialized Flag to indicate if the eoa has been initialized
+	 * @param init_eoa_cond The condition to signal when the eoa is initialized
+	 * @param init_eoa_mutex The mutex to lock when accessing the eoa initialization condition
 	 */
 	typedef struct {
 		client_udp_init_t client;

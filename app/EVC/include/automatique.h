@@ -24,9 +24,11 @@
 	/** 
 	 *	@brief Donne la consigne en vitesse à partir de l'etat actuel du train.
 	*	@param state état du train, composée de [distance à la destination,vitesse_actuelle] en [cm,cm/s].
+	*	@param elapsed_time temps écoulé depuis le dernier appel de la fonction.
+	*	@param retenue_sur_vitesse valeur de la vitesse à ajouter à la vitesse actuelle.
 	*	@return La commande en vitesse (en cm/s) nécessaire pour arriver à destination sans dépassement et en respectant les courbes de freinage (TODO).
 	**/
-	int compute_new_speed(int state[2]);
+	int compute_new_speed(int state[2],double elapsed_time, double *retenue_sur_vitesse);
 
 	/** 
 	 *	@brief Envoie une commande sur le bus CAN de l'EVC pour commander la vitesse.
@@ -60,12 +62,14 @@
 	int init_train(int can_socket);
 
 	/**
-	 * @struct consigne_t
+	 * @struct boucle_automatique_args_t
 	 * @brief Structure pour stocker les arguments de la boucle automatique.
-	 * @param position pointeur vers la position à rejoindre.
+	 * @param position pointeur vers la position actuelle.
 	 * @param position_lock mutex pour l'écriture/lecture de position
-	 * @param destination Pointeur vers la position à rejoindre.
-	 * @param destination_lock Mutex pour l'écriture/lecture de la position.
+	 * @param eoa Pointeur vers l'eoa.
+	 * @param eoa_lock Mutex pour l'écriture/lecture de l'eoa.
+	 * @param mission Pointeur vers le nombre de tours à effectuer.
+	 * @param mission_mutex Mutex pour l'écriture/lecture de la mission.
 	 * @param chemin_id Identifiant du chemin à suivre.
 	 * @param can_socket socket du bus CAN de l'EVC.
 	 * @param initialized Flag to indicate if the position has been initialized
@@ -75,8 +79,10 @@
 	typedef struct {
 		position_t * position;
 		pthread_mutex_t * position_lock;
-		position_t * destination;
-		pthread_mutex_t * destination_lock;
+		position_t * eoa;
+		pthread_mutex_t * eoa_lock;
+		int * mission;
+		pthread_mutex_t * mission_mutex;
 		int chemin_id;
 		int can_socket;
 		int * initialized;

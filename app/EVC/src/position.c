@@ -46,7 +46,7 @@ void * report_position(void * args) {
 
 			if (!initialized) printf("EVC [%d] - Position initialisée, envoi au RBC...", rpa->train_id);
 
-			wait_for_response(send_message.req_id, &recv_message);
+			wait_for_response(send_message.req_id, &recv_message, 5);
 
 			if (recv_message.code != 201) {
 				printf("EVC [%d] - Erreur lors de l'envoi du rapport de position: %d\n", rpa->train_id, recv_message.code);

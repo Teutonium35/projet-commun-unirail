@@ -32,14 +32,15 @@ int eoa_initialized = 0;
 pthread_mutex_t init_eoa_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t init_eoa_cond = PTHREAD_COND_INITIALIZER;
 
-int max_speed = 30;
 int can_socket;
+int mission = 0;
+pthread_mutex_t mission_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void install_signal_deroute(int numSig, void (*pfct)(int));
 void stop_train();
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) printf("EVC | Utilisation : ./rbc <id train> <adresse_serveur> <port serveur> \n");
+    if (argc != 6) printf("EVC | Utilisation : ./rbc <id train> <nombre de tours> <adresse_serveur> <port serveur> <port train>\n");
     else {
         
 		pthread_t posreport_tid, eoa_tid, response_listener_tid;
@@ -49,10 +50,12 @@ int main(int argc, char *argv[]) {
 		int train_id = atoi(argv[1]);
 
 		int chemin_id = train_id;
+
+		mission = atoi(argv[2]);
 		
         printf("EVC [%d] - Initialisation\n", train_id);
 
-		setup_udp_client(&client, argv[2], atoi(argv[3]));
+		setup_udp_client(&client, argv[3], atoi(argv[4]), atoi(argv[5]));
 
 		can_socket = init_can_socket();
 		if (can_socket == -1) {
@@ -80,7 +83,7 @@ int main(int argc, char *argv[]) {
 
 		printf("OK\nEVC [%d] - Connexion établie\n", train_id);
 
-		response_listener_args_t rla = {client};
+		response_listener_args_t rla = {client, &mission, &mission_mutex};
 
 		pthread_create(&response_listener_tid, NULL, response_listener, &rla);
 		pthread_detach(response_listener_tid);
@@ -97,7 +100,8 @@ int main(int argc, char *argv[]) {
 		pthread_create(&eoa_tid, NULL, eoa_handler, &eha);
 		pthread_detach(eoa_tid);
 
-		boucle_automatique_args_t baa = {&pos, &pos_mutex, &eoa, &eoa_mutex, chemin_id, can_socket, &eoa_initialized, &init_eoa_cond, &init_eoa_mutex};
+		boucle_automatique_args_t baa = {&pos, &pos_mutex, &eoa, &eoa_mutex, &mission, &mission_mutex,
+			chemin_id, can_socket, &eoa_initialized, &init_eoa_cond, &init_eoa_mutex};
 
 		boucle_automatique(&baa);
 
