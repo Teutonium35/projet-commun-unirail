@@ -78,7 +78,9 @@ void dispatch_message(message_t *recv_message) {
     while (response != NULL) {
         if (response->req_id == recv_message->req_id) {
             pthread_mutex_lock(&response->mutex);
-            response->message = *recv_message;
+            message_t * copied_message = copy_message(recv_message);
+            response->message = *copied_message;
+            free(copied_message);
             response->ready = 1;
             pthread_cond_signal(&response->cond);
             pthread_mutex_unlock(&response->mutex);

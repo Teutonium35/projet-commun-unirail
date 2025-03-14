@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Iinclude -I../utility/include -DDEBUG
+CFLAGS = -g -Iinclude -I../utility/include
 LDFLAGS = -lpthread -lm
 SRC_DIR = src
 UTILITY_SRC_DIR = ../utility/src

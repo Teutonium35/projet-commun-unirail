@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <linux/can.h>
 
 
 // 1 = turn
@@ -45,36 +46,41 @@ int set_all_switch(int num_train, int next_bal_index, int can_socket){
     printf("Setting %d switches for train %d, bal index %d, on socket %d\n", longueur, num_train, next_bal_index, can_socket);
     for(int i = 0; i<longueur; i++){
         commande_aig command = list_command[i];
+        pthread_mutex_lock(&switch_mutex);
         if(command.dir == 1){
-
-            pthread_mutex_lock(&switch_mutex);
-            for (int j=0;j<3;j++){
-                printf("Setting %x to turn\n", command.name);
+            for (int i = 0; i < 3; i++) {
+                printf("Setting %x to turn...", command.name);
                 result = set_switch_turn(command.name,can_socket);
+                printf("%d\n", result);
             }
-            pthread_mutex_unlock(&switch_mutex);
+            
         } 
         else {
-            pthread_mutex_lock(&switch_mutex);
-            for (int j=0;j<3;j++){
-                printf("Setting %x to straight\n", command.name);
+            for (int i = 0; i < 3; i++) {
+                printf("Setting %x to straight...", command.name);
                 result = set_switch_straight(command.name,can_socket);
+                printf("%d\n", result);
             }
-            pthread_mutex_unlock(&switch_mutex);
+            
         }
+
+        pthread_mutex_unlock(&switch_mutex);
         if(result) return 1;
 
-        sleep(1);
+        usleep(500000);
     }
     return 0;
 }
 
 int set_switch_straight(int aig_name, int can_socket){
+    struct can_frame frame_response;
     int can_dlc = 3;
     int command_mode = 'W'; // For positioning, L to lock, U to unlock, I to reset
     int turn_mode = 0x00; // For turn, 0x01 for straight
     int data[8] = {command_mode,turn_mode,0,0,0,0,0,0};
+
     return send_can_data(can_socket, aig_name, can_dlc, data);
+    
 }
 
 int set_switch_turn(int aig_name, int can_socket){
@@ -82,5 +88,6 @@ int set_switch_turn(int aig_name, int can_socket){
     int command_mode = 'W'; // For positioning, L to lock, U to unlock, I to reset
     int turn_mode = 0x01; // For straight, 0x00 for turn
     int data[8] = {command_mode,turn_mode,0,0,0,0,0,0};
+
     return send_can_data(can_socket, aig_name, can_dlc, data);
 }
