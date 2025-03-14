@@ -223,15 +223,16 @@ void free_resources(int * next_bal_index, int no_train, position_t * pos_trains)
  *	@return Renvoie l'EOA
 **/
 position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant_ressource, const int *chemins[3], const int *len_chemins){
+	pthread_mutex_lock(&pos_trains_locks[0]);
 	pthread_mutex_lock(&pos_trains_locks[1]);
 	pthread_mutex_lock(&pos_trains_locks[2]);
-	pthread_mutex_lock(&pos_trains_locks[3]);
 	if (DEBUG_EOA){
 	printf("Entrée dans next EOA\nNo train: %d\n Pos train actuel: %d, %f\nProchaine balise avant ressource: %d\n", num_train, pos_trains[num_train].bal, pos_trains[num_train].pos_r, next_balise_avant_ressource);
 	}
-	float distance_secu = 200.0;
+	float distance_secu = 300.0;
     int i = 0; 
 	float d;
+	float d_min;
     position_t current_position = pos_trains[num_train];
 	position_t pos_balise = (position_t) {next_balise_avant_ressource,0.0};
 	position_t pos_t2 = (position_t) {pos_trains[(num_train+1)%3].bal,pos_trains[(num_train+2)%3].pos_r - distance_secu};
@@ -246,25 +247,25 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 		if(pos_t3.bal == chemin[i]) train3_on_tracks = 1;
 		i++;
 	}
-	d_min = get_distance(current_position,pos_balise,chemin);
+	d_min = get_distance(current_position,pos_balise,num_train + 1);
 	position_t next_eoa = pos_balise;
 	if(train2_on_tracks){
-		d = get_distance(current_position,pos_t2,chemin) < d_min;
+		d = get_distance(current_position,pos_t2,num_train + 1);
 		if(d<d_min){
 			d_min = d;
-			next_eoa = train2;
+			next_eoa = pos_t2;
 		}
 	}
 	if(train3_on_tracks){
-		d = get_distance(current_position,pos_t3,chemin) < d_min;
+		d = get_distance(current_position,pos_t3,num_train + 1);
 		if(d<d_min){
 			d_min = d;
-			next_eoa = train3;
+			next_eoa = pos_t3;
 		}
 	}
+	pthread_mutex_unlock(&pos_trains_locks[0]);
 	pthread_mutex_unlock(&pos_trains_locks[1]);
 	pthread_mutex_unlock(&pos_trains_locks[2]);
-	pthread_mutex_unlock(&pos_trains_locks[3]);
 	return next_eoa;
 } 
 
