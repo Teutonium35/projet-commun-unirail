@@ -324,8 +324,8 @@
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_rOITEfkDEe-r3PbKjvQE6A" name="Message16ReceiveEvent" covered="_nkhvIPkDEe-r3PbKjvQE6A" message="_rOHsAPkDEe-r3PbKjvQE6A"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_eQ0IEPkDEe-r3PbKjvQE6A" name="Message9SendEvent" covered="_Uy41EPkDEe-r3PbKjvQE6A" message="_eQzhAPkDEe-r3PbKjvQE6A"/>
         <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_eQ0IEfkDEe-r3PbKjvQE6A" name="Message9ReceiveEvent" covered="_ULNxEPkDEe-r3PbKjvQE6A" message="_eQzhAPkDEe-r3PbKjvQE6A"/>
-        <message xmi:type="uml:Message" xmi:id="_YlQTcPkDEe-r3PbKjvQE6A" name="Envoi position" messageSort="asynchCall" receiveEvent="_YlTWwPkDEe-r3PbKjvQE6A" sendEvent="_YlSvsPkDEe-r3PbKjvQE6A"/>
-        <message xmi:type="uml:Message" xmi:id="_eQzhAPkDEe-r3PbKjvQE6A" name="Autorisation de mouvement" messageSort="asynchCall" receiveEvent="_eQ0IEfkDEe-r3PbKjvQE6A" sendEvent="_eQ0IEPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_YlQTcPkDEe-r3PbKjvQE6A" name="Envoi demande EOA" messageSort="asynchCall" receiveEvent="_YlTWwPkDEe-r3PbKjvQE6A" sendEvent="_YlSvsPkDEe-r3PbKjvQE6A"/>
+        <message xmi:type="uml:Message" xmi:id="_eQzhAPkDEe-r3PbKjvQE6A" name="Répond nouvelle EOA" messageSort="asynchCall" receiveEvent="_eQ0IEfkDEe-r3PbKjvQE6A" sendEvent="_eQ0IEPkDEe-r3PbKjvQE6A"/>
         <message xmi:type="uml:Message" xmi:id="_p2qJ0PkDEe-r3PbKjvQE6A" name="Verrouille ressource" messageSort="asynchCall" receiveEvent="_p2rX8PkDEe-r3PbKjvQE6A" sendEvent="_p2qw4PkDEe-r3PbKjvQE6A"/>
         <message xmi:type="uml:Message" xmi:id="_rOHsAPkDEe-r3PbKjvQE6A" name="Mouvement aiguillages" messageSort="asynchCall" receiveEvent="_rOITEfkDEe-r3PbKjvQE6A" sendEvent="_rOITEPkDEe-r3PbKjvQE6A"/>
         <message xmi:type="uml:Message" xmi:id="_C10EIPkGEe-r3PbKjvQE6A" name="Calcul besoins ressources" messageSort="asynchCall" receiveEvent="_C11SQPkGEe-r3PbKjvQE6A" sendEvent="_C10rMPkGEe-r3PbKjvQE6A"/>
