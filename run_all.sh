@@ -9,6 +9,8 @@ tmux send-keys -t $SESSION:0 "make run-rbc" C-m
 tmux select-pane -t $SESSION:0
 tmux select-pane -T "RBC"
 
+sleep 3
+
 tmux split-window -v -p 50 -t $SESSION:0
 tmux send-keys -t $SESSION:0.1 "make run-evc-1" C-m
 tmux select-pane -t $SESSION:0.1

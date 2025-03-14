@@ -18,26 +18,18 @@
 #include <errno.h>
 
 #include "../../utility/include/comm.h"
+#include "../../utility/include/comm_message_listener.h"
 #include "../../utility/include/const_chemins.h"
 #include "../../utility/include/can_infra.h"
 #include "../../utility/include/can.h"
 #include "../include/requests_handler.h"
 #include "../include/trains.h"
 
-typedef struct {
-	int sd;
-	struct sockaddr_in client_adr;
-	message_t recv_message;
-	int can_socket;
-} handle_and_respond_args_t;
-
-void * handle_and_respond(void * args);
-
 int main(int argc, char *argv[]) {
     if (argc != 2) printf("RBC | Utilisation : ./rbc <port serveur> \n");
     else {
         
-		pthread_t tid;
+		pthread_t message_listener_tid, tid;
 
         printf("RBC - Initialisation\n");
 
@@ -47,11 +39,19 @@ int main(int argc, char *argv[]) {
 
 		int can_socket = init_can_socket();
 
-        while (1) {
-			struct sockaddr_in * client_adr = malloc(sizeof(struct sockaddr_in));
-			message_t recv_message;
+		pending_message_t pending_request = {-1, {0, 0, 0, {NULL, NULL}}, NULL, 0, PTHREAD_COND_INITIALIZER, PTHREAD_MUTEX_INITIALIZER, NULL};
 
-            receive_data(sd, client_adr, &recv_message);
+		message_listener_args_t mla = { sd, &pending_request };
+
+		pthread_create(&message_listener_tid, NULL, message_listener, &mla);
+		pthread_detach(message_listener_tid);
+
+        while (1) {
+
+			pthread_mutex_lock(&pending_request.mutex);
+			while (!pending_request.ready) {
+				pthread_cond_wait(&pending_request.cond, &pending_request.mutex);
+			}
 
 			handle_and_respond_args_t *hra = malloc(sizeof(handle_and_respond_args_t));
 			if (!hra) {
@@ -59,10 +59,10 @@ int main(int argc, char *argv[]) {
 				continue;
 			}
 
-			message_t *copied_message = copy_message(&recv_message);
+			message_t *copied_message = copy_message(&pending_request.message);
 
 			hra->sd = sd;
-			hra->client_adr = *client_adr;
+			hra->client_adr = pending_request.recv_adr;
 			hra->recv_message = *copied_message;
 			hra->can_socket = can_socket;
 
@@ -70,26 +70,14 @@ int main(int argc, char *argv[]) {
 			pthread_detach(tid);
 
 			free(copied_message);
+
+			pending_request.ready = 0;
+			pending_request.message = (message_t) {0, 0, 0, {NULL, NULL}};
+
+			pthread_mutex_unlock(&pending_request.mutex);
+
         }
 
     exit(EXIT_SUCCESS);
     }
 }
-
-/**
- * @brief Handles a request and sends a response. Entry point for a new thread.
- * @param args A handle_and_respond_args_t struct containing the received message, the client address and the socket descriptor
- */
-void * handle_and_respond(void * args) {
-	handle_and_respond_args_t * hra = (handle_and_respond_args_t *) args;
-	message_t send_message;
-
-	handle_request(hra->recv_message, &send_message, hra->can_socket);
-
-	send_data(hra->sd, hra->client_adr, send_message);
-
-	pthread_exit(NULL);
-
-	return NULL;
-}
-

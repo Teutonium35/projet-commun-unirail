@@ -6,7 +6,7 @@
 #include "../include/eoa_handler.h"
 #include "../include/automatique.h"
 #include "../include/map.h"
-#include "../include/response_listener.h"
+#include "../../utility/include/comm_message_listener.h"
 #include "../../utility/include/debug.h"
 
 void * eoa_handler(void * args) {

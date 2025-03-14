@@ -48,26 +48,20 @@ int set_all_switch(int num_train, int next_bal_index, int can_socket){
         commande_aig command = list_command[i];
         pthread_mutex_lock(&switch_mutex);
         if(command.dir == 1){
-            for (int i = 0; i < 3; i++) {
-                printf("Setting %x to turn...", command.name);
-                result = set_switch_turn(command.name,can_socket);
-                printf("%d\n", result);
-            }
-            
+            printf("Setting %x to turn...", command.name);
+            result = set_switch_turn(command.name,can_socket);
+            printf("%d\n", result);
         } 
         else {
-            for (int i = 0; i < 3; i++) {
-                printf("Setting %x to straight...", command.name);
-                result = set_switch_straight(command.name,can_socket);
-                printf("%d\n", result);
-            }
-            
+            printf("Setting %x to straight...", command.name);
+            result = set_switch_straight(command.name,can_socket);
+            printf("%d\n", result);
         }
 
         pthread_mutex_unlock(&switch_mutex);
         if(result) return 1;
 
-        usleep(500000);
+        usleep(200000);
     }
     return 0;
 }

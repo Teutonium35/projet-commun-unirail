@@ -12,7 +12,8 @@
 #include "../include/position.h"
 #include "../include/automatique.h"
 #include "../include/eoa_handler.h"
-#include "../include/response_listener.h"
+#include "../include/requests_handler.h"
+#include "../../utility/include/comm_message_listener.h"
 #include "../../utility/include/can.h"
 
 position_t pos = {0, 0.0};
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
     if (argc != 6) printf("EVC | Utilisation : ./rbc <id train> <nombre de tours> <adresse_serveur> <port serveur> <port train>\n");
     else {
         
-		pthread_t posreport_tid, eoa_tid, response_listener_tid;
+		pthread_t posreport_tid, eoa_tid, message_listener_tid, requests_handler_tid;
 		client_udp_init_t client;
 		message_t init_message;
 
@@ -83,10 +84,17 @@ int main(int argc, char *argv[]) {
 
 		printf("OK\nEVC [%d] - Connexion établie\n", train_id);
 
-		response_listener_args_t rla = {client, &mission, &mission_mutex};
+		pending_message_t pending_request = {-1, {0, 0, 0, {NULL, NULL}}, NULL, 0, PTHREAD_COND_INITIALIZER, PTHREAD_MUTEX_INITIALIZER, NULL};
 
-		pthread_create(&response_listener_tid, NULL, response_listener, &rla);
-		pthread_detach(response_listener_tid);
+		message_listener_args_t mla = { client.sd, &pending_request };
+
+		pthread_create(&message_listener_tid, NULL, message_listener, &mla);
+		pthread_detach(message_listener_tid);
+
+		requests_handler_args_t rha = {client.sd, &mission_mutex, &mission, pending_request};
+
+		pthread_create(&requests_handler_tid, NULL, requests_handler, &rha);
+		pthread_detach(requests_handler_tid);
 		
 		report_position_args_t rpa = {client, train_id, &pos, &pos_mutex, &pos_initialized, &init_pos_cond, &init_pos_mutex};
 
