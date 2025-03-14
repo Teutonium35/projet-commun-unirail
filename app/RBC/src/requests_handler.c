@@ -28,6 +28,24 @@ position_t next_eoa(int num_train, position_t *pos_trains, int next_balise_avant
 
 
 void handle_request(message_t recv_message, message_t * send_message, int can_socket) {
+	// printf("In can test\n");
+
+	// sleep(10);
+
+	// printf("Init socket\n");
+
+	// set_switch_straight(0x1F2, can_socket);
+
+	// sleep(3);
+
+	// set_switch_turn(0x1F2, can_socket);
+	
+	// sleep(3);
+
+	// set_switch_straight(0x1F2, can_socket);
+
+	// exit(0);
+
 	send_message->train_id = recv_message.train_id;
 	send_message->req_id = recv_message.req_id;
 

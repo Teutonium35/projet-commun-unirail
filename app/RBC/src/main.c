@@ -48,10 +48,10 @@ int main(int argc, char *argv[]) {
 		int can_socket = init_can_socket();
 
         while (1) {
-			struct sockaddr_in client_adr; 
+			struct sockaddr_in * client_adr = malloc(sizeof(struct sockaddr_in));
 			message_t recv_message;
 
-            receive_data(sd, &client_adr, &recv_message);
+            receive_data(sd, client_adr, &recv_message);
 
 			handle_and_respond_args_t *hra = malloc(sizeof(handle_and_respond_args_t));
 			if (!hra) {
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 			message_t *copied_message = copy_message(&recv_message);
 
 			hra->sd = sd;
-			hra->client_adr = client_adr;
+			hra->client_adr = *client_adr;
 			hra->recv_message = *copied_message;
 			hra->can_socket = can_socket;
 

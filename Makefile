@@ -50,7 +50,7 @@ run-supervisor: supervisor
 
 
 test-rbc: install-rbc
-	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH) && make test"
+	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(RBC_SSH_IP) "cd $(SSH_PATH)/app/RBC && make test"
 
 test-evc-%: install-evc-%
-	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH) && make test"
+	sshpass -p $(SSH_PASS) ssh -tt $(SSH_USER)@$(word $*, $(EVC_SSH_IPS)) "cd $(SSH_PATH)/app/EVC && make test"
