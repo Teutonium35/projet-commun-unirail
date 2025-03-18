@@ -1,0 +1,1277 @@
+sshpass -p raspberry ssh pi@192.168.1.148 "rm -rf /home/pi/Unirail-25/app"
+sshpass -p raspberry scp -r ./app pi@192.168.1.148:/home/pi/Unirail-25
+sshpass -p raspberry scp -r ./Makefile pi@192.168.1.148:/home/pi/Unirail-25
+sshpass -p raspberry ssh pi@192.168.1.148 "export TERM=xterm; cd /home/pi/Unirail-25 && make clean && make rbc && clear"
+make -C app/EVC clean
+make[1]: Entering directory '/home/pi/Unirail-25/app/EVC'
+rm -rf build bin
+make[1]: Leaving directory '/home/pi/Unirail-25/app/EVC'
+make -C app/RBC clean
+make[1]: Entering directory '/home/pi/Unirail-25/app/RBC'
+rm -rf build bin
+make[1]: Leaving directory '/home/pi/Unirail-25/app/RBC'
+make -C app/RBC
+make[1]: Entering directory '/home/pi/Unirail-25/app/RBC'
+mkdir -p build
+gcc -g -Iinclude -I../utility/include -DDEBUG -c src/main.c -o build/main.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c src/requests_handler.c -o build/requests_handler.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c src/ressources.c -o build/ressources.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c src/trains.c -o build/trains.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c ../utility/src/can.c -o build/can.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c ../utility/src/can_infra.c -o build/can_infra.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c ../utility/src/comm.c -o build/comm.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c ../utility/src/const_chemins.c -o build/const_chemins.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -DDEBUG -c ../utility/src/map.c -o build/map.o -lpthread -lm
+mkdir -p bin
+gcc -g -Iinclude -I../utility/include -DDEBUG -o bin/rbc  build/main.o  build/requests_handler.o  build/ressources.o  build/trains.o  build/can.o  build/can_infra.o  build/comm.o  build/const_chemins.o  build/map.o -lpthread -lm
+make[1]: Leaving directory '/home/pi/Unirail-25/app/RBC'
+[H[2J[3Jsshpass -p raspberry ssh -tt pi@192.168.1.148 "cd /home/pi/Unirail-25 && ./app/RBC/bin/rbc 3000"
+RBC - Initialisation
+RBC - N° du socket de dialogue : 3 
+Attente de données...
+Réception de données : 1:1:100:
+Attente de données...
+2713, 192.168.1.151, 2129492492Id du train: 1
+2713, 192.168.1.151, 1Envoi de données : 1:1:200: à 192.168.1.151
+2713, 192.168.1.151, 1Réception de données : 2:1:101:2:0.00:
+Attente de données...
+2714, 192.168.1.151, 2129492492Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 0
+2714, 192.168.1.151, 1Envoi de données : 2:1:201: à 192.168.1.151
+2714, 192.168.1.151, 1Réception de données : 3:1:102:
+Attente de données...
+2715, 192.168.1.151, 1993950272Id du train: 1
+RBC [0] - Demande d'autorisation de mouvement reçue
+RBC [0] - 
+
+Dans demande ressource
+Position bal: 2, pos: 0.000000
+RBC [0] - Indice de la prochaine ressource : 0 
+Ressource à verrouiller : 8
+RBC [0] - Balise actuelle: 2, balise à attendre pour demande: 1 | 0 | 7
+RBC [0] - Taille chemin 0: 8
+RBC [0] - Dans loop
+RBC [0] - Condition 1: 0 1bis: 0 2: 0
+RBC [0] - Balise actuelle 2
+Balise d'indice i - 1 9
+Balise de ressource 3
+Balise d'indice i 1
+RBC [0] - Dans loop
+RBC [0] - Condition 1: 0 1bis: 1 2: 0
+RBC [0] - Balise actuelle 2
+Balise d'indice i - 1 1
+Balise de ressource 3
+Balise d'indice i 2
+RBC [0] - Dans loop
+RBC [0] - Condition 1: 1 1bis: 0 2: 1
+RBC [0] - Balise actuelle 2
+Balise d'indice i - 1 2
+Balise de ressource 3
+Balise d'indice i 3
+RBC [0] - La ressource doit être verrouillée
+RBC [0] - Ressources avant lock: 0
+RBC [0] - Ressource à lock: 8
+RBC [0] - Ressources après lock: 8
+RBC [0] - Test condition :
+ Indice actuel 0
+ Limite 1
+RBC [0] - Setting switches
+Setting 6 switches for train 0, bal index 0, on socket 4
+Setting 1a2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1a2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1a2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 192 to turn
+Message CAN envoyé avec succès sur can0
+Setting 192 to turn
+Message CAN envoyé avec succès sur can0
+Setting 192 to turn
+Message CAN envoyé avec succès sur can0
+Réception de données : 4:1:101:2:0.00:
+Attente de données...
+2716, 192.168.1.151, 0Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+Réception de données : 1:3:100:
+Attente de données...
+2717, 192.168.1.172, 0Id du train: 3
+2717, 192.168.1.172, 3Envoi de données : 1:3:200: à 192.168.1.172
+2717, 192.168.1.172, 3Setting 212 to straight
+Message CAN envoyé avec succès sur can0
+Setting 212 to straight
+Message CAN envoyé avec succès sur can0
+Setting 212 to straight
+Message CAN envoyé avec succès sur can0
+Setting 202 to straight
+Message CAN envoyé avec succès sur can0
+Setting 202 to straight
+Message CAN envoyé avec succès sur can0
+Setting 202 to straight
+Message CAN envoyé avec succès sur can0
+Setting 1d2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1d2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1d2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1e2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1e2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1e2 to turn
+Message CAN envoyé avec succès sur can0
+Réception de données : 2:3:101:23:0.00:
+Attente de données...
+2718, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 23, pos 0.000000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 8
+2718, 192.168.1.172, 3Envoi de données : 2:3:201: à 192.168.1.172
+2718, 192.168.1.172, 3Réception de données : 3:3:102:
+Attente de données...
+2719, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Demande d'autorisation de mouvement reçue
+RBC [2] - 
+
+Dans demande ressource
+Position bal: 23, pos: 0.000000
+RBC [2] - Indice de la prochaine ressource : 0 
+Ressource à verrouiller : 16
+RBC [2] - Balise actuelle: 23, balise à attendre pour demande: 3 | 2 | 15
+RBC [2] - Taille chemin 2: 16
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 23
+Balise d'indice i - 1 9
+Balise de ressource 24
+Balise d'indice i 22
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 1 2: 0
+RBC [2] - Balise actuelle 23
+Balise d'indice i - 1 22
+Balise de ressource 24
+Balise d'indice i 23
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 1 1bis: 0 2: 1
+RBC [2] - Balise actuelle 23
+Balise d'indice i - 1 23
+Balise de ressource 24
+Balise d'indice i 24
+RBC [2] - La ressource doit être verrouillée
+RBC [2] - Ressources avant lock: 8
+RBC [2] - Ressource à lock: 16
+RBC [2] - Ressources après lock: 24
+RBC [2] - Test condition :
+ Indice actuel 0
+ Limite 1
+RBC [2] - Setting switches
+Setting 2 switches for train 2, bal index 0, on socket 4
+Setting 1b2 to straight
+Message CAN envoyé avec succès sur can0
+Setting 1b2 to straight
+Message CAN envoyé avec succès sur can0
+Setting 1b2 to straight
+Message CAN envoyé avec succès sur can0
+RBC [0] - Switches set
+RBC [0] - Indice de la prochaine ressource : 1 
+Prochaine ressource à verrouiller : 1
+RBC [0] - Sortie demande ressource
+
+RBC [0] - Ressource accordée : 1
+RBC [0] - Ressources libres : 24
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2716, 192.168.1.172, 1Entrée dans next EOA
+No train: 0
+ Pos train actuel: 2, 0.000000
+Prochaine balise avant ressource: 9
+Indice balise actuelle : 1
+Balise actuelle supposée : 2
+Balise actuelle réelle : 2
+Indice prochaine balise : 2
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 3
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 4
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 5
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 6
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 7
+Objectif init 1 0 | 2 0 | 3 0
+Prochaine balise bloquée par ressource : 9Objectif trigger 1 1 | 2 0 | 3 0
+RBC [0] - Prochaine EOA pour train 0: balise 9, position 0.000000
+Envoi de données : 4:1:201: à 192.168.1.172
+2715, 192.168.1.172, 1Envoi de données : 3:1:202:9: 0: à 192.168.1.172
+2716, 192.168.1.172, 12715, 192.168.1.172, 1Setting 1f2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1f2 to turn
+Message CAN envoyé avec succès sur can0
+Setting 1f2 to turn
+Message CAN envoyé avec succès sur can0
+Réception de données : 4:3:101:23:0.00:
+Attente de données...
+2720, 192.168.1.172, 1983902784Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 23, pos 0.000000
+Réception de données : 5:1:101:2:0.00:
+Attente de données...
+2721, 192.168.1.151, 2129492492Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2721, 192.168.1.151, 1Envoi de données : 5:1:201: à 192.168.1.151
+2721, 192.168.1.151, 1RBC [2] - Switches set
+RBC [2] - Indice de la prochaine ressource : 1 
+Prochaine ressource à verrouiller : 4
+RBC [2] - Sortie demande ressource
+
+RBC [2] - Ressource accordée : 1
+RBC [2] - Ressources libres : 24
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2720, 192.168.1.151, 3Envoi de données : 4:3:201: à 192.168.1.151
+2720, 192.168.1.151, 3Entrée dans next EOA
+No train: 2
+ Pos train actuel: 23, 0.000000
+Prochaine balise avant ressource: 29
+Indice balise actuelle : 1
+Balise actuelle supposée : 23
+Balise actuelle réelle : 23
+Indice prochaine balise : 2
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 3
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 4
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 5
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 6
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 7
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 8
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 9
+Objectif init 1 0 | 2 0 | 3 0
+Prochaine balise bloquée par ressource : 29Objectif trigger 1 1 | 2 0 | 3 0
+RBC [2] - Prochaine EOA pour train 2: balise 29, position 0.000000
+2719, 192.168.1.151, 3Envoi de données : 3:3:202:29: 0: à 192.168.1.151
+2719, 192.168.1.151, 3Réception de données : 6:1:101:2:0.00:
+Attente de données...
+2722, 192.168.1.151, 2129492492Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2722, 192.168.1.151, 1Envoi de données : 6:1:201: à 192.168.1.151
+2722, 192.168.1.151, 1Réception de données : 7:1:101:2:0.00:
+Attente de données...
+2723, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2723, 192.168.1.151, 1Envoi de données : 7:1:201: à 192.168.1.151
+2723, 192.168.1.151, 1Réception de données : 8:1:101:2:0.00:
+Attente de données...
+2724, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2724, 192.168.1.151, 1Envoi de données : 8:1:201: à 192.168.1.151
+2724, 192.168.1.151, 1Réception de données : 9:1:101:2:0.00:
+Attente de données...
+2725, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2725, 192.168.1.151, 1Envoi de données : 9:1:201: à 192.168.1.151
+2725, 192.168.1.151, 1Réception de données : 10:1:101:2:0.00:
+Attente de données...
+2726, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2726, 192.168.1.151, 1Envoi de données : 10:1:201: à 192.168.1.151
+2726, 192.168.1.151, 1Réception de données : 5:3:101:23:1603.58:
+Attente de données...
+2727, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 23, pos 1603.580000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2727, 192.168.1.172, 3Envoi de données : 5:3:201: à 192.168.1.172
+2727, 192.168.1.172, 3Réception de données : 11:1:101:2:0.00:
+Attente de données...
+2728, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2728, 192.168.1.151, 1Envoi de données : 11:1:201: à 192.168.1.151
+2728, 192.168.1.151, 1Réception de données : 6:3:101:24:291.27:
+Attente de données...
+2729, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 24, pos 291.270000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2729, 192.168.1.172, 3Envoi de données : 6:3:201: à 192.168.1.172
+2729, 192.168.1.172, 3Réception de données : 12:1:101:2:0.00:
+Attente de données...
+2730, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2730, 192.168.1.151, 1Envoi de données : 12:1:201: à 192.168.1.151
+2730, 192.168.1.151, 1Réception de données : 7:3:101:24:641.16:
+Attente de données...
+2731, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 24, pos 641.160000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2731, 192.168.1.172, 3Envoi de données : 7:3:201: à 192.168.1.172
+2731, 192.168.1.172, 3Réception de données : 13:1:101:2:0.00:
+Attente de données...
+2732, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2732, 192.168.1.151, 1Envoi de données : 13:1:201: à 192.168.1.151
+2732, 192.168.1.151, 1Réception de données : 8:3:101:24:997.66:
+Attente de données...
+2733, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 24, pos 997.660000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2733, 192.168.1.172, 3Envoi de données : 8:3:201: à 192.168.1.172
+2733, 192.168.1.172, 3Réception de données : 14:1:101:2:0.00:
+Attente de données...
+2734, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2734, 192.168.1.151, 1Envoi de données : 14:1:201: à 192.168.1.151
+2734, 192.168.1.151, 1Réception de données : 9:3:101:24:1345.86:
+Attente de données...
+2735, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 24, pos 1345.860000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2735, 192.168.1.172, 3Envoi de données : 9:3:201: à 192.168.1.172
+2735, 192.168.1.172, 3Réception de données : 15:1:101:2:0.00:
+Attente de données...
+2736, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2736, 192.168.1.151, 1Envoi de données : 15:1:201: à 192.168.1.151
+2736, 192.168.1.151, 1Réception de données : 10:3:101:24:1701.18:
+Attente de données...
+2737, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 24, pos 1701.180000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2737, 192.168.1.172, 3Envoi de données : 10:3:201: à 192.168.1.172
+2737, 192.168.1.172, 3Réception de données : 16:1:101:2:0.00:
+Attente de données...
+2739, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2739, 192.168.1.151, 1Envoi de données : 16:1:201: à 192.168.1.151
+2739, 192.168.1.151, 1Réception de données : 11:3:101:25:369.38:
+Attente de données...
+2740, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 25, pos 369.380000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2740, 192.168.1.172, 3Envoi de données : 11:3:201: à 192.168.1.172
+2740, 192.168.1.172, 3Réception de données : 17:1:101:2:0.00:
+Attente de données...
+2741, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2741, 192.168.1.151, 1Envoi de données : 17:1:201: à 192.168.1.151
+2741, 192.168.1.151, 1Réception de données : 12:3:101:250:128.60:
+Attente de données...
+2742, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 250, pos 128.600000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2742, 192.168.1.172, 3Envoi de données : 12:3:201: à 192.168.1.172
+2742, 192.168.1.172, 3Réception de données : 18:1:101:2:0.00:
+Attente de données...
+2743, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2743, 192.168.1.151, 1Envoi de données : 18:1:201: à 192.168.1.151
+2743, 192.168.1.151, 1Réception de données : 13:3:101:250:535.77:
+Attente de données...
+2744, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 250, pos 535.770000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2744, 192.168.1.172, 3Envoi de données : 13:3:201: à 192.168.1.172
+2744, 192.168.1.172, 3Réception de données : 19:1:101:2:0.00:
+Attente de données...
+2745, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2745, 192.168.1.151, 1Envoi de données : 19:1:201: à 192.168.1.151
+2745, 192.168.1.151, 1Réception de données : 14:3:101:250:928.70:
+Attente de données...
+2746, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 250, pos 928.700000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2746, 192.168.1.172, 3Envoi de données : 14:3:201: à 192.168.1.172
+2746, 192.168.1.172, 3Réception de données : 20:1:101:2:0.00:
+Attente de données...
+2747, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2747, 192.168.1.151, 1Envoi de données : 20:1:201: à 192.168.1.151
+2747, 192.168.1.151, 1Réception de données : 15:3:101:26:101.33:
+Attente de données...
+2748, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 26, pos 101.330000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2748, 192.168.1.172, 3Envoi de données : 15:3:201: à 192.168.1.172
+2748, 192.168.1.172, 3Réception de données : 21:1:101:2:0.00:
+Attente de données...
+2749, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2749, 192.168.1.151, 1Envoi de données : 21:1:201: à 192.168.1.151
+2749, 192.168.1.151, 1Réception de données : 16:3:101:26:398.69:
+Attente de données...
+2750, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 26, pos 398.690000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2750, 192.168.1.172, 3Envoi de données : 16:3:201: à 192.168.1.172
+2750, 192.168.1.172, 3Réception de données : 22:1:101:2:0.00:
+Attente de données...
+2751, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2751, 192.168.1.151, 1Envoi de données : 22:1:201: à 192.168.1.151
+2751, 192.168.1.151, 1Réception de données : 17:3:101:26:704.19:
+Attente de données...
+2752, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 26, pos 704.190000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2752, 192.168.1.172, 3Envoi de données : 17:3:201: à 192.168.1.172
+2752, 192.168.1.172, 3Réception de données : 23:1:101:2:0.00:
+Attente de données...
+2753, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2753, 192.168.1.151, 1Envoi de données : 23:1:201: à 192.168.1.151
+2753, 192.168.1.151, 1Réception de données : 18:3:101:26:1003.59:
+Attente de données...
+2754, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 26, pos 1003.590000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2754, 192.168.1.172, 3Envoi de données : 18:3:201: à 192.168.1.172
+2754, 192.168.1.172, 3Réception de données : 24:1:101:2:0.00:
+Attente de données...
+2755, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2755, 192.168.1.151, 1Envoi de données : 24:1:201: à 192.168.1.151
+2755, 192.168.1.151, 1Réception de données : 19:3:101:251:304.31:
+Attente de données...
+2756, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 251, pos 304.310000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2756, 192.168.1.172, 3Envoi de données : 19:3:201: à 192.168.1.172
+2756, 192.168.1.172, 3Réception de données : 25:1:101:2:0.00:
+Attente de données...
+2757, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2757, 192.168.1.151, 1Envoi de données : 25:1:201: à 192.168.1.151
+2757, 192.168.1.151, 1Réception de données : 20:3:101:251:622.18:
+Attente de données...
+2758, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 251, pos 622.180000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2758, 192.168.1.172, 3Envoi de données : 20:3:201: à 192.168.1.172
+2758, 192.168.1.172, 3Réception de données : 26:1:101:2:0.00:
+Attente de données...
+2759, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2759, 192.168.1.151, 1Envoi de données : 26:1:201: à 192.168.1.151
+2759, 192.168.1.151, 1Réception de données : 21:3:101:251:1001.90:
+Attente de données...
+2760, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 251, pos 1001.900000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2760, 192.168.1.172, 3Envoi de données : 21:3:201: à 192.168.1.172
+2760, 192.168.1.172, 3Réception de données : 27:1:101:2:0.00:
+Attente de données...
+2761, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2761, 192.168.1.151, 1Envoi de données : 27:1:201: à 192.168.1.151
+2761, 192.168.1.151, 1Réception de données : 22:3:101:251:1401.61:
+Attente de données...
+2762, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 251, pos 1401.610000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2762, 192.168.1.172, 3Envoi de données : 22:3:201: à 192.168.1.172
+2762, 192.168.1.172, 3Réception de données : 28:1:101:2:0.00:
+Attente de données...
+2763, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2763, 192.168.1.151, 1Envoi de données : 28:1:201: à 192.168.1.151
+2763, 192.168.1.151, 1Réception de données : 23:3:101:251:1807.42:
+Attente de données...
+2764, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 251, pos 1807.420000
+RBC [2] - Prochaine ressource libérée : 0
+RBC [2] - Ressources libres : 24
+2764, 192.168.1.172, 3Envoi de données : 23:3:201: à 192.168.1.172
+2764, 192.168.1.172, 3Réception de données : 29:1:101:2:0.00:
+Attente de données...
+2765, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 24
+2765, 192.168.1.151, 1Envoi de données : 29:1:201: à 192.168.1.151
+2765, 192.168.1.151, 1Réception de données : 24:3:101:27:156.22:
+Attente de données...
+2766, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 27, pos 156.220000
+Balise 27, libère ressource 16
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2766, 192.168.1.172, 3Envoi de données : 24:3:201: à 192.168.1.172
+2766, 192.168.1.172, 3Réception de données : 30:1:101:2:0.00:
+Attente de données...
+2767, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 8
+2767, 192.168.1.151, 1Envoi de données : 30:1:201: à 192.168.1.151
+2767, 192.168.1.151, 1Réception de données : 25:3:101:27:556.44:
+Attente de données...
+2768, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 27, pos 556.440000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2768, 192.168.1.172, 3Envoi de données : 25:3:201: à 192.168.1.172
+2768, 192.168.1.172, 3Réception de données : 31:1:101:2:0.00:
+Attente de données...
+2769, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 8
+2769, 192.168.1.151, 1Envoi de données : 31:1:201: à 192.168.1.151
+2769, 192.168.1.151, 1Réception de données : 26:3:101:27:962.93:
+Attente de données...
+2770, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 27, pos 962.930000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2770, 192.168.1.172, 3Envoi de données : 26:3:201: à 192.168.1.172
+2770, 192.168.1.172, 3Réception de données : 32:1:101:2:0.00:
+Attente de données...
+2771, 192.168.1.151, 1975510080Id du train: 1
+RBC [0] - Rapport de position reçu
+RBC [0] - Position : bal 2, pos 0.000000
+RBC [0] - Prochaine ressource libérée : 0
+RBC [0] - Ressources libres : 8
+2771, 192.168.1.151, 1Envoi de données : 32:1:201: à 192.168.1.151
+2771, 192.168.1.151, 1Réception de données : 27:3:101:27:1368.23:
+Attente de données...
+2772, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 27, pos 1368.230000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2772, 192.168.1.172, 3Envoi de données : 27:3:201: à 192.168.1.172
+2772, 192.168.1.172, 3Réception de données : 28:3:101:28:236.54:
+Attente de données...
+2773, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 28, pos 236.540000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2773, 192.168.1.172, 3Envoi de données : 28:3:201: à 192.168.1.172
+2773, 192.168.1.172, 3Réception de données : 29:3:101:28:636.08:
+Attente de données...
+2774, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 28, pos 636.080000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2774, 192.168.1.172, 3Envoi de données : 29:3:201: à 192.168.1.172
+2774, 192.168.1.172, 3Réception de données : 30:3:101:28:1043.58:
+Attente de données...
+2775, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 28, pos 1043.580000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2775, 192.168.1.172, 3Envoi de données : 30:3:201: à 192.168.1.172
+2775, 192.168.1.172, 3Réception de données : 31:3:101:28:1450.91:
+Attente de données...
+2776, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 28, pos 1450.910000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2776, 192.168.1.172, 3Envoi de données : 31:3:201: à 192.168.1.172
+2776, 192.168.1.172, 3Réception de données : 32:3:101:28:1818.94:
+Attente de données...
+2777, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 28, pos 1818.940000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2777, 192.168.1.172, 3Envoi de données : 32:3:201: à 192.168.1.172
+2777, 192.168.1.172, 3Réception de données : 33:3:101:29:207.06:
+Attente de données...
+2778, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 207.060000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2778, 192.168.1.172, 3Envoi de données : 33:3:201: à 192.168.1.172
+2778, 192.168.1.172, 3Réception de données : 34:3:101:29:506.29:
+Attente de données...
+2779, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 506.290000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2779, 192.168.1.172, 3Envoi de données : 34:3:201: à 192.168.1.172
+2779, 192.168.1.172, 3Réception de données : 35:3:101:29:812.13:
+Attente de données...
+2780, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 812.130000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2780, 192.168.1.172, 3Envoi de données : 35:3:201: à 192.168.1.172
+2780, 192.168.1.172, 3Réception de données : 36:3:101:29:1111.87:
+Attente de données...
+2781, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 1111.870000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2781, 192.168.1.172, 3Envoi de données : 36:3:201: à 192.168.1.172
+2781, 192.168.1.172, 3Réception de données : 37:3:101:29:1411.44:
+Attente de données...
+2782, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 1411.440000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2782, 192.168.1.172, 3Envoi de données : 37:3:201: à 192.168.1.172
+2782, 192.168.1.172, 3Réception de données : 38:3:101:29:1716.77:
+Attente de données...
+2783, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 1716.770000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2783, 192.168.1.172, 3Envoi de données : 38:3:201: à 192.168.1.172
+2783, 192.168.1.172, 3Réception de données : 39:3:101:29:2017.35:
+Attente de données...
+2784, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 2017.350000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2784, 192.168.1.172, 3Envoi de données : 39:3:201: à 192.168.1.172
+2784, 192.168.1.172, 3Réception de données : 40:3:101:29:2321.33:
+Attente de données...
+2785, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 2321.330000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2785, 192.168.1.172, 3Envoi de données : 40:3:201: à 192.168.1.172
+2785, 192.168.1.172, 3Réception de données : 41:3:101:29:2622.59:
+Attente de données...
+2786, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 2622.590000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2786, 192.168.1.172, 3Envoi de données : 41:3:201: à 192.168.1.172
+2786, 192.168.1.172, 3Réception de données : 42:3:101:29:2928.43:
+Attente de données...
+2787, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 29, pos 2928.430000
+RBC [2] - Prochaine ressource libérée : 1
+RBC [2] - Ressources libres : 8
+2787, 192.168.1.172, 3Envoi de données : 42:3:201: à 192.168.1.172
+2787, 192.168.1.172, 3Réception de données : 43:3:101:11:211.29:
+Attente de données...
+2788, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 211.290000
+Balise 11, libère ressource 4
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2788, 192.168.1.172, 3Envoi de données : 43:3:201: à 192.168.1.172
+2788, 192.168.1.172, 3Réception de données : 44:3:101:11:540.17:
+Attente de données...
+2789, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 540.170000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2789, 192.168.1.172, 3Envoi de données : 44:3:201: à 192.168.1.172
+2789, 192.168.1.172, 3Réception de données : 45:3:101:11:894.13:
+Attente de données...
+2790, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 894.130000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2790, 192.168.1.172, 3Envoi de données : 45:3:201: à 192.168.1.172
+2790, 192.168.1.172, 3Réception de données : 46:3:101:11:1249.79:
+Attente de données...
+2791, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 1249.790000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2791, 192.168.1.172, 3Envoi de données : 46:3:201: à 192.168.1.172
+2791, 192.168.1.172, 3Réception de données : 47:3:101:11:1605.11:
+Attente de données...
+2792, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 1605.110000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2792, 192.168.1.172, 3Envoi de données : 47:3:201: à 192.168.1.172
+2792, 192.168.1.172, 3Réception de données : 48:3:101:11:1955.85:
+Attente de données...
+2793, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 1955.850000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2793, 192.168.1.172, 3Envoi de données : 48:3:201: à 192.168.1.172
+2793, 192.168.1.172, 3Réception de données : 49:3:101:11:2311.50:
+Attente de données...
+2794, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 11, pos 2311.500000
+RBC [2] - Prochaine ressource libérée : 2
+RBC [2] - Ressources libres : 8
+2794, 192.168.1.172, 3Envoi de données : 49:3:201: à 192.168.1.172
+2794, 192.168.1.172, 3Réception de données : 50:3:101:12:241.62:
+Attente de données...
+2795, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 12, pos 241.620000
+Balise 12, libère ressource 8
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2795, 192.168.1.172, 3Envoi de données : 50:3:201: à 192.168.1.172
+2795, 192.168.1.172, 3Réception de données : 51:3:101:12:627.27:
+Attente de données...
+2796, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 12, pos 627.270000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2796, 192.168.1.172, 3Envoi de données : 51:3:201: à 192.168.1.172
+2796, 192.168.1.172, 3Réception de données : 52:3:101:12:1033.41:
+Attente de données...
+2797, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 12, pos 1033.410000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2797, 192.168.1.172, 3Envoi de données : 52:3:201: à 192.168.1.172
+2797, 192.168.1.172, 3Réception de données : 53:3:101:12:1433.97:
+Attente de données...
+2798, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 12, pos 1433.970000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2798, 192.168.1.172, 3Envoi de données : 53:3:201: à 192.168.1.172
+2798, 192.168.1.172, 3Réception de données : 54:3:101:12:1836.22:
+Attente de données...
+2799, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 12, pos 1836.220000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2799, 192.168.1.172, 3Envoi de données : 54:3:201: à 192.168.1.172
+2799, 192.168.1.172, 3Réception de données : 55:3:101:13:60.66:
+Attente de données...
+2800, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 60.660000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2800, 192.168.1.172, 3Envoi de données : 55:3:201: à 192.168.1.172
+2800, 192.168.1.172, 3Réception de données : 56:3:101:13:372.09:
+Attente de données...
+2801, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 372.090000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2801, 192.168.1.172, 3Envoi de données : 56:3:201: à 192.168.1.172
+2801, 192.168.1.172, 3Réception de données : 57:3:101:13:666.92:
+Attente de données...
+2804, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 666.920000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2804, 192.168.1.172, 3Envoi de données : 57:3:201: à 192.168.1.172
+2804, 192.168.1.172, 3Réception de données : 58:3:101:13:969.03:
+Attente de données...
+2805, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 969.030000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2805, 192.168.1.172, 3Envoi de données : 58:3:201: à 192.168.1.172
+2805, 192.168.1.172, 3Réception de données : 59:3:101:13:1268.60:
+Attente de données...
+2806, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 1268.600000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2806, 192.168.1.172, 3Envoi de données : 59:3:201: à 192.168.1.172
+2806, 192.168.1.172, 3Réception de données : 60:3:101:13:1574.78:
+Attente de données...
+2807, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 1574.780000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2807, 192.168.1.172, 3Envoi de données : 60:3:201: à 192.168.1.172
+2807, 192.168.1.172, 3Réception de données : 61:3:101:13:1879.60:
+Attente de données...
+2808, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 1879.600000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2808, 192.168.1.172, 3Envoi de données : 61:3:201: à 192.168.1.172
+2808, 192.168.1.172, 3Réception de données : 62:3:101:13:2178.32:
+Attente de données...
+2809, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 2178.320000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2809, 192.168.1.172, 3Envoi de données : 62:3:201: à 192.168.1.172
+2809, 192.168.1.172, 3Réception de données : 63:3:101:13:2483.48:
+Attente de données...
+2810, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 13, pos 2483.480000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2810, 192.168.1.172, 3Envoi de données : 63:3:201: à 192.168.1.172
+2810, 192.168.1.172, 3Réception de données : 64:3:101:7:185.54:
+Attente de données...
+2811, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 7, pos 185.540000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2811, 192.168.1.172, 3Envoi de données : 64:3:201: à 192.168.1.172
+2811, 192.168.1.172, 3Réception de données : 65:3:101:7:500.86:
+Attente de données...
+2812, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 7, pos 500.860000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2812, 192.168.1.172, 3Envoi de données : 65:3:201: à 192.168.1.172
+2812, 192.168.1.172, 3Réception de données : 66:3:101:7:838.73:
+Attente de données...
+2813, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 7, pos 838.730000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2813, 192.168.1.172, 3Envoi de données : 66:3:201: à 192.168.1.172
+2813, 192.168.1.172, 3Réception de données : 67:3:101:7:1222.51:
+Attente de données...
+2814, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 7, pos 1222.510000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2814, 192.168.1.172, 3Envoi de données : 67:3:201: à 192.168.1.172
+2814, 192.168.1.172, 3Réception de données : 68:3:101:7:1629.67:
+Attente de données...
+2815, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 7, pos 1629.670000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2815, 192.168.1.172, 3Envoi de données : 68:3:201: à 192.168.1.172
+2815, 192.168.1.172, 3Réception de données : 69:3:101:8:189.60:
+Attente de données...
+2816, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 8, pos 189.600000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2816, 192.168.1.172, 3Envoi de données : 69:3:201: à 192.168.1.172
+2816, 192.168.1.172, 3Réception de données : 70:3:101:8:595.58:
+Attente de données...
+2817, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 8, pos 595.580000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2817, 192.168.1.172, 3Envoi de données : 70:3:201: à 192.168.1.172
+2817, 192.168.1.172, 3Réception de données : 71:3:102:
+Attente de données...
+2818, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Demande d'autorisation de mouvement reçue
+RBC [2] - 
+
+Dans demande ressource
+Position bal: 8, pos: 595.580017
+RBC [2] - Indice de la prochaine ressource : 1 
+Ressource à verrouiller : 4
+RBC [2] - Balise actuelle: 8, balise à attendre pour demande: 24 | 2 | 0
+RBC [2] - Taille chemin 2: 16
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 9
+Balise de ressource 29
+Balise d'indice i 22
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 22
+Balise de ressource 29
+Balise d'indice i 23
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 23
+Balise de ressource 29
+Balise d'indice i 24
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 24
+Balise de ressource 29
+Balise d'indice i 25
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 25
+Balise de ressource 29
+Balise d'indice i 250
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 250
+Balise de ressource 29
+Balise d'indice i 26
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 26
+Balise de ressource 29
+Balise d'indice i 251
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 251
+Balise de ressource 29
+Balise d'indice i 27
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 27
+Balise de ressource 29
+Balise d'indice i 28
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 1
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 28
+Balise de ressource 29
+Balise d'indice i 29
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 29
+Balise de ressource 29
+Balise d'indice i 11
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 11
+Balise de ressource 29
+Balise d'indice i 12
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 12
+Balise de ressource 29
+Balise d'indice i 13
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 13
+Balise de ressource 29
+Balise d'indice i 7
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 0 1bis: 1 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 7
+Balise de ressource 29
+Balise d'indice i 8
+RBC [2] - Dans loop
+RBC [2] - Condition 1: 1 1bis: 0 2: 0
+RBC [2] - Balise actuelle 8
+Balise d'indice i - 1 8
+Balise de ressource 29
+Balise d'indice i 9
+RBC [2] - Indice de la prochaine ressource : 1 
+Prochaine ressource à verrouiller : 4
+RBC [2] - Sortie demande ressource
+
+RBC [2] - Ressource accordée : 1
+RBC [2] - Ressources libres : 0
+Entrée dans next EOA
+No train: 2
+ Pos train actuel: 8, 595.580017
+Prochaine balise avant ressource: 29
+Indice balise actuelle : 14
+Balise actuelle supposée : 8
+Balise actuelle réelle : 8
+Indice prochaine balise : 15
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 0
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 1
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 2
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 3
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 4
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 5
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 6
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 7
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 8
+Objectif init 1 0 | 2 0 | 3 0
+Indice prochaine balise : 9
+Objectif init 1 0 | 2 0 | 3 0
+Prochaine balise bloquée par ressource : 29Objectif trigger 1 1 | 2 0 | 3 0
+RBC [2] - Prochaine EOA pour train 2: balise 29, position 0.000000
+2818, 192.168.1.172, 3Envoi de données : 71:3:202:29: 0: à 192.168.1.172
+2818, 192.168.1.172, 3Réception de données : 72:3:101:8:996.98:
+Attente de données...
+2819, 192.168.1.172, 2129492492Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 8, pos 996.980000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2819, 192.168.1.172, 3Envoi de données : 72:3:201: à 192.168.1.172
+2819, 192.168.1.172, 3Réception de données : 73:3:101:8:1373.14:
+Attente de données...
+2820, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 8, pos 1373.140000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2820, 192.168.1.172, 3Envoi de données : 73:3:201: à 192.168.1.172
+2820, 192.168.1.172, 3Réception de données : 74:3:101:9:43.04:
+Attente de données...
+2821, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 43.040000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2821, 192.168.1.172, 3Envoi de données : 74:3:201: à 192.168.1.172
+2821, 192.168.1.172, 3Réception de données : 75:3:101:9:297.71:
+Attente de données...
+2822, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 297.710000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2822, 192.168.1.172, 3Envoi de données : 75:3:201: à 192.168.1.172
+2822, 192.168.1.172, 3Réception de données : 76:3:101:9:548.65:
+Attente de données...
+2824, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 548.650000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2824, 192.168.1.172, 3Envoi de données : 76:3:201: à 192.168.1.172
+2824, 192.168.1.172, 3Réception de données : 77:3:101:9:795.69:
+Attente de données...
+2825, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 795.690000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2825, 192.168.1.172, 3Envoi de données : 77:3:201: à 192.168.1.172
+2825, 192.168.1.172, 3Réception de données : 78:3:101:9:1049.00:
+Attente de données...
+2826, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 1049.000000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2826, 192.168.1.172, 3Envoi de données : 78:3:201: à 192.168.1.172
+2826, 192.168.1.172, 3Réception de données : 79:3:101:9:1298.76:
+Attente de données...
+2827, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 1298.760000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2827, 192.168.1.172, 3Envoi de données : 79:3:201: à 192.168.1.172
+2827, 192.168.1.172, 3Réception de données : 80:3:101:9:1551.90:
+Attente de données...
+2828, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 1551.900000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2828, 192.168.1.172, 3Envoi de données : 80:3:201: à 192.168.1.172
+2828, 192.168.1.172, 3Réception de données : 81:3:101:9:1807.25:
+Attente de données...
+2829, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 1807.250000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2829, 192.168.1.172, 3Envoi de données : 81:3:201: à 192.168.1.172
+2829, 192.168.1.172, 3Réception de données : 82:3:101:9:2057.00:
+Attente de données...
+2830, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 2057.000000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2830, 192.168.1.172, 3Envoi de données : 82:3:201: à 192.168.1.172
+2830, 192.168.1.172, 3Réception de données : 83:3:101:9:2312.69:
+Attente de données...
+2831, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 2312.690000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2831, 192.168.1.172, 3Envoi de données : 83:3:201: à 192.168.1.172
+2831, 192.168.1.172, 3Réception de données : 84:3:101:9:2562.27:
+Attente de données...
+2832, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 2562.270000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2832, 192.168.1.172, 3Envoi de données : 84:3:201: à 192.168.1.172
+2832, 192.168.1.172, 3Réception de données : 85:3:101:9:2815.92:
+Attente de données...
+2833, 192.168.1.172, 1975510080Id du train: 3
+RBC [2] - Rapport de position reçu
+RBC [2] - Position : bal 9, pos 2815.920000
+RBC [2] - Prochaine ressource libérée : 3
+RBC [2] - Ressources libres : 0
+2833, 192.168.1.172, 3Envoi de données : 85:3:201: à 192.168.1.172
+2833, 192.168.1.172, 3Réception de données : 1:1:100:
+Attente de données...
+2921, 192.168.1.151, 1975510080Id du train: 1
+2921, 192.168.1.151, 1Envoi de données : 1:1:200: à 192.168.1.151
+^C

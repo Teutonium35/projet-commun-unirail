@@ -1,0 +1,34 @@
+sshpass -p raspberry ssh pi@192.168.1.148 "rm -rf /home/pi/Unirail-25/app"
+sshpass -p raspberry scp -r ./app pi@192.168.1.148:/home/pi/Unirail-25
+sshpass -p raspberry scp -r ./Makefile pi@192.168.1.148:/home/pi/Unirail-25
+sshpass -p raspberry ssh pi@192.168.1.148 "export TERM=xterm; cd /home/pi/Unirail-25 && make clean && make rbc && clear"
+make -C app/EVC clean
+make[1]: Entering directory '/home/pi/Unirail-25/app/EVC'
+rm -rf build bin
+make[1]: Leaving directory '/home/pi/Unirail-25/app/EVC'
+make -C app/RBC clean
+make[1]: Entering directory '/home/pi/Unirail-25/app/RBC'
+rm -rf build bin
+make[1]: Leaving directory '/home/pi/Unirail-25/app/RBC'
+make -C app/RBC
+make[1]: Entering directory '/home/pi/Unirail-25/app/RBC'
+mkdir -p build
+gcc -g -Iinclude -I../utility/include -c src/main.c -o build/main.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c src/requests_handler.c -o build/requests_handler.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c src/ressources.c -o build/ressources.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c src/trains.c -o build/trains.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c ../utility/src/can.c -o build/can.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c ../utility/src/can_infra.c -o build/can_infra.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c ../utility/src/comm.c -o build/comm.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c ../utility/src/const_chemins.c -o build/const_chemins.o -lpthread -lm
+gcc -g -Iinclude -I../utility/include -c ../utility/src/map.c -o build/map.o -lpthread -lm
+mkdir -p bin
+gcc -g -Iinclude -I../utility/include -o bin/rbc  build/main.o  build/requests_handler.o  build/ressources.o  build/trains.o  build/can.o  build/can_infra.o  build/comm.o  build/const_chemins.o  build/map.o -lpthread -lm
+make[1]: Leaving directory '/home/pi/Unirail-25/app/RBC'
+[H[2J[3Jsshpass -p raspberry ssh -tt pi@192.168.1.148 "cd /home/pi/Unirail-25 && ./app/RBC/bin/rbc 3000"
+RBC - Initialisation
+RBC - N° du socket de dialogue : 3 
+In can test
+In can test
+Init socket
+Init socket
