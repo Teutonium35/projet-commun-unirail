@@ -23,7 +23,6 @@
           <include xmi:type="uml:Include" xmi:id="_EsUo4PQbEe-okpddkHWP5g" addition="_CkH8IOh8Ee-AB_pJZtmEXA"/>
           <include xmi:type="uml:Include" xmi:id="_FX-N8PQbEe-okpddkHWP5g" addition="_pl0EcOh7Ee-AB_pJZtmEXA"/>
         </ownedUseCase>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_0t6kYPUrEe-BcNlk6HtCGQ" name="infrastructure" type="_s4PBkPUrEe-BcNlk6HtCGQ"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_7Nj40PVhEe-BcNlk6HtCGQ" name="superviseur" type="_4M4WEPVhEe-BcNlk6HtCGQ"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_AXInEPUoEe-BcNlk6HtCGQ" name="RBC">
           <ownedAttribute xmi:type="uml:Port" xmi:id="_Pp4i8PUpEe-BcNlk6HtCGQ" name="RBC" aggregation="composite"/>
@@ -69,6 +68,7 @@
           <ownedAttribute xmi:type="uml:Port" xmi:id="_-Yb5YPVhEe-BcNlk6HtCGQ" name="Port1" aggregation="composite"/>
           <ownedAttribute xmi:type="uml:Port" xmi:id="_BK-ScPViEe-BcNlk6HtCGQ" name="Port2" aggregation="composite"/>
         </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_4ArUsACnEfCcFP2cqokeMg" name="Réception données"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_BCAPwORjEe-sc4pgeeNPqg" name="Opérateur"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_lXGZgORjEe-sc4pgeeNPqg" name="Balises de localisation"/>
@@ -163,7 +163,7 @@
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_B5ySgPVdEe-BcNlk6HtCGQ" name="ACK" informationSource="_QrS1QPUsEe-BcNlk6HtCGQ" informationTarget="_qlo6wPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_FMh1oPVdEe-BcNlk6HtCGQ" name="ACK" informationSource="_qlo6wPVVEe-BcNlk6HtCGQ" informationTarget="_nrF1MPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_IecSUPVdEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_RDaaUPUsEe-BcNlk6HtCGQ" informationTarget="_qlo6wPVVEe-BcNlk6HtCGQ"/>
-      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_MevCgPVeEe-BcNlk6HtCGQ" name="Libération ressources" informationSource="_qlo6wPVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_MevCgPVeEe-BcNlk6HtCGQ" name="Libération ressources" informationSource="_qlo6wPVVEe-BcNlk6HtCGQ _U_qQ0PVVEe-BcNlk6HtCGQ" informationTarget="_S8yaIPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_mc5NoPVeEe-BcNlk6HtCGQ" name="Nouvelle EOA attribuée" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_hYGJ8PVREe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_MnaLcPVgEe-BcNlk6HtCGQ" name="Nouvelle EOA" informationSource="_-8RtoPVeEe-BcNlk6HtCGQ" informationTarget="_ACqG4PVfEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_OFTs0PVgEe-BcNlk6HtCGQ" name="Demande autorisation de mouvement" informationSource="_ACqG4PVfEe-BcNlk6HtCGQ" informationTarget="_9q7agPVeEe-BcNlk6HtCGQ"/>
@@ -182,6 +182,7 @@
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_sn0XcPVhEe-BcNlk6HtCGQ" name="ACK" informationSource="__fcNQPUrEe-BcNlk6HtCGQ" informationTarget="_QrS1QPUsEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_tp1OEPVhEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_E94L4PUsEe-BcNlk6HtCGQ" informationTarget="_RDaaUPUsEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_EcJvUPViEe-BcNlk6HtCGQ" name="Déclenchement capteurs" informationSource="_DRbooPViEe-BcNlk6HtCGQ" informationTarget="_BK-ScPViEe-BcNlk6HtCGQ"/>
+      <packagedElement xmi:type="uml:InformationFlow" xmi:id="_I2ZtEPViEe-BcNlk6HtCGQ" name="Nouvelle mission" informationSource="_-Yb5YPVhEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_I2ZtEPViEe-BcNlk6HtCGQ" name="Nouvelle mission" informationSource="_-Yb5YPVhEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_QTcGYPViEe-BcNlk6HtCGQ" name="Itinéraire à établir" informationSource="_PGjIYPVVEe-BcNlk6HtCGQ" informationTarget="_nrF1MPVVEe-BcNlk6HtCGQ"/>
       <packagedElement xmi:type="uml:InformationFlow" xmi:id="_VZI04PViEe-BcNlk6HtCGQ" name="Validation itinéraire établi" informationSource="_nrF1MPVVEe-BcNlk6HtCGQ" informationTarget="_PGjIYPVVEe-BcNlk6HtCGQ"/>
@@ -235,6 +236,10 @@
         <nestedClassifier xmi:type="uml:Class" xmi:id="_mBZSAPQtEe-vmdhawZNNNQ" name="Contrôle de vitesse">
           <nestedClassifier xmi:type="uml:Class" xmi:id="_uv4DoOh9Ee-1lp3ryEUGEA" name="Respect des vitesses"/>
           <nestedClassifier xmi:type="uml:Class" xmi:id="_LfKpIPQwEe-U783q9KDaFw" name="Contrôle de vitesse"/>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_lj3xoOh-Ee-1lp3ryEUGEA" name="Architecture de communication">
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_6eoUUOh-Ee-1lp3ryEUGEA" name="Communication entre EVC et RBC"/>
+          <nestedClassifier xmi:type="uml:Class" xmi:id="_h9CtgOiBEe-1lp3ryEUGEA" name="Communication actionneurs"/>
         </nestedClassifier>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_lj3xoOh-Ee-1lp3ryEUGEA" name="Architecture de communication">
           <nestedClassifier xmi:type="uml:Class" xmi:id="_6eoUUOh-Ee-1lp3ryEUGEA" name="Communication entre EVC et RBC"/>
@@ -331,7 +336,6 @@
         <message xmi:type="uml:Message" xmi:id="_C10EIPkGEe-r3PbKjvQE6A" name="Calcul besoins ressources" messageSort="asynchCall" receiveEvent="_C11SQPkGEe-r3PbKjvQE6A" sendEvent="_C10rMPkGEe-r3PbKjvQE6A"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_NwZVUORgEe-sc4pgeeNPqg" name="04_BlocDefinitionDiagram"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_STF4YOM3Ee-G6OLNZtIGhg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_STKw4OM3Ee-G6OLNZtIGhg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
@@ -541,7 +545,6 @@
   <PortsAndFlows:ItemFlow xmi:id="_oo45MPVgEe-BcNlk6HtCGQ" base_InformationFlow="_oo2c8PVgEe-BcNlk6HtCGQ"/>
   <PortsAndFlows:ItemFlow xmi:id="_qX5_wPVgEe-BcNlk6HtCGQ" base_InformationFlow="_qX3jgPVgEe-BcNlk6HtCGQ"/>
   <PortsAndFlows:ItemFlow xmi:id="_sDmFgPVgEe-BcNlk6HtCGQ" base_InformationFlow="_sDjCMPVgEe-BcNlk6HtCGQ"/>
-  <PortsAndFlows:ItemFlow xmi:id="_iKeO0PVhEe-BcNlk6HtCGQ" base_InformationFlow="_iKbykPVhEe-BcNlk6HtCGQ"/>
   <PortsAndFlows:ItemFlow xmi:id="_rdq4gPVhEe-BcNlk6HtCGQ" base_InformationFlow="_rdocQPVhEe-BcNlk6HtCGQ"/>
   <PortsAndFlows:ItemFlow xmi:id="_sn2zsPVhEe-BcNlk6HtCGQ" base_InformationFlow="_sn0XcPVhEe-BcNlk6HtCGQ"/>
   <PortsAndFlows:ItemFlow xmi:id="_tp3qUPVhEe-BcNlk6HtCGQ" base_InformationFlow="_tp1OEPVhEe-BcNlk6HtCGQ"/>
